@@ -271,7 +271,12 @@ lemma sq_cast_mod_three (i : ℕ) :
     push_cast
     rw [show (3 : ZMod 3) = 0 from
       (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
-    norm_num
+    calc
+      (4 : ZMod 3) = 3 + 1 := by norm_num
+      _ = 0 + 1 := by
+        rw [show (3 : ZMod 3) = 0 from
+          (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
+      _ = 1 := by ring
 
 lemma term_cast_mod_three (n i : ℕ) (hi : i ∈ Finset.Icc 1 n) :
     ((((i ^ 2) ^ ((n - i + 1) ^ 2) : ℕ) : ZMod 3)) =
