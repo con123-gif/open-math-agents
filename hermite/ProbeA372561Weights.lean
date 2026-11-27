@@ -43,7 +43,6 @@ def grid (n k : ℕ) : ℕ :=
 
 end OMA.S_oeis_a372561
 
-import Mathlib
 
 /-!
 Base4 digit-weight infrastructure for the complete A372561 lift argument.
@@ -130,7 +129,7 @@ lemma D_even_succ (a : ℕ) : D (2 * a + 1) = D (2 * a) + 1 := by
   have hd : a % 2 + 2 * (a / 2) = a := by omega
   have he0 : 2 * a = 4 * (a / 2) + 2 * (a % 2) := by omega
   have he1 : 2 * a + 1 = 4 * (a / 2) + (2 * (a % 2) + 1) := by omega
-  rw [he0, he1, D_step _ _ (by omega), D_step _ _ (by omega)]
+  rw [he1, he0, D_step _ _ (by omega), D_step _ _ (by omega)]
   omega
 
 lemma D_borrow (a e : ℕ) (ha : 1 ≤ a) :
@@ -139,7 +138,9 @@ lemma D_borrow (a e : ℕ) (ha : 1 ≤ a) :
   | zero => simp
   | succ e ih =>
     have hp : 0 < 4 ^ e := by positivity
-    have hprod : 1 ≤ a * 4 ^ e := by positivity
+    have hprod : 1 ≤ a * 4 ^ e := by
+      have hpos := Nat.mul_pos (by omega : 0 < a) hp
+      omega
     have hpow : a * 4 ^ (e + 1) = 4 * (a * 4 ^ e) := by
       rw [pow_succ]
       ring
@@ -155,7 +156,9 @@ lemma D_double_borrow (a e : ℕ) (ha : 1 ≤ a) :
   | zero => simp
   | succ e ih =>
     have hp : 0 < 4 ^ e := by positivity
-    have hprod : 1 ≤ a * 4 ^ e := by positivity
+    have hprod : 1 ≤ a * 4 ^ e := by
+      have hpos := Nat.mul_pos (by omega : 0 < a) hp
+      omega
     have hpow : a * 4 ^ (e + 1) = 4 * (a * 4 ^ e) := by
       rw [pow_succ]
       ring
