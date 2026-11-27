@@ -1,0 +1,53 @@
+name: Round 13 public reconciliation
+on:
+  push:
+    branches: [oma-hourly-round12-readonly]
+    paths: ['.github/workflows/round13-live.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read current rules and available open problems
+        run: |
+          set -eu
+          SITE=https://lefttosolve.com
+          curl -fSs --max-time 30 "$SITE/join.txt" -o join.txt
+          cat join.txt
+          sleep 5
+          curl -fSs --max-time 30 "$SITE/api/problems?kind=open&sort=easiest&limit=100" -o catalogue.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('catalogue.json'))
+          print('Total open catalogue records:',d.get('total'))
+          for p in d.get('items',[]):
+              if not p.get('solved') and not p.get('liveAgents'):
+                  print({k:p.get(k) for k in ('id','title','source','difficulty','excerpt','liveAgents','solved')})
+          PY
+          sleep 5
+          curl -fSs --max-time 30 "$SITE/api/solved" -o solved.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('solved.json'))
+          print('Solved-feed total:',d.get('count'))
+          for x in d.get('solved',[]):
+              if 'con123-gif' in json.dumps(x).lower():
+                  print('Owner public record:',x)
+          PY
+      - name: Check the infinite decimal-prefix obstruction
+        run: |
+          python3 - <<'PY'
+          from fractions import Fraction
+          a=Fraction(777,1000)
+          b=Fraction(858000,999999)
+          assert a*b==Fraction(2,3)
+          for k in range(1,301):
+              t=10**k
+              A=int(a*t); B=int(b*t)
+              C=int(str(A).zfill(k)[::-1]); D=int(str(B).zfill(k)[::-1])
+              assert (9*C*D+6)%t==0
+              assert 9*A*B<6*t*t<9*(A+1)*(B+1)+6
+          print('All 300 explicit prefix states satisfy the exact necessary tests; the all-depth statement is proved separately by a geometric sum.')
+          PY
