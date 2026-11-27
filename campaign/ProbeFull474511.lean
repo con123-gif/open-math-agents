@@ -337,6 +337,8 @@ theorem full_solution : ∀ n : ℕ, ∀ A : ℝ≥0 → Mat n,
     intro x hx
     exact Bounded.clusterSpan_centralizes b x (hZb x hx)
   let H := Z ⊔ W
+  have hZH : Z ≤ H := le_sup_left
+  have hWH : W ≤ H := le_sup_right
   have hHH : ∀ x ∈ H, ∀ y ∈ H, x * y = y * x := by
     intro x hx y hy
     obtain ⟨zx, hzx, wx, hwx, rfl⟩ := Submodule.mem_sup.mp hx
@@ -358,7 +360,7 @@ theorem full_solution : ∀ n : ℕ, ∀ A : ℝ≥0 → Mat n,
   have hDb : Tendsto (fun t => D (b t)) atTop (𝓝 0) := by
     apply Bounded.tendsto_zero_of_vanish b hbbound D
     intro x hx
-    exact hDzero x (le_sup_right hx)
+    exact hDzero x (hWH hx)
   let B : ℝ≥0 → Mat n := fun t => P (A' t)
   have hBcont : Continuous B := P.continuous_of_finiteDimensional.comp hA'
   have hBcomm : ∀ t s, B t * B s = B s * B t := by
@@ -367,7 +369,7 @@ theorem full_solution : ∀ n : ℕ, ∀ A : ℝ≥0 → Mat n,
       (B s) (Submodule.projection_apply_mem hHJ _)
   have herror (t : ℝ≥0) : A' t - B t = D (b t) := by
     change D (A' t) = D (b t)
-    rw [← hdecomp t, D.map_add, hDzero (z t) (le_sup_left (hzmem t))]
+    rw [← hdecomp t, D.map_add, hDzero (z t) (hZH (hzmem t))]
     simp
   have he : (fun t => D (b t)) =ᶠ[atTop] (fun t => A t - B t) := by
     filter_upwards [hAe] with t ht
