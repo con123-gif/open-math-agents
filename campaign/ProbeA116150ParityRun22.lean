@@ -62,14 +62,21 @@ lemma sourceSum_nonneg (n : ℕ) : 0 ≤ sourceSum n := by
   intro j hj
   exact sourceTerm_nonneg (Finset.mem_Icc.mp hj).1
 
+lemma sourceSum_mono : Monotone sourceSum := by
+  apply monotone_nat_of_le_succ
+  intro n
+  rw [sourceSum_succ]
+  exact le_add_of_nonneg_right (sourceTerm_nonneg (by omega))
+
+lemma coe_a (n : ℕ) : ((a n : ℕ) : ℤ) = sourceSum n := by
+  change (((sourceSum n).toNat : ℕ) : ℤ) = sourceSum n
+  exact Int.toNat_of_nonneg (sourceSum_nonneg n)
+
 /-- Source-faithful parity reduction, including the `Int.toNat` wrapper. -/
 theorem a_even_iff (n : ℕ) : Even (a n) ↔ Even n := by
-  have hcoe : ((a n : ℕ) : ℤ) = sourceSum n := by
-    change (((sourceSum n).toNat : ℕ) : ℤ) = sourceSum n
-    exact Int.toNat_of_nonneg (sourceSum_nonneg n)
   calc
     Even (a n) ↔ Even ((a n : ℕ) : ℤ) := (Int.even_coe_nat (a n)).symm
-    _ ↔ Even (sourceSum n) := by rw [hcoe]
+    _ ↔ Even (sourceSum n) := by rw [coe_a]
     _ ↔ Even n := sourceSum_even_iff n
 
 /-- Every positive even-index candidate is even; only odd indices can be a new odd prime. -/
@@ -77,7 +84,20 @@ theorem a_two_mul_even (k : ℕ) : Even (a (2 * k)) := by
   rw [a_even_iff]
   exact ⟨k, by omega⟩
 
+lemma a_two_mul_ne_two (k : ℕ) (hk : 1 ≤ k) : a (2 * k) ≠ 2 := by
+  intro heq
+  have hmono : sourceSum 2 ≤ sourceSum (2 * k) := sourceSum_mono (by omega)
+  have htwo : sourceSum 2 = 14 := by norm_num [sourceSum]
+  have hcoe := coe_a (2 * k)
+  rw [heq] at hcoe
+  omega
+
+theorem a_two_mul_not_prime (k : ℕ) (hk : 1 ≤ k) : ¬ Nat.Prime (a (2 * k)) := by
+  intro hp
+  exact a_two_mul_ne_two k hk ((hp.even_iff).1 (a_two_mul_even k))
+
 #print axioms A116150ParityRun22.a_even_iff
 #print axioms A116150ParityRun22.a_two_mul_even
+#print axioms A116150ParityRun22.a_two_mul_not_prime
 
 end A116150ParityRun22
