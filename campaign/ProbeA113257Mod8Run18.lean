@@ -9,7 +9,6 @@ def a (n : ℕ) : ℕ :=
 
 #check ZMod.natCast_eq_natCast_iff
 #check Nat.ModEq.pow
-#check Finset.filter_sum
 #check Finset.sum_ite_irrel
 #check Finset.sum_ite
 #check Finset.card_filter
@@ -17,7 +16,14 @@ def a (n : ℕ) : ℕ :=
 
 lemma odd_sq_cast (i : ℕ) (hi : Odd i) : ((i ^ 2 : ℕ) : ZMod 8) = 1 := by
   obtain ⟨k, rfl⟩ := hi
-  push_cast
-  ring_nf
+  rcases Nat.even_or_odd' k with ⟨m, hm | hm⟩
+  · subst k
+    push_cast
+    ring_nf
+    norm_num [ZMod.natCast_eq_zero_iff]
+  · subst k
+    push_cast
+    ring_nf
+    norm_num [ZMod.natCast_eq_zero_iff]
 
 end A113257Mod8Run18
