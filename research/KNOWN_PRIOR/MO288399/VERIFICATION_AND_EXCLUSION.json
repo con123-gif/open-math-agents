@@ -1,0 +1,45 @@
+{
+  "problem": "mo-288399",
+  "aliases": [
+    "mo-288942",
+    "mse-2562425"
+  ],
+  "classification": "KNOWN_PRIOR",
+  "new_genuine_count": 0,
+  "claim": null,
+  "official_submission": null,
+  "accepted": false,
+  "prior": {
+    "arxiv": "2002.02988",
+    "authors": "Blekherman, Dey, Molinaro, Sun",
+    "section": "5 pp.8; Section7 Proposition4 pp.13-14",
+    "specialization": "Apply all (n\u22121)-principal PSD averaging to A\u2212mI to obtain (n\u22122)A+[1\u2212(n\u22121)m]I PSD; n2 included directly."
+  },
+  "pinned_kernel": {
+    "commit": "7fa906b832f0fa47857e54b0073f9fdb31f049c5",
+    "run": 46050887739,
+    "job": 140681598366,
+    "at": "2026-11-27T18:39:11.5262582Z",
+    "theorem": "OMA.solution",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "errors": 0
+  },
+  "exact_statement_checker": {
+    "run": 46050025668,
+    "job": 140678744691,
+    "verdict": "accepted",
+    "reason": "Statement compiles; human translation review still required"
+  },
+  "hashes": {
+    "SHARP_BOUND_PROOF.md": "9e9c695b143281198f81bd466f23774e58975698f7595df885540f261a2d962c",
+    "ProbeMO288399.lean": "7fa44c7e0e3f1a098a3df28c28e0904abd0d7f434766bf821bd55497dd2879c3",
+    "SOURCE_AND_PRIOR_AUDIT.json": "566cd8bf169028e6a46f41be9dd06aa21acd9e98bd9a59fae446089013195e74",
+    "PINNED_FULL_CHECK.log": "55d80fc45a7b79db03b6d1e425224d0250dbf332469c214e389686e920aad3bc",
+    "statements/mo-288399.lean": "ea6f458e1cb4accd47c5200e8975235bda37ec27cae351b8879c04aadfa54bd3",
+    "proofs/mo-288399.lean": "5b5b53fbc610143b6f430ec7e40a866255fb3222d529accaabf73ea3a763a5c4"
+  }
+}
