@@ -4,14 +4,15 @@ import Mathlib
 namespace OMA.MO474511.Bounded
 
 open Filter Topology
-open scoped NNReal
+open scoped NNReal Matrix.Norms.Elementwise
 
 abbrev Mat (n : ℕ) := Matrix (Fin n) (Fin n) ℝ
 
 def commRight {n : ℕ} (z : Mat n) : Mat n →ₗ[ℝ] Mat n where
   toFun x := x * z - z * x
   map_add' x y := by simp only [Matrix.add_mul, Matrix.mul_add]; abel
-  map_smul' c x := by simp only [Matrix.smul_mul, Matrix.mul_smul, smul_sub]
+  map_smul' c x := by
+    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_sub, RingHom.id_apply]
 
 def clusterSpan {n : ℕ} (b : ℝ≥0 → Mat n) : Submodule ℝ (Mat n) :=
   Submodule.span ℝ {x | MapClusterPt x atTop b}

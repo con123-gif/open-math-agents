@@ -4,7 +4,7 @@ import Mathlib
 namespace OMA.MO474511
 
 open Filter Topology
-open scoped NNReal BigOperators
+open scoped NNReal BigOperators Matrix.Norms.Elementwise
 
 abbrev Mat (n : ℕ) := Matrix (Fin n) (Fin n) ℝ
 
@@ -12,7 +12,7 @@ def commRight {n : ℕ} (x : Mat n) : Mat n →ₗ[ℝ] Mat n where
   toFun y := y * x - x * y
   map_add' y z := by simp only [Matrix.add_mul, Matrix.mul_add]; abel
   map_smul' c y := by
-    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_sub]
+    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_sub, RingHom.id_apply]
 
 /-- Right test matrices whose commutators with the curve have bounded norm. -/
 def boundedTests {n : ℕ} (A : ℝ≥0 → Mat n) : Submodule ℝ (Mat n) where
@@ -56,7 +56,7 @@ theorem bounded_mod_center {n : ℕ} (A : ℝ≥0 → Mat n)
     apply Submodule.span_le.mpr
     rintro x ⟨s, rfl⟩
     exact ⟨1, fun t => hcomm s t⟩
-  let basis := FiniteDimensional.finBasis ℝ V
+  let basis := Module.finBasis ℝ V
   let F : V →ₗ[ℝ] (Fin (Module.finrank ℝ V) → Mat n) :=
     LinearMap.pi fun i => (commRight (basis i : Mat n)).comp V.subtype
   let Z := LinearMap.ker F
