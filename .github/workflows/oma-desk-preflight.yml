@@ -1,0 +1,16 @@
+name: OMA desk preflight
+on:
+  push:
+    branches: [oma-submission-preflight]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  desk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check official public problem endpoint
+        run: |
+          curl --fail --silent --show-error --max-time 30 'https://lefttosolve.com/api/problems/opg-distribution-and-upper-bound-of-mimic-numbers' -o problem.json
+          python3 -m json.tool problem.json
