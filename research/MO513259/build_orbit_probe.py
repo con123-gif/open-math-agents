@@ -5,6 +5,7 @@ base = Path(__file__).resolve().parent
 sources = [
     "MO513259Permanent.lean",
     "MO513259Parity.lean",
+    "MO513259Alternating.lean",
     "MO513259RowReplacement.lean",
     "MO513259RowExpansion.lean",
     "MO513259PairSums.lean",
@@ -12,6 +13,9 @@ sources = [
     "MO513259ForcedMinor.lean",
     "MO513259CRT.lean",
     "MO513259Polar.lean",
+    "MO513259DeletedCofactor.lean",
+    "MO513259DeletedPairs.lean",
+    "MO513259LiftFour.lean",
 ]
 parts = ["import Mathlib\n"]
 for name in sources:
@@ -20,7 +24,9 @@ for name in sources:
     parts.append("\n".join(line for line in lines[1:]
                            if not line.startswith("#print axioms ")) + "\n")
 for name in ["det_forceTwoRows", "map_copyRowHalf", "copyRowHalf_mod_two_inverse",
-             "upperPairSum_polar", "copyRowHalf_eight_reduction"]:
+             "upperPairSum_polar", "copyRowHalf_eight_reduction",
+             "deleted_cofactor_mod_two", "upperPairSum_delete_zero",
+             "four_mul_eq_liftFour", "four_mul_sum"]:
     parts.append("#print axioms OMA.MO513259." + name + "\n")
 output = base / "ProbeMO513259ForcedMinor.lean"
 output.write_text("\n".join(parts))

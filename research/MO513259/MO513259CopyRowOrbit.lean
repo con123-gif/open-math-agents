@@ -27,7 +27,7 @@ lemma forceTwoRows_permanent_same (A : Matrix I I R) (i j : I)
       Pi.single_apply, hj, hj.symm]
   · apply Finset.prod_eq_zero (Finset.mem_univ i)
     simp [forceTwoRows, Matrix.transpose_apply, Matrix.updateRow_apply,
-      Pi.single_apply, hij, hij.symm, hi, hi.symm]
+      Pi.single_apply, hij, hij.symm, hi, Ne.symm hi]
 
 lemma forceTwoRows_permanent_swap (A : Matrix I I R) (i j : I)
     (hij : i ≠ j) (k l : I) :

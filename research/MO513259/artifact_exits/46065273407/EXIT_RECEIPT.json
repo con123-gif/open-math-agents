@@ -1,0 +1,9 @@
+{
+  "run_id": 46065273407,
+  "artifact_zip_sha256": "5baf7a9f264d944406c71b2f63f5f6f85111f7e956cdd72aeb1955be8f569808",
+  "digest_matches_GitHub": true,
+  "actual_exit_files": {
+    "ProbeMO513259BlockSchurSecond.lean.exit": 1,
+    "ProbeMO513259HalfAdjugateFirst.lean.exit": 1
+  }
+}

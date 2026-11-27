@@ -1,0 +1,10 @@
+{
+  "run_id": 46065841749,
+  "artifact_zip_sha256": "652bd81659b4e58879611efd7edc233c225523bdad618488e4c776b1ef5542c1",
+  "digest_matches_GitHub": true,
+  "actual_exit_files": {
+    "ProbeMO513259BlockSchurThird.lean.exit": 0,
+    "ProbeMO513259CopyColumnFirst.lean.exit": 1,
+    "ProbeMO513259LowerUnipotentFirst.lean.exit": 1
+  }
+}

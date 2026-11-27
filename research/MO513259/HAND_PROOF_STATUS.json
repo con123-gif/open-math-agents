@@ -1,6 +1,6 @@
 {
   "problem": "mo-513259",
-  "status": "Complete independently challenged informal proof; extensive generic Lean infrastructure passed, full graph certificate unfinished",
+  "status": "Complete independently challenged informal proof; extensive verified generic infrastructure, but whole-file verification of several copied-row dependent probes must be rerun after artifact audit caught an unused invalidField argument",
   "claim": null,
   "official_submission": null,
   "accepted": false,
@@ -116,5 +116,7 @@
     "superseded_by_clean_sixth_check": true
   },
   "verification_progress": "VERIFICATION_PROGRESS.json",
-  "latest_clean_partial_run": 46061453283
+  "latest_clean_partial_run": 46061453283,
+  "verification_correction": "VERIFICATION_PROGRESS.json verification_correction",
+  "full_kernel_certificate": false
 }

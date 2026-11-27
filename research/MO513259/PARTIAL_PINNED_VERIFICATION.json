@@ -21,5 +21,7 @@
   },
   "full_kernel_certificate": false,
   "official_acceptance": false,
-  "counted_solve": 0
+  "counted_solve": 0,
+  "artifact_exit_observed": null,
+  "verification_level": "Standard-axiom theorem print and statement-checker verdict; helper-file artifact exit not yet audited"
 }

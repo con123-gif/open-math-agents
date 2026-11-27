@@ -1,0 +1,12 @@
+{
+  "run_id": 46062990698,
+  "artifact_zip_sha256": "b4bde02da1b473020a412f9bc821abce80b94009e5cf5016ba8a9e75f0f3de1f",
+  "digest_matches_GitHub": true,
+  "actual_exit_files": {
+    "ProbeMO513259DetFirstOrderSecond.lean.exit": 0,
+    "ProbeMO513259ForcedEdgeSecond.lean.exit": 0,
+    "ProbeMO513259ForcedMinorFourth.lean.exit": 1,
+    "ProbeMO513259FourMinor.lean.exit": 0,
+    "ProbeMO513259OddHollow.lean.exit": 1
+  }
+}

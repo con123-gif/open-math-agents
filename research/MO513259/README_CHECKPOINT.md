@@ -7,10 +7,14 @@ The original graph target is kept intact in `statements/mo-513259.lean`.
 The false optional even-diagonal extensions are recorded separately.
 
 `VERIFICATION_PROGRESS.json` identifies actual immutable verification runs
-and distinguishes passed helpers from pending or failed combined files.
-`verified/TwoByTwoExtensions.lean` is the exact file that passed its stated
-run. Current helper files can contain later unverified additions; use the
-immutable references when reproducing an earlier result.
+and distinguishes actual artifact exit0 from standard-axiom prints alone.
+`immutable_probes/` contains exact historical source copies, including some
+errorful probes; that directory does not assert a successful check. A later
+artifact audit caught an unused invalidField simp argument in a shared prefix.
+Affected whole-file PASS labels were withdrawn and the source was corrected.
+See `VERIFICATION_CORRECTION.md` and the exact exit receipts. Current helper
+files can contain later unverified additions; use immutable references when
+reproducing an earlier result.
 
 Run `python3 build_helper_probe.py` to concatenate the ordinary Lean helper
 files, with a single Mathlib import, for the pinned checker. This script does

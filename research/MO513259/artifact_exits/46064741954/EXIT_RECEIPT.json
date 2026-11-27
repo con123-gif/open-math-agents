@@ -1,0 +1,10 @@
+{
+  "run_id": 46064741954,
+  "artifact_zip_sha256": "9fa1c4f6ed89774094d18b9d00d6fee0e5def6e2969efcd84ade89da635c1727",
+  "digest_matches_GitHub": true,
+  "actual_exit_files": {
+    "ProbeMO513259BlockSchurFirst.lean.exit": 1,
+    "ProbeMO513259OddHollowEightSecond.lean.exit": 0,
+    "ProbeMO513259VertexPairs.lean.exit": 0
+  }
+}
