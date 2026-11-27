@@ -44,6 +44,8 @@ theorem clusters_commute {n : ℕ} (b : ℝ≥0 → Mat n)
       (atTop ×ˢ atTop) (𝓝 0)) :
     ∀ x, MapClusterPt x atTop b → ∀ y, MapClusterPt y atTop b →
       x * y = y * x := by
+  letI : FirstCountableTopology (Mat n) :=
+    inferInstanceAs (FirstCountableTopology (Fin n → Fin n → ℝ))
   intro x hx y hy
   obtain ⟨u, hu, huTop⟩ := hx.exists_seq_tendsto
   obtain ⟨v, hv, hvTop⟩ := hy.exists_seq_tendsto

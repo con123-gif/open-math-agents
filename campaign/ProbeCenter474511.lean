@@ -88,16 +88,20 @@ theorem bounded_mod_center {n : ℕ} (A : ℝ≥0 → Mat n)
       F (pL v) = F (pZ v) + F (pL v) := by rw [hz]; simp
       _ = F (pZ v + pL v) := (F.map_add _ _).symm
       _ = F v := congrArg F (hsplit v)
-  let FL := F.comp L.subtype
+  let FL : L →ₗ[ℝ] (Fin (Module.finrank ℝ V) → Mat n) := F.comp L.subtype
   have hFL : Function.Injective FL := by
-    rw [← LinearMap.ker_eq_bot]
-    apply le_antisymm ?_ bot_le
-    intro x hx
-    have hxZ : (x : V) ∈ Z := hx
-    have hx0 : (x : V) = 0 :=
-      (Submodule.disjoint_def.mp hZL.disjoint) _ hxZ x.property
-    simpa only [Submodule.mem_bot] using Subtype.ext hx0
-  obtain ⟨K, _, hK⟩ := FL.injective_iff_antilipschitz.mp hFL
+    intro x y hxy
+    change F (x : V) = F (y : V) at hxy
+    have hFsub : F ((x : V) - (y : V)) = 0 := by
+      rw [F.map_sub, hxy, sub_self]
+    have hZ : (x : V) - (y : V) ∈ Z := hFsub
+    have hL : (x : V) - (y : V) ∈ L := L.sub_mem x.property y.property
+    have hzero : (x : V) - (y : V) = 0 :=
+      (Submodule.disjoint_def.mp hZL.disjoint) _ hZ hL
+    exact Subtype.ext (sub_eq_zero.mp hzero)
+  obtain ⟨K, _, hK⟩ :=
+    (LinearMap.injective_iff_antilipschitz (𝕜 := ℝ) (E := L)
+      (F := Fin (Module.finrank ℝ V) → Mat n) FL).mp hFL
   have htest (i : Fin (Module.finrank ℝ V)) :
       ∃ C : ℝ, ∀ t, ‖(F (Av t)) i‖ ≤ C := by
     simpa [F, Av, commRight, boundedTests] using htests (basis i).property
