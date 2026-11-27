@@ -14,6 +14,7 @@ lemma zmod2_pow_pos (x : ZMod 2) {e : ℕ} (he : 0 < e) : x ^ e = x := by
   cases e with
   | zero => omega
   | succ e =>
+      clear he
       induction e with
       | zero => simp
       | succ e ih =>
@@ -45,7 +46,7 @@ lemma sum_cast_four_mul (k : ℕ) :
       rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
       rw [ih]
       push_cast
-      ring
+      ring_nf
 
 lemma sum_cast_four_mul_add_three (k : ℕ) :
     (∑ i ∈ Finset.Icc 1 (4 * k + 3), (i : ZMod 2)) = 0 := by
@@ -54,7 +55,7 @@ lemma sum_cast_four_mul_add_three (k : ℕ) :
   rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
   rw [sum_cast_four_mul]
   push_cast
-  ring
+  ring_nf
 
 theorem cast_a_four_mul (k : ℕ) : (a (4 * k) : ZMod 2) = 0 := by
   rw [cast_a, sum_cast_four_mul]
@@ -63,8 +64,16 @@ theorem cast_a_four_mul_add_three (k : ℕ) :
     (a (4 * k + 3) : ZMod 2) = 0 := by
   rw [cast_a, sum_cast_four_mul_add_three]
 
+theorem even_a_four_mul (k : ℕ) : Even (a (4 * k)) :=
+  ZMod.natCast_eq_zero_iff_even.mp (cast_a_four_mul k)
+
+theorem even_a_four_mul_add_three (k : ℕ) : Even (a (4 * k + 3)) :=
+  ZMod.natCast_eq_zero_iff_even.mp (cast_a_four_mul_add_three k)
+
 #print axioms cast_a
 #print axioms cast_a_four_mul
 #print axioms cast_a_four_mul_add_three
+#print axioms even_a_four_mul
+#print axioms even_a_four_mul_add_three
 
 end A113257ParityRun17
