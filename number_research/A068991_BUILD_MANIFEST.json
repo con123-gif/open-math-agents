@@ -1,0 +1,37 @@
+{
+  "status": "full candidate; needs actual pinned compiler exit0 and standard axiom report",
+  "files": {
+    "number_work/oeis-a068991.statement.lean": {
+      "sha256": "3d57c86dc80ab0ffdf3a012182ad8d2963db5e0a17b88775719a683fb088b76a",
+      "bytes": 963
+    },
+    "number_work/A068991ProductReduction.lean": {
+      "sha256": "8bd67471db6588bca1348d346b435ecf08c6b03b758498ecbe91799ee89162ca",
+      "bytes": 4062
+    },
+    "number_work/A068991SmallArithmetic.lean": {
+      "sha256": "91a9a5bdd44560d9f64e0ee8f9de3adf123e2fc58b79a32660ee9eb5314a142f",
+      "bytes": 1834
+    },
+    "number_work/A068991ValuationBounds.lean": {
+      "sha256": "49b3a462f3f24fcba117534fdc1e6e170ad34b71c47a39c6bc3af57169e24125",
+      "bytes": 4895
+    },
+    "number_work/A068991PrimeStructure.lean": {
+      "sha256": "36b8d99d9d1466367f9fd25c016833e56a04843c055142b517bc327ab02af5b1",
+      "bytes": 7477
+    },
+    "runtime_research/A068991BernoulliBridge.lean": {
+      "sha256": "489369251f346184ed98bbf01bf3d60f023028fce4207e9f8e2c4d90260a62fd",
+      "bytes": 3763
+    },
+    "number_work/oeis-a068991.proof.lean": {
+      "sha256": "0c36aa5ed5fa08a4a66c68a9df9242fd4c7a16eb5cd38d58fedaedcfe4bdc1a0",
+      "bytes": 22375
+    },
+    "number_work/ProbeA068991Full.lean": {
+      "sha256": "c22b8f21030997b370ac5ca57760ca831215d3eaec888d28c1336a4a21e747f2",
+      "bytes": 23387
+    }
+  }
+}
