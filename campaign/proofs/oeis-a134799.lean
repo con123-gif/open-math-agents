@@ -53,8 +53,7 @@ lemma representation (n : ℕ) :
       have hrq : (p : ℚ) * ((D : ℚ) ^ 2 - (p : ℚ) ^ 2) = 2 * (r : ℚ) := by
         exact_mod_cast hr
       have hDn : (D : ℚ) ≠ 0 := by
-        dsimp [D]
-        positivity
+        simp [D]
       have hDq : (D : ℚ) = (3 : ℚ) ^ (t + 1) := by
         simp [D]
       have hpow : (D : ℚ) ^ 3 = 3 * (3 : ℚ) ^ (3 * t + 2) := by
@@ -72,14 +71,15 @@ lemma representation (n : ℕ) :
               (1 - ((p : ℚ) / (D : ℚ)) ^ 2) =
             3 * ((p : ℚ) * ((D : ℚ) ^ 2 - (p : ℚ) ^ 2)) /
               (2 * (D : ℚ) ^ 3) := by
-                field_simp
-                ring
-        _ = 3 * (r : ℚ) / (D : ℚ) ^ 3 := by rw [hrq]; ring
+                field_simp [hDn] <;> ring
+        _ = 3 * (r : ℚ) / (D : ℚ) ^ 3 := by
+          rw [hrq]
+          field_simp [hDn] <;> ring
         _ = (r : ℚ) / 3 ^ (3 * t + 1 + 1) := by
           rw [hpow]
           have hE : 3 * t + 1 + 1 = 3 * t + 2 := by omega
           rw [hE]
-          field_simp
+          field_simp <;> ring
 
 end A134799Certificate
 
@@ -94,7 +94,8 @@ theorem OMA.solution : type_of% @OMA.S_oeis_a134799.main := by
     exact Int.dvd_natAbs.mp (Int.natCast_dvd_natCast.mpr h)
   have hcop : Nat.Coprime p.natAbs (3 ^ e) := hcop3.pow_right e
   have hden : (((p : ℚ) / ((3 : ℤ) ^ e : ℚ)).den : ℤ) = (3 : ℤ) ^ e :=
-    Rat.den_div_eq_of_coprime (by positivity) (by simpa using hcop)
+    Rat.den_div_eq_of_coprime (a := p) (b := (3 : ℤ) ^ e)
+      (by positivity) (by simpa using hcop)
   have hnatden : ((p : ℚ) / (3 : ℚ) ^ e).den = (3 : ℕ) ^ e := by
     exact_mod_cast hden
   rw [hp]
