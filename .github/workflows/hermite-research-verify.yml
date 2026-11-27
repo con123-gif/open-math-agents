@@ -1,0 +1,66 @@
+name: Isolated Hermite research verification
+on:
+  push:
+    branches: [oma-hermite-research-20261127]
+    paths: ['.github/workflows/hermite-research-verify.yml', 'hermite/Probe*.lean']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Fetch exact pinned formal sources
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fc"
+          git -C "$RUNNER_TEMP/fc" remote add origin https://github.com/google-deepmind/formal-conjectures
+          git -C "$RUNNER_TEMP/fc" fetch -q --depth 1 origin 9097e2f90e66d2f6244209cb1c07f7120d17ec53
+          git -C "$RUNNER_TEMP/fc" checkout -q FETCH_HEAD
+          printf 'FC commit: %s\n' "$(git -C "$RUNNER_TEMP/fc" rev-parse HEAD)"
+          cat "$RUNNER_TEMP/fc/lean-toolchain"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            ${{ runner.temp }}/fc/.lake
+          key: hermite-fc-9097e2f90e66-v1
+      - name: Load Lean and Mathlib
+        run: |
+          set -euo pipefail
+          if [ ! -x ~/.elan/bin/lake ]; then
+            curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+            sh /tmp/elan-init.sh -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          cd "$RUNNER_TEMP/fc"
+          ~/.elan/bin/lake exe cache get
+          ~/.elan/bin/lake env lean --version
+      - name: Execute modified complete probes
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          shopt -s nullglob
+          HERMITE_FAILED=0
+          for HERMITE_PROBE in hermite/Probe*.lean; do
+            if git diff --quiet HEAD^ HEAD -- "$HERMITE_PROBE"; then continue; fi
+            printf 'CHECKING_PROBE %s\n' "$HERMITE_PROBE"
+            cp "$HERMITE_PROBE" "$RUNNER_TEMP/fc/HermiteProbe.lean"
+            set +e
+            (cd "$RUNNER_TEMP/fc" && lake env lean HermiteProbe.lean) > "results/$(basename "$HERMITE_PROBE").log" 2>&1
+            HERMITE_EXIT=$?
+            set -e
+            cat "results/$(basename "$HERMITE_PROBE").log"
+            printf '%s\n' "$HERMITE_EXIT" > "results/$(basename "$HERMITE_PROBE").exit"
+            printf 'PROBE_EXIT %s %s\n' "$HERMITE_PROBE" "$HERMITE_EXIT"
+            if [ "$HERMITE_EXIT" -ne 0 ]; then HERMITE_FAILED=1; fi
+          done
+          exit "$HERMITE_FAILED"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hermite-verification
+          path: results/
