@@ -1,0 +1,15 @@
+name: Secure verified proof handoff
+on:
+  push:
+    branches: [oma-secure-proof-handoff-20261127]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gently recover valid leases with encrypted responses
+        run: python3 research/secure-proof-handoff/secure_proof_handoff_public.py
