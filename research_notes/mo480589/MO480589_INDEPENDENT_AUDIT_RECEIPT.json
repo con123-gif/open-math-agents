@@ -1,0 +1,54 @@
+{
+  "problem": "mo-480589",
+  "verdict": "Mathematical proof PASS informally; CONSERVATIVE KNOWN-PRIOR EXCLUDE from genuine new-open count",
+  "checked_at_utc": "2026-11-27T23:50:06.683326+00:00",
+  "decisive_primary": "https://oeis.org/A400756/internal",
+  "prior_revision": 35,
+  "prior_revision_date": "2026-10-07",
+  "mapping": "Q_n(z)=sum_k T(n,k) z^(binom(n,2)-k), since f(c)=binom(n,2)-sum_i binom(c_i,2)",
+  "literal_triangle_printed_in_prior": false,
+  "exact_transformed_diagonal_family_support_and_GF_already_published": true,
+  "model": "Codex/GPT-6; exact serving variant not exposed",
+  "no_lease": true,
+  "no_verifier_write": true,
+  "no_official_PR": true,
+  "no_Lean_pass_claim": true,
+  "files": {
+    "fresh_algebra_work/MO480589_INDEPENDENT_MATH_AND_PRIOR_AUDIT.md": {
+      "bytes": 6805,
+      "sha256": "3e4eb7d0dabbef46ab4afef9129b64a4c6eb573459d2ed98b057de56055765d2"
+    },
+    "fresh_algebra_work/MO480589_A400756_PRIMARY.seq": {
+      "bytes": 2422,
+      "sha256": "c6e1ea84097d06e637c2928014ff37063b88215f5eaa7584b9aadba23f58ea15"
+    },
+    "reversal_work/fresh/mo-480589_question.json": {
+      "bytes": 2157,
+      "sha256": "c9c968299c508b1734f886fb3c9c4502d72bdc296adaf5594511ca940a265f8f"
+    },
+    "reversal_work/fresh/mo-480589_answers.json": {
+      "bytes": 84,
+      "sha256": "73782228abb7d3e96c7a387142b27360689f9447082227e91ceb7f74676c8d39"
+    },
+    "reversal_work/fresh/mo-480589_comments.json": {
+      "bytes": 84,
+      "sha256": "780575187ed573645f817258586d312091ef1562c219aab14f5b90d192a1ec2c"
+    },
+    "reversal_work/fresh/MO480589_COMPLETE_INFORMAL_CANDIDATE.md": {
+      "bytes": 5468,
+      "sha256": "f5b18328e7250afcc77b2a4bfb9ba4b15447151df641035aa5131688b9ce1f4b"
+    },
+    "reversal_work/fresh/A069999_SOURCE_REV91.seq": {
+      "bytes": 4824,
+      "sha256": "52c73afce26c7fe2f46f5f4d8b0e3f7c2d1918903e9799f1cd37bba776feb215"
+    },
+    "reversal_work/fresh/Brouder_double_recurrence_prior.pdf": {
+      "bytes": 138833,
+      "sha256": "f16e5e15cf53514c9e5413d95fa1a761d8086c4cdbe6a6e742d0395e48e78673"
+    },
+    "reversal_work/fresh/Persistence_MA_1_prior.pdf": {
+      "bytes": 353114,
+      "sha256": "afede83457b1c1b0347eeb07adebfca05ebd160c11eab67d5649df327ac2b8db"
+    }
+  }
+}
