@@ -8,11 +8,16 @@ def a (n : ℕ) : ℕ :=
   ∑ i ∈ Finset.Icc 1 n, (i ^ 2) ^ ((n - i + 1) ^ 2)
 
 lemma zmod2_sq (x : ZMod 2) : x ^ 2 = x := by
-  fin_cases x <;> norm_num
+  simpa using ZMod.pow_card x
 
 lemma zmod2_pow_pos (x : ZMod 2) {e : ℕ} (he : 0 < e) : x ^ e = x := by
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt he)
-  fin_cases x <;> simp [pow_succ]
+  cases e with
+  | zero => omega
+  | succ e =>
+      induction e with
+      | zero => simp
+      | succ e ih =>
+          rw [pow_succ, ih, ← pow_two, zmod2_sq]
 
 lemma term_cast (n i : ℕ) (hi : i ∈ Finset.Icc 1 n) :
     (((i ^ 2) ^ ((n - i + 1) ^ 2) : ℕ) : ZMod 2) = (i : ZMod 2) := by
@@ -34,19 +39,19 @@ lemma sum_cast_four_mul (k : ℕ) :
   | zero => norm_num
   | succ k ih =>
       rw [Nat.mul_succ]
-      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
-      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 2)]
-      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 3)]
       rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 4)]
+      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 3)]
+      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 2)]
+      rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
       rw [ih]
       push_cast
       ring
 
 lemma sum_cast_four_mul_add_three (k : ℕ) :
     (∑ i ∈ Finset.Icc 1 (4 * k + 3), (i : ZMod 2)) = 0 := by
-  rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
-  rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 2)]
   rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 3)]
+  rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 2)]
+  rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
   rw [sum_cast_four_mul]
   push_cast
   ring
