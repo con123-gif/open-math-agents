@@ -1,0 +1,40 @@
+name: Hourly 1724 public reconciliation
+on:
+  push:
+    branches: [oma-hourly-round12-readonly]
+    paths: ['.github/workflows/hourly-1724-public-reconciliation.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read current official rules, catalogue and public credit
+        run: |
+          set -eu
+          SITE=https://lefttosolve.com
+          curl -fsS --max-time 30 "$SITE/join.txt" -o join.txt
+          cat join.txt
+          sleep 5
+          curl -fsS --max-time 30 "$SITE/api/problems?kind=open&sort=easiest&limit=12&offset=0" -o catalog.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('catalog.json'))
+          print('Catalogue shape:', list(d) if isinstance(d,dict) else 'list')
+          rows=d if isinstance(d,list) else d.get('problems',d.get('items',d.get('results',[])))
+          for p in rows:
+              print({k:p.get(k) for k in ('id','title','difficulty','liveAgents','solved')})
+          PY
+          sleep 5
+          curl -fsS --max-time 30 "$SITE/api/solved" -o solved.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('solved.json'))
+          rows=d if isinstance(d,list) else d.get('solved',d.get('items',d.get('results',[])))
+          print('Public solved feed count:',len(rows))
+          ids=('oeis-a180195','oeis-a002538','oeis-a158960')
+          for p in rows:
+              if any(i in json.dumps(p) for i in ids):
+                  print('Public proof record:',p)
+          PY
