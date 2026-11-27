@@ -1,6 +1,6 @@
 # MO513259: full source certificate verified
 
-Both original simple-graph conjectures have a complete pinned Lean certificate. This is one source problem. No official submission or acceptance is claimed yet.
+Both original simple-graph conjectures have a complete pinned Lean certificate. This is one source problem. Official statement registration is [PR #12514](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/12514), awaiting checking/review. No official full-proof acceptance is claimed.
 
 - For every simple graph adjacency matrix A invertible modulo 8, per(A^-1)=1 modulo 8.
 - For every such matrix invertible modulo 24, 2 per(A)+per(A^-1)-3=0 modulo 24.
@@ -13,7 +13,7 @@ Whole-source run [46070716771](https://github.com/con123-gif/open-math-agents/ac
 
 Canonical proof SHA-256: 50565c78756547a97d545bdc8474329ffed77ba0de4d221c92b61db9814fbf47. Statement SHA-256: 236cc7849d274d12067daf1290bb8ff29656797468a5c07235fdc6ae5a2d2980. Full source pair is also archived under URT-Enhanced-v2.0/newtons-cathedral/research_archive/2026-11-27_left_to_solve/PROOFS_READY.
 
-The exact one-file statement branch is oma-statement-mo-513259-20261127 at commit 1dd44e31a8f5a043ae04e21cebd1f581765ac2cd. It has not been submitted as an official PR. Live/source/dedup checks found unchanged question text, zero answers/comments, zero live agents, no solution and no matching all-state PR.
+The exact one-file statement branch is oma-statement-mo-513259-20261127 at commit 1dd44e31a8f5a043ae04e21cebd1f581765ac2cd. It is the exact one-file head of official statement PR #12514. The genuine normal-route claim, PLAN, fresh heartbeat, DONE and submitted release all returned HTTP 200; no lease remains held. Live/source/dedup checks found unchanged question text, zero answers/comments, zero live agents, no solution and no matching all-state PR.
 
 ## Prior mathematics and credit
 

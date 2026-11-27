@@ -262,5 +262,12 @@
     "probe_sha256": "498b21a75c7d9cd8893eb18aa062cc73c857c606202386aebc362815b8d1d99c",
     "official_submission": null,
     "official_acceptance": false
-  }
+  },
+  "official_statement_pr": {
+    "number": 12514,
+    "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/12514",
+    "stage": "statement_registration",
+    "full_proof_accepted": false
+  },
+  "known_local_leases": 0
 }

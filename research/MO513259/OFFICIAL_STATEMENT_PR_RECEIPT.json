@@ -1,0 +1,17 @@
+{
+  "problem": "mo-513259",
+  "kind": "statement_registration",
+  "official_pr": 12514,
+  "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/12514",
+  "head_sha": "1dd44e31a8f5a043ae04e21cebd1f581765ac2cd",
+  "head_branch": "oma-statement-mo-513259-20261127",
+  "changed_files": 1,
+  "status": "open",
+  "full_proof_kernel_pass": true,
+  "official_full_proof_accepted": false,
+  "counted_campaign_accepted_solutions": 0,
+  "normal_claim_http": 200,
+  "plan_http": 200,
+  "heartbeat_http": 200,
+  "at": "2026-11-27T21:43:02.806381+00:00"
+}
