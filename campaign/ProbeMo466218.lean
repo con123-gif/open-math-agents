@@ -36,11 +36,21 @@ lemma oma466218_identity {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (t : ℝ) (hr : ∀ i, ∑ j, A i j = 0) (v : Fin n → ℝ) (i : Fin n) :
     ((t • 1 - A) *ᵥ v) i =
       t * v i + ∑ j, A i j * (v i - v j) := by
-  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
-    Pi.sub_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct]
-  simp_rw [mul_sub]
-  rw [Finset.sum_sub_distrib, ← Finset.sum_mul, hr i]
-  ring
+  calc
+    ((t • 1 - A) *ᵥ v) i = ∑ j, ((t • 1 - A) i j) * v j := rfl
+    _ = ∑ j, ((if i = j then t else 0) - A i j) * v j := by
+      apply Finset.sum_congr rfl
+      intro j hj
+      simp [Matrix.sub_apply, Matrix.smul_apply, Matrix.one_apply,
+        smul_eq_mul, mul_ite]
+    _ = t * v i - ∑ j, A i j * v j := by
+      simp_rw [sub_mul]
+      rw [Finset.sum_sub_distrib]
+      simp [ite_mul]
+    _ = t * v i + ∑ j, A i j * (v i - v j) := by
+      simp_rw [mul_sub]
+      rw [Finset.sum_sub_distrib, ← Finset.sum_mul, hr i]
+      ring
 
 lemma oma466218_minimum {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (t : ℝ) (ht : 0 < t) (ha : ∀ i j, i ≠ j → 0 < A i j)
@@ -96,7 +106,7 @@ theorem OMA.solution : type_of% @OMA.S_mo_466218.main := by
     have hHone : H *ᵥ (1 : Fin n → ℝ) = t • 1 := by
       ext i
       simp [H, Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
-        Matrix.mulVec, dotProduct, hr i]
+        Matrix.mulVec, dotProduct, hr i, Matrix.one_apply, mul_ite]
     have he : H *ᵥ (B *ᵥ (1 : Fin n → ℝ)) = H *ᵥ 1 := by
       rw [Matrix.mulVec_mulVec, hHB, Matrix.smul_mulVec,
         Matrix.one_mulVec, hHone]
@@ -138,7 +148,7 @@ theorem OMA.solution : type_of% @OMA.S_mo_466218.main := by
       (∑ j, B i j * B j i) ≤ ∑ j, B i j * B i i := by
         exact Finset.sum_le_sum fun j hj =>
           mul_le_mul_of_nonneg_left (hcolumn i j) (hnonneg i j)
-      _ = (∑ j, B i j) * B i i := (Finset.sum_mul).symm
+      _ = (∑ j, B i j) * B i i := by rw [Finset.sum_mul]
       _ = B i i := by rw [hrows i]; ring
   simpa [Matrix.sub_apply, pow_two, Matrix.mul_apply] using sub_nonneg.mpr hs
 #print axioms OMA.solution

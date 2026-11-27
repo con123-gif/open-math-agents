@@ -46,8 +46,14 @@ jobs:
           shopt -s nullglob
           for F in campaign/Probe*.lean; do
             if git diff --quiet HEAD^ HEAD -- "$F"; then continue; fi
+            printf "CHECKING_PROBE %s\n" "$F"
             cp "$F" "$RUNNER_TEMP/fc/CampaignProbe.lean"
-            (cd "$RUNNER_TEMP/fc" && lake env lean CampaignProbe.lean) 2>&1 | tee "results/$(basename "$F").log" || true
+            set +e
+            (cd "$RUNNER_TEMP/fc" && lake env lean CampaignProbe.lean) > "results/$(basename "$F").log" 2>&1
+            RC=$?
+            set -e
+            cat "results/$(basename "$F").log"
+            printf "%s\n" "$RC" > "results/$(basename "$F").exit"
           done
           for F in campaign/statements/*.lean campaign/proofs/*.lean; do
             if git diff --quiet HEAD^ HEAD -- "$F"; then continue; fi

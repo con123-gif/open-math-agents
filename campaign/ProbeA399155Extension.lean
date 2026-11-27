@@ -198,6 +198,11 @@ lemma le_greatest (n p : ℕ) (hn : 1 < n) (hp : p.Prime) (hd : p ∣ n) :
   simpa [greatestPrimeFactor, hn.ne', List.getLastI_eq_getLast?_getD,
     List.getLast?_eq_getLast_of_ne_nil hlist] using hlast
 
+lemma greatest_two : greatestPrimeFactor 2 = 2 := by
+  apply le_antisymm
+  · exact Nat.le_of_dvd (by decide) (greatest_dvd 2 (by decide))
+  · exact (greatest_prime 2 (by decide)).two_le
+
 lemma four_dvd_of_greatest_two (n : ℕ) (hn : 4 ≤ n)
     (hq : greatestPrimeFactor n = 2) : 4 ∣ n := by
   have htwo : 2 ∣ n := by simpa [hq] using greatest_dvd n (by omega)
@@ -255,10 +260,10 @@ lemma greatest_fifth_bound (fuel : ℕ) :
         by_cases hsmall : n ≤ 4
         · have hcases : n = 2 ∨ n = 4 := by omega
           rcases hcases with rfl | rfl
-          · have hf2 : greatestPrimeFactor 2 = 2 := by decide
+          · have hf2 : greatestPrimeFactor 2 = 2 := greatest_two
             simp [steps, hf2, steps_at_zero]
-          · have hf2 : greatestPrimeFactor 2 = 2 := by decide
-            have hf4 : greatestPrimeFactor 4 = 2 := by decide
+          · have hf2 : greatestPrimeFactor 2 = 2 := greatest_two
+            have hf4 : greatestPrimeFactor 4 = 2 := hq
             simp [steps, hf2, hf4, steps_at_zero]
         · have hn6 : 6 ≤ n := by omega
           have hnext_three := next_greatest_three n hn6 hq
@@ -314,7 +319,9 @@ lemma prime_steps (n : ℕ) (hp : n.Prime) :
     rw [greatestPrimeFactor, if_neg hp.ne_one, Nat.primeFactorsList_prime hp]
     rfl
   cases n with
-  | zero => simp at hp
+  | zero =>
+      have h := hp.two_le
+      omega
   | succ m =>
       simp [smallestSteps, largestSteps, steps, hgreatest, hp.minFac_eq, steps_at_zero]
 
@@ -322,6 +329,7 @@ theorem positive_fibres_finite (k : ℕ) (hk : 0 < k) :
     {n : ℕ | 2 ≤ n ∧ smallestSteps n - largestSteps n = k}.Finite := by
   refine (Finset.finite_toSet (Finset.range (max 100 (20 * k + 5)))).subset ?_
   intro n hn
+  rcases hn with ⟨hn2, hvalue⟩
   change n ∈ Finset.range (max 100 (20 * k + 5))
   apply Finset.mem_range.mpr
   by_cases hsmall : n < 100
@@ -329,7 +337,7 @@ theorem positive_fibres_finite (k : ℕ) (hk : 0 < k) :
   · have hcomp : ¬ n.Prime := by
       intro hp
       obtain ⟨hf, hg⟩ := prime_steps n hp
-      simp [hf, hg] at hn
+      have hzero : smallestSteps n - largestSteps n = 0 := by rw [hf, hg]
       omega
     have hb := composite_gap_bound n (by omega) hcomp
     have hmax : 20 * k + 5 ≤ max 100 (20 * k + 5) := le_max_right _ _
@@ -337,5 +345,5 @@ theorem positive_fibres_finite (k : ℕ) (hk : 0 < k) :
 
 end OMA.A399155Proof
 
-#print axioms OMA.A399155Extension.composite_gap_bound
-#print axioms OMA.A399155Extension.positive_fibres_finite
+#print axioms OMA.A399155Proof.composite_gap_bound
+#print axioms OMA.A399155Proof.positive_fibres_finite
