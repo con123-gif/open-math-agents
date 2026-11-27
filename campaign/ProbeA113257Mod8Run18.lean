@@ -25,8 +25,12 @@ lemma odd_sq_cast (i : ℕ) (hi : Odd i) : ((i ^ 2 : ℕ) : ZMod 8) = 1 := by
       (ZMod.natCast_eq_zero_iff 24 8).mpr (by norm_num)]
     rw [show (16 : ZMod 8) = 0 from
       (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
-    rw [show (9 : ZMod 8) = 1 by norm_num]
-    simp
+    calc
+      (9 : ZMod 8) = 8 + 1 := by norm_num
+      _ = 0 + 1 := by
+        rw [show (8 : ZMod 8) = 0 from
+          (ZMod.natCast_eq_zero_iff 8 8).mpr (by norm_num)]
+      _ = 1 := by ring
 
 lemma even_sq_sq_cast_zero (i : ℕ) (hi : Even i) :
     ((((i ^ 2) ^ 2 : ℕ) : ZMod 8)) = 0 := by
@@ -41,8 +45,7 @@ lemma even_sq_pow_cast_zero (i e : ℕ) (hi : Even i) (he : 2 ≤ e) :
     ((((i ^ 2) ^ e : ℕ) : ZMod 8)) = 0 := by
   have heq : e = 2 + (e - 2) := by omega
   rw [heq, pow_add]
-  push_cast
-  rw [even_sq_sq_cast_zero i hi]
+  rw [Nat.cast_mul, even_sq_sq_cast_zero i hi]
   simp
 
 lemma term_cast (n i : ℕ) (hi : i ∈ Finset.Icc 1 n) :
@@ -50,8 +53,7 @@ lemma term_cast (n i : ℕ) (hi : i ∈ Finset.Icc 1 n) :
       (if Odd i then 1 else if i = n then (i : ZMod 8) ^ 2 else 0) := by
   by_cases hodd : Odd i
   · simp only [hodd, if_true]
-    push_cast
-    rw [odd_sq_cast i hodd]
+    rw [Nat.cast_pow, odd_sq_cast i hodd]
     simp
   · have heven : Even i := Nat.not_odd_iff_even.mp hodd
     by_cases hin : i = n
@@ -72,15 +74,15 @@ lemma odd_indicator_sum (n : ℕ) :
       rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ n + 1)]
       rw [ih]
       by_cases hodd : Odd (n + 1)
-      · obtain ⟨k, hk⟩ := hodd
-        simp only [hodd, if_true]
+      · simp only [hodd, if_true]
+        obtain ⟨k, hk⟩ := hodd
         have hdiv : (n + 2) / 2 = (n + 1) / 2 + 1 := by omega
         rw [hdiv]
         push_cast
         ring
-      · have heven : Even (n + 1) := Nat.not_odd_iff_even.mp hodd
+      · simp only [hodd, if_false, add_zero]
+        have heven : Even (n + 1) := Nat.not_odd_iff_even.mp hodd
         obtain ⟨k, hk⟩ := heven
-        simp only [hodd, if_false, add_zero]
         have hdiv : (n + 2) / 2 = (n + 1) / 2 := by omega
         rw [hdiv]
 
@@ -97,22 +99,31 @@ lemma terminal_even_sum (n : ℕ) :
     · simp [Nat.not_odd_iff_even]
     · intro b hb hbn
       simp [hbn]
-    · simp [hn1]
+    · intro hnot
+      exact (hnot (Finset.mem_Icc.mpr ⟨hn1, le_rfl⟩)).elim
 
 lemma even_sq_cast_formula (n : ℕ) (hn : Even n) :
     (n : ZMod 8) ^ 2 = if n % 4 = 2 then 4 else 0 := by
   obtain ⟨k, rfl⟩ := hn
   rcases Nat.even_or_odd' k with ⟨m, hm | hm⟩
   · subst k
-    simp only [Nat.mul_mod]
+    have hmod : (2 * (2 * m)) % 4 ≠ 2 := by omega
+    rw [if_neg hmod]
     push_cast
     ring_nf
-    norm_num [ZMod.natCast_eq_zero_iff]
+    rw [show (16 : ZMod 8) = 0 from
+      (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
+    simp
   · subst k
-    simp only [Nat.add_mod, Nat.mul_mod]
+    have hmod : (2 * (2 * m + 1)) % 4 = 2 := by omega
+    rw [if_pos hmod]
     push_cast
     ring_nf
-    norm_num [ZMod.natCast_eq_zero_iff]
+    rw [show (8 : ZMod 8) = 0 from
+      (ZMod.natCast_eq_zero_iff 8 8).mpr (by norm_num)]
+    rw [show (16 : ZMod 8) = 0 from
+      (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
+    simp
 
 theorem cast_a_mod_eight (n : ℕ) :
     (a n : ZMod 8) =
@@ -120,13 +131,14 @@ theorem cast_a_mod_eight (n : ℕ) :
         if n % 4 = 2 then 4 else 0 := by
   simp only [a, Nat.cast_sum]
   calc
-    (∑ x ∈ Finset.Icc 1 n, ((↑x ^ 2) ^ ((n - x + 1) ^ 2) : ZMod 8)) =
+    (∑ x ∈ Finset.Icc 1 n,
+      ((((x ^ 2) ^ ((n - x + 1) ^ 2) : ℕ) : ZMod 8))) =
         ∑ x ∈ Finset.Icc 1 n,
           ((if Odd x then 1 else 0) +
             (if ¬ Odd x ∧ x = n then (x : ZMod 8) ^ 2 else 0)) := by
               apply Finset.sum_congr rfl
               intro i hi
-              rw [← term_cast n i hi]
+              rw [term_cast n i hi]
               by_cases hodd : Odd i <;> simp [hodd]
     _ = (∑ x ∈ Finset.Icc 1 n, if Odd x then (1 : ZMod 8) else 0) +
         (∑ x ∈ Finset.Icc 1 n,
