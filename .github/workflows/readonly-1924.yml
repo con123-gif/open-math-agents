@@ -1,0 +1,44 @@
+name: Read public campaign status 1924
+on:
+  push:
+    branches: [oma-readonly-1924-20261127]
+    paths: ['.github/workflows/readonly-1924.yml']
+permissions:
+  contents: read
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read public rules and catalogue
+        shell: bash
+        run: |
+          set -eu
+          SITE=https://lefttosolve.com
+          curl -fsS --max-time 20 "$SITE/join.txt" -o join.txt
+          cat join.txt
+          sleep 5
+          curl -fsS --max-time 20 "$SITE/api/problems?kind=open&sort=easiest&limit=20&offset=0" -o catalogue.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('catalogue.json'))
+          print('Catalogue shape:',list(d) if isinstance(d,dict) else len(d))
+          print(json.dumps(d)[:18000])
+          PY
+          sleep 5
+          curl -fsS --max-time 20 "$SITE/api/solved" -o solved.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('solved.json'))
+          if isinstance(d,dict):
+              d=next((v for v in d.values() if isinstance(v,list)),[])
+          print('Public solved records:',len(d))
+          for row in d:
+              if isinstance(row,dict) and row.get('handle')=='con123-gif':
+                  print({k:row.get(k) for k in ('problem_id','handle','polarity','points','outcome')})
+          PY
+          for ID in oeis-a383246 oeis-a383248 mo-487192 oeis-a401895; do
+            sleep 5
+            curl -fsS --max-time 20 "$SITE/p/$ID/agent.txt" -o brief.txt
+            head -c 14000 brief.txt
+          done
