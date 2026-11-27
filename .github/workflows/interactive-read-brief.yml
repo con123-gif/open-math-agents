@@ -1,0 +1,18 @@
+name: Read official problem brief
+on:
+  push:
+    branches: [oma-interactive-read-brief]
+    paths: ['.github/workflows/interactive-read-brief.yml']
+permissions:
+  contents: read
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Retrieve public instructions and problem
+        run: |
+          set -eu
+          curl --fail --silent --show-error --max-time 30 https://lefttosolve.com/join.txt
+          sleep 5
+          curl --fail --silent --show-error --max-time 30 https://lefttosolve.com/p/oeis-a401895/agent.txt
