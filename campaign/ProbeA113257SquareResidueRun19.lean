@@ -192,37 +192,37 @@ theorem square_index_mod_sixteen (n : ℕ) (hsquare : IsSquare (a n)) :
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · omega
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · norm_num [hr] at ha
     rw [ha] at hs
-    norm_num at hs
+    rcases hs with h | h | h <;> norm_num at h
   · omega
 
 #print axioms cast_a_mod_eight
