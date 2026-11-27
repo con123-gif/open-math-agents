@@ -102,8 +102,10 @@ lemma exact_den (p : ℤ) (u v k : ℕ) (hp2 : Odd p) (hp5 : ¬ (5 : ℤ) ∣ p)
   have hcop : Nat.Coprime p.natAbs (2 ^ u * 5 ^ v * 2500 ^ k) :=
     ((h2.pow_right u).mul_right (h5.pow_right v)).mul_right (h2500.pow_right k)
   let d : ℕ := 2 ^ u * 5 ^ v * 2500 ^ k
+  have hcopd : Nat.Coprime p.natAbs (Int.natAbs (d : ℤ)) := by
+    simpa only [Int.natAbs_natCast] using hcop
   have hd := Rat.den_div_eq_of_coprime (a := p) (b := (d : ℤ))
-    (by dsimp [d]; positivity) (by simpa [d] using hcop)
+    (by dsimp [d]; positivity) hcopd
   dsimp [d] at hd
   push_cast at hd
   exact_mod_cast hd
@@ -114,7 +116,7 @@ lemma base_four : base ^ 4 = (⟨7 / 2500, -24 / 2500⟩ : QI) := by
 lemma block_value (k : ℕ) : base ^ (4 * k) =
     (⟨(A k : ℚ) / 2500 ^ k, 8 * (B k : ℚ) / 2500 ^ k⟩ : QI) := by
   induction k with
-  | zero => ext <;> simp [A, B, block]
+  | zero => ext <;> simp [A, B, block, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one]
   | succ k ih =>
       rw [show 4 * (k + 1) = 4 * k + 4 by omega, pow_add, ih, base_four]
       ext <;> simp only [QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul,
@@ -153,12 +155,14 @@ lemma den_zero (k : ℕ) : a (4 * k) = 2500 ^ k := by
 lemma den_one (k : ℕ) : a (4 * k + 1) = 10 * 2500 ^ k := by
   have h := numerator_units k (-1) 24 (by decide) (by decide) (by norm_num) (by norm_num)
   have hd := exact_den (-A k + 24 * B k) 1 1 k (by simpa using h.1) (by simpa using h.2)
+  norm_num at hd
   simpa [a, value_one] using hd
 
 lemma den_three (k : ℕ) : a (4 * k + 3) = 500 * 2500 ^ k := by
   have h := numerator_units k 13 (-72) (by decide) (by decide) (by norm_num) (by norm_num)
   have hd := exact_den (13 * A k - 72 * B k) 2 3 k
     (by simpa [sub_eq_add_neg] using h.1) (by simpa [sub_eq_add_neg] using h.2)
+  norm_num at hd
   simpa [a, value_three] using hd
 
 lemma den_two (k : ℕ) : a (4 * k + 6) = 31250 * 2500 ^ k := by
@@ -166,6 +170,7 @@ lemma den_two (k : ℕ) : a (4 * k + 6) = 31250 * 2500 ^ k := by
     (by decide) (by decide) (by norm_num) (by norm_num)
   have hd := exact_den (-A (k + 1) - 6 * B (k + 1)) 1 6 k
     (by simpa [sub_eq_add_neg] using h.1) (by simpa [sub_eq_add_neg] using h.2)
+  norm_num at hd
   simpa [a, value_two] using hd
 
 lemma recurrence (n : ℕ) (hn : 6 < n) : a n = 2500 * a (n - 4) := by
@@ -191,7 +196,7 @@ lemma recurrence (n : ℕ) (hn : 6 < n) : a n = 2500 * a (n - 4) := by
 
 open PowerSeries
 
-def numerator : PowerSeries ℚ :=
+noncomputable def numerator : PowerSeries ℚ :=
   1 + C 10 * X ^ 1 + C 25 * X ^ 2 + C 500 * X ^ 3 - C 31250 * X ^ 6
 
 lemma coeff_series (n : ℕ) : coeff n series = (a n : ℚ) := by simp [series]
@@ -204,9 +209,11 @@ lemma generating_identity : series * (1 - C 2500 * (X : PowerSeries ℚ) ^ 4) = 
   intro n
   by_cases hn : n ≤ 6
   · interval_cases n <;>
-      norm_num [numerator, map_add, map_sub, PowerSeries.coeff_C_mul,
-        PowerSeries.coeff_mul_X_pow', PowerSeries.coeff_X_pow, series, a, base,
-        pow_succ, QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul] <;> decide
+      simp [numerator, map_add, map_sub, PowerSeries.coeff_C_mul,
+        PowerSeries.coeff_mul_X_pow', PowerSeries.coeff_X_pow,
+        PowerSeries.coeff_X, PowerSeries.coeff_one, series] <;>
+      norm_num [a, base, pow_succ, QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul,
+        QuadraticAlgebra.re_one, QuadraticAlgebra.im_one] <;> decide
   · have hm : ∀ m : ℕ, m ≤ 6 → n ≠ m := by intro m hm; omega
     have hN : coeff n numerator = 0 := by
       simp only [numerator, map_add, map_sub, PowerSeries.coeff_one,
