@@ -1,0 +1,43 @@
+{
+  "problem": "oeis-a381423",
+  "decision": "withhold_genuine_new_prior_solved",
+  "official_claim_taken": false,
+  "official_pr_created": false,
+  "canonical_certificate_deleted_or_changed": false,
+  "paper": {
+    "authors": [
+      "Haobo Ma",
+      "Wenlin Zhang"
+    ],
+    "url": "https://zenodo.org/records/23957586",
+    "doi": "10.5281/zenodo.23957586",
+    "publication_date": "2026-11-04",
+    "record_created": "2026-11-04T17:22:09.071428+00:00",
+    "pdf_date": "2026-11-03",
+    "actual_pdf_retrieved": true,
+    "read_scope": "Entire signed-mode Theorem1/proof and block-spacing-growth Corollary2/proof, Sections1\u20132"
+  },
+  "prior_repository": "the-omega-institute/trureturing",
+  "immutable_prior_commit": "51d5f84528467498cce1f838f345e271dce81ee9",
+  "entire_external_threshold_module_lines_read": 213,
+  "entire_external_blocks_module_lines_read": 344,
+  "external_modules_independently_compiled": false,
+  "hashes": {
+    "A381423_CURRENT_PRIOR_EXCLUSION.md": "5c7032b0812114ecd73422d6ec44207a4dbed28aeeb0fae46a6d4c5c8bff3ecf",
+    "A381423_PRIOR_HermiteSignedModeThreshold.lean": "52a5c1be627d75d25f8749b41de09c2cc870646034caa396a109310ab585e02c",
+    "A381423_PRIOR_HermiteSignedModeBlocks.lean": "9a362c0d5a9c8c1265433ad3142122c2b6c1d57274071c4cf6add16467b2ee6e",
+    "A381423_PRIOR_NOTE.pdf": "0470db8befb72219b653b9e6514031002d57c32e136f6ff2dccfbf28daa579ec"
+  },
+  "canonical_statement_sha256": "9a14d5d779be23aac8d155b92bd8834bfb1c1a10537d7eabc178d4ead1eaa38d",
+  "canonical_proof_sha256": "1b3d524b3b322e81c29e16d0e81ae111566310d6958383c18a4914ed384328c2",
+  "current_source_revision": 8,
+  "current_source_identical": true,
+  "current_api_kind": "unformalized",
+  "proper_all_state_exact_pr_search_count": 0,
+  "latest100_pr_matches": 0,
+  "all_source_clauses_prior_covered": true,
+  "prior_scope_bounded": true,
+  "no_historical_priority_allegation": true,
+  "review_by": "ChatGPT/Codex independent AI-agent review",
+  "date": "2026-11-27T22:00:54.094704+00:00"
+}
