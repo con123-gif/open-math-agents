@@ -141,7 +141,8 @@ lemma lyapunov (k : ℕ) : A * P k + P k * A.transpose = -(X k) := by
   all_goals
     ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [A,Q,D,T,Matrix.mul_apply,Fin.sum_univ_two,Matrix.smul_apply,smul_eq_mul]
+      simp [A,Q,D,T,Matrix.mul_apply,Matrix.vecMul,dotProduct,Matrix.transpose_apply,
+        Fin.sum_univ_two,Matrix.smul_apply,smul_eq_mul]
     all_goals ring
 
 lemma normalized_scale (s : ℝ) (hs : 0 < s)
@@ -158,7 +159,7 @@ lemma normalized_scale (s : ℝ) (hs : 0 < s)
   unfold OMA.S_mo_319325.normalized
   rw [hr,hi]
   simp only [Matrix.smul_mul,Matrix.mul_smul,smul_smul]
-  have hc : (s⁻¹ * s^2) * s⁻¹ = 1 := by field_simp [hs.ne']
+  have hc : s⁻¹ * (s^2 * s⁻¹) = 1 := by field_simp [hs.ne']
   rw [hc,one_smul]
 
 lemma normalized_sequence (k : ℕ) :

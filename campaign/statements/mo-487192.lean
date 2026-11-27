@@ -35,6 +35,7 @@ def posetCentralizer (K : Type) [Field K] (P : Type) [PartialOrder P]
     [Fintype P] [DecidableEq P] [DecidableLE P] : Subalgebra K (Matrix P P K) :=
   Subalgebra.centralizer K ({cartan K P, (cartan K P).transpose} : Set (Matrix P P K))
 
+open scoped Classical in
 theorem main :
     (∀ (K : Type) [Field K] [CharZero K] (P : Type) [PartialOrder P]
       [Fintype P] [DecidableEq P] [DecidableLE P],

@@ -78,6 +78,11 @@ private lemma repunit_pos (j : ℕ) : 0 < repunit j := by
   simp only [repunit, List.replicate_succ, Nat.ofDigits_cons]
   omega
 
+private lemma repunit_first (j : ℕ) : firstDigit (repunit j) = 1 := by
+  unfold firstDigit
+  rw [repunit_digits, List.reverse_replicate]
+  simp [List.replicate_succ]
+
 private lemma repunit_admissible (j : ℕ) : admissible (repunit j) := by
   refine ⟨repunit_pos j, ?_, ?_⟩
   · simp [repunit_digits]
@@ -106,8 +111,8 @@ private lemma follows_repunit {n : ℕ} (hn : admissible n) (j : ℕ) :
   intro he
   have hz := admissible_last_ne_zero hn
   have hge : 2 ≤ lastDigit n := by omega
-  simpa [firstDigit, repunit_digits, List.replicate_succ] using
-    (show 1 < lastDigit n by omega)
+  rw [repunit_first]
+  omega
 
 private lemma repunit_follows (j m : ℕ) : follows (repunit j) m := by
   intro he
@@ -117,13 +122,15 @@ private lemma repunit_unused (used : Finset ℕ) : ∃ j, repunit j ∉ used := 
   by_contra hn
   have hm : ∀ j, repunit j ∈ used := by simpa using hn
   exact no_bounded_injection repunit (used.sup id)
-    (fun j => Finset.le_sup (hm j)) repunit_injective
+    (fun j => Finset.le_sup (f := id) (hm j)) repunit_injective
 
 private lemma next_mem (used : Finset ℕ) (previous : ℕ) (hp : admissible previous) :
     admissible (next used previous) ∧ next used previous ∉ used ∧
       follows previous (next used previous) := by
   obtain ⟨j, hj⟩ := repunit_unused used
-  exact Nat.sInf_mem ⟨repunit j, repunit_admissible j, hj, follows_repunit hp j⟩
+  exact Nat.sInf_mem
+    (s := {m : ℕ | admissible m ∧ m ∉ used ∧ follows previous m})
+    ⟨repunit j, repunit_admissible j, hj, follows_repunit hp j⟩
 
 private lemma next_le (used : Finset ℕ) (previous m : ℕ)
     (hm : admissible m) (hu : m ∉ used) (he : follows previous m) :
@@ -131,7 +138,9 @@ private lemma next_le (used : Finset ℕ) (previous m : ℕ)
 
 private lemma state_admissible (n : ℕ) : admissible (state n).2 := by
   induction n with
-  | zero => decide
+  | zero =>
+    change (0 : ℕ) < 1 ∧ 0 ∉ ([1] : List ℕ) ∧ ([1] : List ℕ).IsChain digitStep
+    exact ⟨by decide, by simp, List.isChain_singleton 1⟩
   | succ n ih => exact (next_mem (state n).1 (state n).2 ih).1
 
 private lemma a_admissible (n : ℕ) : admissible (a n) :=
