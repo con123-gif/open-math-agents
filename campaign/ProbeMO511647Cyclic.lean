@@ -67,7 +67,10 @@ theorem cyclicBasis_apply (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
       simp only [Fin.val_rev, Fin.val_zero] at *
       have := k.isLt
       omega
-    simp [v, e, difference, Matrix.col_apply, hno]
+    have hno' : ¬m + 1 = k.val := by
+      have := k.isLt
+      omega
+    simp [v, e, difference, Matrix.col_apply, Pi.single_apply, hno']
   · have hpre : ((j - 1).rev).val = j.rev.val + 1 := by
       simp only [Fin.val_rev, Fin.val_sub_one_of_ne_zero hj]
       have hjval : j.val ≠ 0 := by simpa using hj
@@ -81,13 +84,19 @@ theorem cyclicBasis_apply (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
     have hiff : j.rev.val + 1 = k.val ↔ k = (j - 1).rev := by
       rw [← hpre]
       simp [Fin.ext_iff, eq_comm]
+    have hiff' : m - j.val + 1 = k.val ↔ k = (j - 1).rev := by
+      simpa only [Fin.val_rev] using hiff
     by_cases hk : k = j.rev
     · subst k
       simp [v, e, difference, Matrix.col_apply, hj, hne]
     · by_cases hkp : k = (j - 1).rev
       · subst k
-        simp [v, e, difference, Matrix.col_apply, hj, hne.symm, hpre]
-      · simp [v, e, difference, Matrix.col_apply, hj, hk, hkp, hiff]
+        simp only [v, if_neg hj, e, Pi.basisFun_apply, Pi.sub_apply,
+          Pi.single_apply, Matrix.col_apply, difference, if_neg hne.symm, if_pos rfl]
+        have hpre' : m - j.val + 1 = m - (j - 1).val := by
+          simpa only [Fin.val_rev] using hpre.symm
+        simp [Fin.val_rev, hpre', hne.symm]
+      · simp [v, e, difference, Matrix.col_apply, hj, hk, hkp, hiff']
 
 theorem rev_sub_one_sub_one (m : ℕ) (j : Fin (m + 1)) :
     (j - 1).rev - 1 = j.rev := by
@@ -125,7 +134,7 @@ theorem T_v (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
       simp only [v, if_neg hlast, Fin.rev_last, map_sub, T_e,
         if_pos rfl, hp, if_neg hone, sub_self, finRotate_last,
         Fin.rev_zero, sub_zero]
-      abel
+      abel <;> simp
     · have hrev : j.rev ≠ 0 := by
         intro h
         apply hjlast
@@ -148,7 +157,7 @@ theorem T_v (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
       abel
 
 theorem T_pow_v (m : ℕ) (hm : 2 ≤ m) (r : ℕ) (j : Fin (m + 1)) :
-    (T m ^ r) (v m j) = v m (j + r) := by
+    (T m ^ r) (v m j) = v m (j + (r : Fin (m + 1))) := by
   induction r with
   | zero => simp
   | succ r ih =>
@@ -162,9 +171,31 @@ theorem T_period (m : ℕ) (hm : 2 ≤ m) : T m ^ (m + 1) = 1 := by
   rw [cyclicBasis_apply m hm, T_pow_v m hm]
   simp
 
+theorem sum_v_Iic (m : ℕ) (r : Fin (m + 1)) :
+    ∑ j ∈ Finset.Iic r, v m j = e m r.rev := by
+  let f : Fin (m + 2) → V m := Fin.cons 0 (fun j => e m j.rev)
+  have hd : ∀ j : Fin (m + 1), v m j = f j.succ - f j.castSucc := by
+    intro j
+    refine Fin.cases ?_ (fun k => ?_) j
+    · simp [v, f]
+    · have hsub : (k.succ : Fin (m + 1)) - 1 = k.castSucc := by
+        apply Fin.ext
+        rw [Fin.val_sub_one_of_ne_zero (Fin.succ_ne_zero k)]
+        simp
+      have hcast : (k.succ : Fin (m + 1)).castSucc = k.castSucc.succ := rfl
+      simp only [v, if_neg (Fin.succ_ne_zero k), hsub, hcast, f, Fin.cons_succ]
+  simp_rw [hd]
+  rw [Fin.sum_Iic_sub r f]
+  simp [f]
+
+theorem inverse_basis_sum (m : ℕ) (k : Fin (m + 1)) :
+    e m k = ∑ j ∈ Finset.Iic k.rev, v m j := by
+  rw [sum_v_Iic, Fin.rev_rev]
+
 end OMA.MO511647.Cyclic
 
 #print axioms OMA.MO511647.Cyclic.difference_det
 #print axioms OMA.MO511647.Cyclic.cyclicBasis_apply
 #print axioms OMA.MO511647.Cyclic.T_v
 #print axioms OMA.MO511647.Cyclic.T_period
+#print axioms OMA.MO511647.Cyclic.inverse_basis_sum
