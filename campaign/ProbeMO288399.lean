@@ -136,6 +136,8 @@ lemma drop_quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   simp only [quadratic, drop, Matrix.mulVec_sub, sub_dotProduct, dotProduct_sub]
   rw [Matrix.dotProduct_mulVec v A (Pi.single i (v i))]
   simp only [dotProduct_single, single_dotProduct, Matrix.mulVec_single]
+  change quadratic A v - v i * (A *ᵥ v) i -
+    ((v ᵥ* A) i * v i - v i * (A i i * v i)) = _
   ring
 
 lemma sum_drop_norm {n : ℕ} (v : Fin n → ℝ) :
