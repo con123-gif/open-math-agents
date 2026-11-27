@@ -1,0 +1,25 @@
+name: OMA candidate scan
+on:
+  push:
+    branches: [oma-submission-preflight]
+    paths: ['.github/workflows/oma-candidate-scan.yml']
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read public catalogue without claiming
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,json,time
+          for kind in ['known','warmup']:
+              q=urllib.parse.urlencode({'kind':kind,'sort':'easiest','limit':35})
+              data=json.load(urllib.request.urlopen('https://lefttosolve.com/api/problems?'+q,timeout=30))
+              rows=data if isinstance(data,list) else data.get('problems',data.get('items',data.get('results',[])))
+              print('KIND',kind,'KEYS',list(data) if isinstance(data,dict) else 'list')
+              for p in rows:
+                  print(json.dumps({k:p.get(k) for k in ('id','title','lean','decl','kind','status','statement','module')},ensure_ascii=True)[:1800])
+              time.sleep(4)
+          PY
