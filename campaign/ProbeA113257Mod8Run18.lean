@@ -25,6 +25,7 @@ lemma odd_sq_cast (i : ℕ) (hi : Odd i) : ((i ^ 2 : ℕ) : ZMod 8) = 1 := by
       (ZMod.natCast_eq_zero_iff 24 8).mpr (by norm_num)]
     rw [show (16 : ZMod 8) = 0 from
       (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
+    simp only [mul_zero, add_zero]
     calc
       (9 : ZMod 8) = 8 + 1 := by norm_num
       _ = 0 + 1 := by
@@ -107,7 +108,7 @@ lemma even_sq_cast_formula (n : ℕ) (hn : Even n) :
   obtain ⟨k, rfl⟩ := hn
   rcases Nat.even_or_odd' k with ⟨m, hm | hm⟩
   · subst k
-    have hmod : (2 * (2 * m)) % 4 ≠ 2 := by omega
+    have hmod : (2 * m + 2 * m) % 4 ≠ 2 := by omega
     rw [if_neg hmod]
     push_cast
     ring_nf
@@ -115,7 +116,7 @@ lemma even_sq_cast_formula (n : ℕ) (hn : Even n) :
       (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
     simp
   · subst k
-    have hmod : (2 * (2 * m + 1)) % 4 = 2 := by omega
+    have hmod : (2 * m + 1 + (2 * m + 1)) % 4 = 2 := by omega
     rw [if_pos hmod]
     push_cast
     ring_nf
