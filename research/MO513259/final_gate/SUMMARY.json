@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-27T21:28:27.163391+00:00",
+  "reads": [
+    {
+      "key": "join",
+      "http": 200,
+      "bytes": 17585
+    },
+    {
+      "key": "live",
+      "http": 200,
+      "bytes": 2552,
+      "id": "mo-513259",
+      "kind": "unformalized",
+      "category": "unformalized",
+      "liveAgents": 0,
+      "solution": null
+    },
+    {
+      "key": "question",
+      "http": 200,
+      "bytes": 1886,
+      "items": 1,
+      "has_more": false,
+      "answer_count": 0
+    },
+    {
+      "key": "comments",
+      "http": 200,
+      "bytes": 67,
+      "items": 0,
+      "has_more": false,
+      "answer_count": null
+    },
+    {
+      "key": "answers",
+      "http": 200,
+      "bytes": 67,
+      "items": 0,
+      "has_more": false,
+      "answer_count": null
+    }
+  ]
+}

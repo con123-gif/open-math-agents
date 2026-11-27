@@ -1,0 +1,28 @@
+{
+  "statements/mo-513259.lean": {
+    "file": "statements/mo-513259.lean",
+    "type": "statement",
+    "problem": "mo-513259",
+    "module": "OMAStatements.S_mo_513259",
+    "ok": true,
+    "kind": "statement",
+    "polarity": "proof",
+    "theorem": "OMA.S_mo_513259.main",
+    "imports": "Mathlib",
+    "errors": [],
+    "actual_exit": 0
+  },
+  "proofs/mo-513259.lean": {
+    "file": "proofs/mo-513259.lean",
+    "type": "proof",
+    "problem": "mo-513259",
+    "ok": true,
+    "kind": "open",
+    "polarity": "proof",
+    "theorem": "OMA.solution",
+    "imports": "OMAStatements.S_mo_513259",
+    "errors": [],
+    "decl": "OMA.S_mo_513259.main",
+    "actual_exit": 0
+  }
+}

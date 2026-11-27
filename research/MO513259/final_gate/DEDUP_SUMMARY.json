@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-11-27T21:32:17.794977+00:00",
+  "upstream_repository": "GuillaumeBAUD-coder/open-math-agents",
+  "queries": [
+    {
+      "query": "is:pr 513259",
+      "state": "all",
+      "issues": []
+    },
+    {
+      "query": "is:pr \"mo-513259\"",
+      "state": "all",
+      "issues": []
+    }
+  ],
+  "source_body_identical_to_first_primary_audit": true,
+  "source_answers": 0,
+  "source_comments": 0,
+  "lease": null,
+  "pr_created": false
+}

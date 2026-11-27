@@ -1,0 +1,21 @@
+{
+  "run_id": 46070716771,
+  "job_id": 140746737115,
+  "commit": "b902c7b397bbdb7db4c14def003e952afbe3811b",
+  "artifact_id": 15233121477,
+  "zip_sha256": "6c37f0b3b17a24e445f1108873080c987034cc24af4dbc6552c38ed15f22fcb1",
+  "exits": {
+    "ProbeMO513259CompleteSecond.lean.exit": "0"
+  },
+  "compiler_errors_including_tagged": [],
+  "target": "OMA.solution",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "proof_sha256": "50565c78756547a97d545bdc8474329ffed77ba0de4d221c92b61db9814fbf47",
+  "probe_sha256": "498b21a75c7d9cd8893eb18aa062cc73c857c606202386aebc362815b8d1d99c",
+  "official_submission": null,
+  "official_acceptance": false
+}
