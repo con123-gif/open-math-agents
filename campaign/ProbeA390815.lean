@@ -321,6 +321,7 @@ theorem prime_sigma_pp_square (n : ℕ) (hn : 4 ≤ n)
     (hsprime : (sigma n).Prime) (hslarge : n < sigma n) (hpp : PP n) :
     ∃ k : ℕ, n = k ^ 2 := by
   rcases hpp with ⟨p, e, hp, he, hnEq⟩
+  have hptwo : 2 ≤ p := hp.two_le
   rcases Nat.even_or_odd e with heven | hodd
   · rcases heven with ⟨m, hm⟩
     refine ⟨p ^ m, ?_⟩
