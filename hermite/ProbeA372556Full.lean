@@ -267,7 +267,9 @@ lemma even_exchange {n : ℕ} {m : Multiset ℕ} (hm : best n m)
     simp only [score_add, score_replicate, score_single]
     have hh : 5 ^ l ≤ 5 ^ i := Nat.pow_le_pow_right (by omega) hli
     omega
-  have hsnew : 5 ^ (i + 2) ≤ score ({i + 2} + predCoins l) := by simp
+  have hsnew : 5 ^ (i + 2) ≤ score ({i + 2} + predCoins l) := by
+    simp only [score_add, score_single]
+    omega
   have hpow : 5 ^ (i + 2) = 25 * 5 ^ i := by rw [pow_add]; norm_num; omega
   have hpos : 0 < 5 ^ i := by positivity
   have hs : score (Multiset.replicate 4 i + {l}) < score ({i + 2} + predCoins l) := by
@@ -331,7 +333,7 @@ lemma adjacent_count {n : ℕ} {m : Multiset ℕ} (hm : best n m)
       · simp [hxi, hxi1]
   have hs : score (Multiset.replicate 2 i + {i + 1}) < score {i + 2} := by
     simp only [score_add, score_replicate, score_single]
-    rw [pow_add, pow_succ]
+    simp only [pow_add, pow_one]
     norm_num
     have hp : 0 < 5 ^ i := by positivity
     omega
@@ -350,34 +352,34 @@ lemma low_count {n : ℕ} {m : Multiset ℕ} (hm : represents n m) {i : ℕ}
   have h := hm.1 i hh
   omega
 
-def prefix (m : Multiset ℕ) (h : ℕ) : ℕ :=
+def partialValue (m : Multiset ℕ) (h : ℕ) : ℕ :=
   ∑ i ∈ Finset.range (h + 1), m.count i * jac i
 
-lemma prefix_succ (m : Multiset ℕ) (h : ℕ) :
-    prefix m (h + 1) = prefix m h + m.count (h + 1) * jac (h + 1) := by
-  simp [prefix, Finset.sum_range_succ, Nat.add_assoc]
+lemma partialValue_succ (m : Multiset ℕ) (h : ℕ) :
+    partialValue m (h + 1) = partialValue m h + m.count (h + 1) * jac (h + 1) := by
+  simp [partialValue, Finset.sum_range_succ, Nat.add_assoc]
 
-lemma prefix_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) :
-    (h % 2 = 0 → prefix m h + 1 ≤ jac (h + 2)) ∧
-    (h % 2 = 1 → prefix m h + 1 ≤ jac (h + 1)) := by
+lemma partialValue_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) :
+    (h % 2 = 0 → partialValue m h + 1 ≤ jac (h + 2)) ∧
+    (h % 2 = 1 → partialValue m h + 1 ≤ jac (h + 1)) := by
   induction h using Nat.strong_induction_on with
   | h h ih =>
     by_cases hlo : h < 2
     · have hc0 := low_count hm.1.1 (i := 0) (by omega)
       have hc1 := low_count hm.1.1 (i := 1) (by omega)
-      interval_cases h <;> norm_num [prefix, Finset.sum_range_succ, jac, hc0, hc1]
+      interval_cases h <;> norm_num [partialValue, Finset.sum_range_succ, jac, hc0, hc1]
     · have hh : 2 ≤ h := by omega
-      have hstep : prefix m h = prefix m (h - 1) + m.count h * jac h := by
-        convert prefix_succ m (h - 1) using 1 <;> congr 1 <;> omega
+      have hstep : partialValue m h = partialValue m (h - 1) + m.count h * jac h := by
+        convert partialValue_succ m (h - 1) using 1 <;> congr 1 <;> omega
       rcases Nat.mod_two_eq_zero_or_one h with he | ho
       · have hip := (ih (h - 1) (by omega)).2 (by omega)
         have heq : h - 1 + 1 = h := by omega
         rw [heq] at hip
         have hc := even_count hm hh he
         have hq := even_quad he
-        have hres : prefix m h + 1 ≤ jac (h + 2) := by
+        have hres : partialValue m h + 1 ≤ jac (h + 2) := by
           by_cases h4 : m.count h = 4
-          · have hz : prefix m (h - 1) = 0 := by
+          · have hz : partialValue m (h - 1) = 0 := by
               apply Finset.sum_eq_zero
               intro i hi
               have hil : i < h := by
@@ -395,7 +397,7 @@ lemma prefix_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) :
         have hip := (ih (h - 1) (by omega)).1 (by omega)
         have heq : h - 1 + 2 = h + 1 := by omega
         rw [heq] at hip
-        have hres : prefix m h + 1 ≤ jac (h + 1) := by
+        have hres : partialValue m h + 1 ≤ jac (h + 1) := by
           by_cases h0 : m.count h = 0
           · rw [hstep, h0]
             simpa using hip
@@ -411,9 +413,9 @@ lemma prefix_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) :
             have hi2 := (ih (h - 2) (by omega)).2 (by omega)
             have heq2 : h - 2 + 1 = h - 1 := by omega
             rw [heq2] at hi2
-            have hstep2 : prefix m (h - 1) =
-                prefix m (h - 2) + m.count (h - 1) * jac (h - 1) := by
-              convert prefix_succ m (h - 2) using 1 <;> congr 1 <;> omega
+            have hstep2 : partialValue m (h - 1) =
+                partialValue m (h - 2) + m.count (h - 1) * jac (h - 1) := by
+              convert partialValue_succ m (h - 2) using 1 <;> congr 1 <;> omega
             have hmul := Nat.mul_le_mul_right (jac (h - 1)) ha
             have hj : jac (h + 1) = jac h + 2 * jac (h - 1) := by
               convert (show jac ((h - 1) + 2) =
@@ -422,9 +424,9 @@ lemma prefix_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) :
             omega
         exact ⟨by intro hbad; omega, fun _ => hres⟩
 
-lemma value_eq_prefix {m : Multiset ℕ} {h : ℕ} (hm : ∀ i ∈ m, i ≤ h) :
-    value m = prefix m h := by
-  unfold value prefix
+lemma value_eq_partialValue {m : Multiset ℕ} {h : ℕ} (hm : ∀ i ∈ m, i ≤ h) :
+    value m = partialValue m h := by
+  unfold value partialValue
   rw [Finset.sum_multiset_map_count]
   simp only [nsmul_eq_mul]
   apply Finset.sum_subset
@@ -504,9 +506,9 @@ lemma fullMain : optimal 0 0 ∧ ∀ n : ℕ, 0 < n →
       have hni : i ≠ greedyIndex n := by intro he; subst i; exact hnot.1 hi
       have hni1 : i ≠ greedyIndex n - 1 := by intro he; subst i; exact hnot.2 hi
       omega
-    have hp := value_eq_prefix hbound
+    have hp := value_eq_partialValue hbound
     rw [hm.1.1.2] at hp
-    have hb := prefix_bound hm (greedyIndex n - 2)
+    have hb := partialValue_bound hm (greedyIndex n - 2)
     rcases Nat.mod_two_eq_zero_or_one (greedyIndex n - 2) with he | ho
     · have hbs := hb.1 he
       have heq : greedyIndex n - 2 + 2 = greedyIndex n := by omega

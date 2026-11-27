@@ -66,9 +66,9 @@ lemma fullMain : optimal 0 0 ∧ ∀ n : ℕ, 0 < n →
       have hni : i ≠ greedyIndex n := by intro he; subst i; exact hnot.1 hi
       have hni1 : i ≠ greedyIndex n - 1 := by intro he; subst i; exact hnot.2 hi
       omega
-    have hp := value_eq_prefix hbound
+    have hp := value_eq_partialValue hbound
     rw [hm.1.1.2] at hp
-    have hb := prefix_bound hm (greedyIndex n - 2)
+    have hb := partialValue_bound hm (greedyIndex n - 2)
     rcases Nat.mod_two_eq_zero_or_one (greedyIndex n - 2) with he | ho
     · have hbs := hb.1 he
       have heq : greedyIndex n - 2 + 2 = greedyIndex n := by omega
