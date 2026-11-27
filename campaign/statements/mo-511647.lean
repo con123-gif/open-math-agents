@@ -35,9 +35,10 @@ def matrix (n : ℕ) : Matrix (Pair n) (Pair n) ℤ := fun row col =>
   else
     if col.val.1.val = 0 then 0 else 1
 
-def main : Prop :=
+theorem main :
   ∀ n : ℕ, 3 ≤ n → Odd n →
     (matrix n).charpoly = (Polynomial.X ^ n - 1) ^ ((n + 1) / 2) ∧
-    matrix n ^ n = 1
+    matrix n ^ n = 1 := by
+  sorry
 
 end OMA.S_mo_511647
