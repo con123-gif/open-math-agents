@@ -1,0 +1,236 @@
+{
+  "recorded_utc": "2026-11-27T17:53:34.030750+00:00",
+  "scope": "These five distinct source assertions use one acknowledged prior method; complement aliases are not additional solutions",
+  "complete_pinned_proofs": 5,
+  "accepted_full_proofs_among_these_five": 0,
+  "problems": [
+    {
+      "problem_id": "oeis-a383246",
+      "exact_mathematical_statement": "The range of the source-defined least-unused greedy A342043 sequence is exactly: Positive decimal integers containing no0, with every internal even digit immediately followed by a smaller digit. The greedy sequence is injective.",
+      "source_urls": [
+        "https://oeis.org/A383246",
+        "https://oeis.org/A342043"
+      ],
+      "same_assertion_complement_alias": "A383245",
+      "proof": {
+        "method": "Acknowledged earlier fairness method, with infinite universal connectors; two finite bounded-injection contradictions prove full coverage",
+        "connector_family": "Repunits of1",
+        "canonical_statement_file": "a383246_statement.lean",
+        "canonical_proof_file": "oeis-a383246_proof.lean",
+        "full_probe_file": "ProbeA383246.lean"
+      },
+      "verification_evidence": {
+        "full_combined_kernel": "PASS",
+        "run": "https://github.com/con123-gif/open-math-agents/actions/runs/46039599862",
+        "job": 140643653986,
+        "commit": "5494206962443e49eaeab9da203ca32026af4245",
+        "allowed_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sorryAx": false,
+        "full_canonical_mathematical_body_matches_probe": true,
+        "statement_sha256": "c89d1667ee20f8d9bc3357c205136b20578368f5bdba43bdf9121d35c7ad7ae9",
+        "proof_sha256": "bb5068729aa0d654bf5a8e6bccebf080a9832ab3bc93540f6e5b34910e6cb92b",
+        "probe_sha256": "9ee4a1f84e004f63715b8ca71c6d39b61048749897b2f9ff7fefafe3d442b26d",
+        "official_static_statement_and_proof_lint": "PASS",
+        "canonical_import_kernel": "Pending human statement merge"
+      },
+      "official_submission": {
+        "statement_pr": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9480",
+        "proof_pr": null
+      },
+      "checker_verdict": "Complete combined kernel proof accepted; separate canonical-import official proof pipeline pending",
+      "acceptance_status": "No accepted full official proof yet; statement PR does not count",
+      "accepted_full_proof": false,
+      "public_attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed); source Paolo Xausa; prior fairness method N. J. A. Sloane and related concrete Karlsson/Savitt results acknowledged",
+      "novelty": "Exact target remains source-conjectural in completed bounded prior audit; no historical or new-method priority claim",
+      "remaining_obstruction": "Human statement review/merge, canonical-import proof verification, separate official proof submission and actual final acceptance"
+    },
+    {
+      "problem_id": "oeis-a383248",
+      "exact_mathematical_statement": "The range of the source-defined least-unused greedy A342044 sequence is exactly: Nonnegative decimal integers containing no9, with every internal odd digit immediately followed by a larger digit. The greedy sequence is injective.",
+      "source_urls": [
+        "https://oeis.org/A383248",
+        "https://oeis.org/A342044"
+      ],
+      "same_assertion_complement_alias": "A383247",
+      "proof": {
+        "method": "Acknowledged earlier fairness method, with infinite universal connectors; two finite bounded-injection contradictions prove full coverage",
+        "connector_family": "Repdigits of8",
+        "canonical_statement_file": "a383248_statement.lean",
+        "canonical_proof_file": "oeis-a383248_proof.lean",
+        "full_probe_file": "ProbeA383248.lean"
+      },
+      "verification_evidence": {
+        "full_combined_kernel": "PASS",
+        "run": "https://github.com/con123-gif/open-math-agents/actions/runs/46039599862",
+        "job": 140643653986,
+        "commit": "5494206962443e49eaeab9da203ca32026af4245",
+        "allowed_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sorryAx": false,
+        "full_canonical_mathematical_body_matches_probe": true,
+        "statement_sha256": "dcf88976b09ff62d4ca0145f94070b5df3b79af23b6069fea85ceb2d5ea405e9",
+        "proof_sha256": "69fa78708160c9b0c6405d77e508eafabd843dfdfabb8aa5047927814d26c765",
+        "probe_sha256": "a0d843245df361629f7db6ef5df107ceb3a56b44b2c23febc7a60a13f16ccaa2",
+        "official_static_statement_and_proof_lint": "PASS",
+        "canonical_import_kernel": "Pending human statement merge"
+      },
+      "official_submission": {
+        "statement_pr": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9482",
+        "proof_pr": null
+      },
+      "checker_verdict": "Complete combined kernel proof accepted; separate canonical-import official proof pipeline pending",
+      "acceptance_status": "No accepted full official proof yet; statement PR does not count",
+      "accepted_full_proof": false,
+      "public_attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed); source Paolo Xausa; prior fairness method N. J. A. Sloane and related concrete Karlsson/Savitt results acknowledged",
+      "novelty": "Exact target remains source-conjectural in completed bounded prior audit; no historical or new-method priority claim",
+      "remaining_obstruction": "Human statement review/merge, canonical-import proof verification, separate official proof submission and actual final acceptance"
+    },
+    {
+      "problem_id": "oeis-a382465",
+      "exact_mathematical_statement": "The range of the source-defined least-unused greedy A382462 sequence is exactly: Positive decimal integers, every even digit except the first immediately preceded by a smaller digit. The greedy sequence is injective.",
+      "source_urls": [
+        "https://oeis.org/A382465",
+        "https://oeis.org/A382462"
+      ],
+      "same_assertion_complement_alias": "A382464",
+      "proof": {
+        "method": "Acknowledged earlier fairness method, with infinite universal connectors; two finite bounded-injection contradictions prove full coverage",
+        "connector_family": "Repunits of1",
+        "canonical_statement_file": "a382465_statement.lean",
+        "canonical_proof_file": "oeis-a382465_proof.lean",
+        "full_probe_file": "ProbeA382465.lean"
+      },
+      "verification_evidence": {
+        "full_combined_kernel": "PASS",
+        "run": "https://github.com/con123-gif/open-math-agents/actions/runs/46043313956",
+        "job": 140656233200,
+        "commit": "b126414547b3c05d712d741a6e93fbca3c3f4335",
+        "allowed_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sorryAx": false,
+        "full_canonical_mathematical_body_matches_probe": true,
+        "statement_sha256": "a1dbfeb4e64355b6564d124bb31b824193f303b98f10f29b0417a285d20d599a",
+        "proof_sha256": "da7cb2977d008e3d297d70b7a898bec4e1842f6b7c54d220e6345c7b4768bd6b",
+        "probe_sha256": "75ef2d2f1827afc1ad8f4d992407067dc5e88b4d98bdfa8559a4f1967378a8a2",
+        "official_static_statement_and_proof_lint": "PASS",
+        "canonical_import_kernel": "Pending human statement merge"
+      },
+      "official_submission": {
+        "statement_pr": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9702",
+        "proof_pr": null
+      },
+      "checker_verdict": "Complete combined kernel proof accepted; separate canonical-import official proof pipeline pending",
+      "acceptance_status": "No accepted full official proof yet; statement PR does not count",
+      "accepted_full_proof": false,
+      "public_attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed); source Paolo Xausa; prior fairness method N. J. A. Sloane and related concrete Karlsson/Savitt results acknowledged",
+      "novelty": "Exact target remains source-conjectural in completed bounded prior audit; no historical or new-method priority claim",
+      "remaining_obstruction": "Human statement review/merge, canonical-import proof verification, separate official proof submission and actual final acceptance"
+    },
+    {
+      "problem_id": "oeis-a382624",
+      "exact_mathematical_statement": "The range of the source-defined least-unused greedy A382621 sequence is exactly: Positive decimal integers, every even digit except the first immediately preceded by a larger digit; internal0 permitted. The greedy sequence is injective.",
+      "source_urls": [
+        "https://oeis.org/A382624",
+        "https://oeis.org/A382621"
+      ],
+      "same_assertion_complement_alias": "A382623",
+      "proof": {
+        "method": "Acknowledged earlier fairness method, with infinite universal connectors; two finite bounded-injection contradictions prove full coverage",
+        "connector_family": "Repdigits of9",
+        "canonical_statement_file": "a382624_statement.lean",
+        "canonical_proof_file": "oeis-a382624_proof.lean",
+        "full_probe_file": "ProbeA382624.lean"
+      },
+      "verification_evidence": {
+        "full_combined_kernel": "PASS",
+        "run": "https://github.com/con123-gif/open-math-agents/actions/runs/46043313956",
+        "job": 140656233200,
+        "commit": "b126414547b3c05d712d741a6e93fbca3c3f4335",
+        "allowed_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sorryAx": false,
+        "full_canonical_mathematical_body_matches_probe": true,
+        "statement_sha256": "28881a7296da5822211f5a8b1e10ce3388f33e19f5f83f9947521f8d3ce14de2",
+        "proof_sha256": "0cb93324f45152504c99de470979671a78f998d088c7f00d4275fcccff44ab95",
+        "probe_sha256": "4e037f4fb6c86c6acb016fb9dcba7f0d9bede5c421aeb5c0eb6b40be4bed18b1",
+        "official_static_statement_and_proof_lint": "PASS",
+        "canonical_import_kernel": "Pending human statement merge"
+      },
+      "official_submission": {
+        "statement_pr": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9703",
+        "proof_pr": null
+      },
+      "checker_verdict": "Complete combined kernel proof accepted; separate canonical-import official proof pipeline pending",
+      "acceptance_status": "No accepted full official proof yet; statement PR does not count",
+      "accepted_full_proof": false,
+      "public_attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed); source Paolo Xausa; prior fairness method N. J. A. Sloane and related concrete Karlsson/Savitt results acknowledged",
+      "novelty": "Exact target remains source-conjectural in completed bounded prior audit; no historical or new-method priority claim",
+      "remaining_obstruction": "Human statement review/merge, canonical-import proof verification, separate official proof submission and actual final acceptance"
+    },
+    {
+      "problem_id": "oeis-a383062",
+      "exact_mathematical_statement": "The range of the source-defined least-unused greedy A383059 sequence is exactly: Nonnegative decimal integers, every odd digit except the first immediately preceded by a smaller digit; includes0. The greedy sequence is injective.",
+      "source_urls": [
+        "https://oeis.org/A383062",
+        "https://oeis.org/A383059"
+      ],
+      "same_assertion_complement_alias": "A383061",
+      "proof": {
+        "method": "Acknowledged earlier fairness method, with infinite universal connectors; two finite bounded-injection contradictions prove full coverage",
+        "connector_family": "2*10^(j+1)",
+        "canonical_statement_file": "a383062_statement.lean",
+        "canonical_proof_file": "oeis-a383062_proof.lean",
+        "full_probe_file": "ProbeA383062.lean"
+      },
+      "verification_evidence": {
+        "full_combined_kernel": "PASS",
+        "run": "https://github.com/con123-gif/open-math-agents/actions/runs/46043313956",
+        "job": 140656233200,
+        "commit": "b126414547b3c05d712d741a6e93fbca3c3f4335",
+        "allowed_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sorryAx": false,
+        "full_canonical_mathematical_body_matches_probe": true,
+        "statement_sha256": "685abc68acbcb0ea7ebaf20a28248c979a52465a8b6aae2e6d85cb138acc6a27",
+        "proof_sha256": "cd2b672b523c1fd3f5205933740619a09513782b2c4f13f6c6b0a0360d93c469",
+        "probe_sha256": "edbc283f391d257dd499e0d8b1c4dce08f0ecfe1bf1f3354fa1bec7e75a0c92c",
+        "official_static_statement_and_proof_lint": "PASS",
+        "canonical_import_kernel": "Pending human statement merge"
+      },
+      "official_submission": {
+        "statement_pr": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9704",
+        "proof_pr": null
+      },
+      "checker_verdict": "Complete combined kernel proof accepted; separate canonical-import official proof pipeline pending",
+      "acceptance_status": "No accepted full official proof yet; statement PR does not count",
+      "accepted_full_proof": false,
+      "public_attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed); source Paolo Xausa; prior fairness method N. J. A. Sloane and related concrete Karlsson/Savitt results acknowledged",
+      "novelty": "Exact target remains source-conjectural in completed bounded prior audit; no historical or new-method priority claim",
+      "remaining_obstruction": "Human statement review/merge, canonical-import proof verification, separate official proof submission and actual final acceptance"
+    }
+  ],
+  "accepted_prior_context": {
+    "problem": "oeis-a180195",
+    "official_full_proof": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/7724",
+    "merged_at": "2026-11-27T17:05:50Z",
+    "merge_commit": "4c3981b3cba7fe5345bfb5343dfe75056789d645",
+    "novelty": "Routine derivation from known formulas; exact auxiliary recurrence explicitly known from Peter Bala2008; first-ever priority unverified",
+    "audit": "A180195_PRIOR_NOVELTY_AUDIT.md"
+  }
+}

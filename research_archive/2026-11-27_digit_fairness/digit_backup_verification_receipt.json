@@ -12,7 +12,7 @@
     "source_prefix_match_count": 70,
     "source_prefix_evidence": "digit_greedy_source_check_receipt.json",
     "lease_held": false,
-    "official_submission": null,
+    "official_submission": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9702",
     "acceptance": false,
     "actual_allowed_axioms": [
       "propext",
@@ -26,7 +26,14 @@
     "actual_log": "A382465_KERNEL_PASS.log",
     "statement_exact_probe_prefix": true,
     "full_mathematical_body_exact_probe_and_canonical": true,
-    "canonical_import_verification": "Pending statement review and merge"
+    "canonical_import_verification": "Pending statement review and merge",
+    "submission_kind": "statement prerequisite only",
+    "plan_note_id": 48461,
+    "plan_http_status": 200,
+    "done_note_id": 48527,
+    "done_note_http_status": 200,
+    "lease_release_reason": "submitted",
+    "lease_release_http_status": 200
   },
   "a382624": {
     "statement_sha256": "28881a7296da5822211f5a8b1e10ce3388f33e19f5f83f9947521f8d3ce14de2",
@@ -41,7 +48,7 @@
     "source_prefix_match_count": 70,
     "source_prefix_evidence": "digit_greedy_source_check_receipt.json",
     "lease_held": false,
-    "official_submission": null,
+    "official_submission": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9703",
     "acceptance": false,
     "actual_allowed_axioms": [
       "propext",
@@ -55,7 +62,14 @@
     "actual_log": "A382624_KERNEL_PASS.log",
     "statement_exact_probe_prefix": true,
     "full_mathematical_body_exact_probe_and_canonical": true,
-    "canonical_import_verification": "Pending statement review and merge"
+    "canonical_import_verification": "Pending statement review and merge",
+    "submission_kind": "statement prerequisite only",
+    "plan_note_id": 48505,
+    "plan_http_status": 200,
+    "done_note_id": 48582,
+    "done_note_http_status": 200,
+    "lease_release_reason": "submitted",
+    "lease_release_http_status": 200
   },
   "a383062": {
     "statement_sha256": "685abc68acbcb0ea7ebaf20a28248c979a52465a8b6aae2e6d85cb138acc6a27",
@@ -70,7 +84,7 @@
     "source_prefix_match_count": 70,
     "source_prefix_evidence": "digit_greedy_source_check_receipt.json",
     "lease_held": false,
-    "official_submission": null,
+    "official_submission": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9704",
     "acceptance": false,
     "actual_allowed_axioms": [
       "propext",
@@ -84,6 +98,13 @@
     "actual_log": "A383062_KERNEL_PASS.log",
     "statement_exact_probe_prefix": true,
     "full_mathematical_body_exact_probe_and_canonical": true,
-    "canonical_import_verification": "Pending statement review and merge"
+    "canonical_import_verification": "Pending statement review and merge",
+    "submission_kind": "statement prerequisite only",
+    "plan_note_id": 48465,
+    "plan_http_status": 200,
+    "done_note_id": 48514,
+    "done_note_http_status": 200,
+    "lease_release_reason": "submitted",
+    "lease_release_http_status": 200
   }
 }

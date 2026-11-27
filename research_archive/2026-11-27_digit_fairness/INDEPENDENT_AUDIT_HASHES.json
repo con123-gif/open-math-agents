@@ -1,0 +1,17 @@
+{
+  "fresh_algebra_work/A158960_NOVELTY_AUDIT.md": {
+    "sha256": "3578772231f54568685ae5dfc7332171f707c928512125ee8b361a55de3a67c3",
+    "bytes": 4912,
+    "copy_policy": "Unabridged exact UTF8 bytes, no rewriting"
+  },
+  "fresh_algebra_work/A158960_audit_hashes.json": {
+    "sha256": "d064807a54bb599eb8591ffbb8d759bf1226d828faec9469062f914473ecf051",
+    "bytes": 1065,
+    "copy_policy": "Unabridged exact UTF8 bytes, no rewriting"
+  },
+  "number_work/A002538_PRIOR_AUDIT.md": {
+    "sha256": "f9b107b4fc44bba16fa4e20aba49214d7f965b14f57885dde7b3e3ad9f0fdb9e",
+    "bytes": 5082,
+    "copy_policy": "Unabridged exact UTF8 bytes, no rewriting"
+  }
+}

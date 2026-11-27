@@ -2,6 +2,8 @@
 
 Cornelius Lytollis (@con123-gif), assisted by ChatGPT (Codex), 27 November 2026. These are already-audited source targets, not newly screened targets. All three complete mathematical arguments and full Lean proofs passed the actual pinned Lean kernel. Official statement/proof contribution and acceptance remain separate stages; no new-method priority is claimed.
 
+Official statement contributions now exist: A382465 PR9702, A382624 PR9703, and A383062 PR9704. The assigned independent lanes report PLAN/DONE/release submitted all HTTP200. Human statement review/merge and subsequent canonical-import proof submissions remain pending; these statement PRs are not counted as accepted full proofs.
+
 ## A382465 and greedy A382462
 
 The source defines positive integers in which every even decimal digit other than the leftmost is immediately preceded by a smaller digit, and conjectures that these are the sorted terms of greedy A382462. Read the adjacent digits in their usual left-to-right order. The condition is `e even implies d < e` on an adjacent pair `(d,e)`.
