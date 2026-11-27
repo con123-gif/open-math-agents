@@ -1,0 +1,74 @@
+2026-11-27T18:32:07.6141064Z CHECKING_PROBE hermite/ProbeA381423Full.lean
+2026-11-27T18:32:19.4985867Z HermiteProbe.lean:58:8: warning: declaration uses `sorry`
+2026-11-27T18:32:19.4986799Z HermiteProbe.lean:357:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:32:19.4987423Z 
+2026-11-27T18:32:19.4987844Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:32:19.4988866Z HermiteProbe.lean:432:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:32:19.4989336Z 
+2026-11-27T18:32:19.4989663Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:32:19.4990513Z HermiteProbe.lean:471:16: warning: This simp argument is unused:
+2026-11-27T18:32:19.4991160Z   Ne.symm hh
+2026-11-27T18:32:19.4991514Z 
+2026-11-27T18:32:19.4991708Z Hint: Omit it from the simp argument list.
+2026-11-27T18:32:19.4992147Z   [apply] simp [hh]
+2026-11-27T18:32:19.4992370Z 
+2026-11-27T18:32:19.4992926Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:32:19.4993899Z HermiteProbe.lean:482:14: warning: This simp argument is unused:
+2026-11-27T18:32:19.4994531Z   Ne.symm hh
+2026-11-27T18:32:19.4994744Z 
+2026-11-27T18:32:19.4994935Z Hint: Omit it from the simp argument list.
+2026-11-27T18:32:19.4995426Z   [apply] simp [hh]
+2026-11-27T18:32:19.4995637Z 
+2026-11-27T18:32:19.4996021Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:32:19.4996955Z HermiteProbe.lean:834:62: error: Tactic `decide` failed for proposition
+2026-11-27T18:32:19.5001653Z   ¬modeFormula (0 + 1) + 3 = modeFormula 0
+2026-11-27T18:32:19.5002262Z because its `Decidable` instance
+2026-11-27T18:32:19.5002756Z   instDecidableNot
+2026-11-27T18:32:19.5003162Z did not reduce to `isTrue` or `isFalse`.
+2026-11-27T18:32:19.5003502Z 
+2026-11-27T18:32:19.5004507Z After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at the `Decidable` instance
+2026-11-27T18:32:19.5005960Z   match h : (modeFormula (0 + 1) + 3).beq (modeFormula 0) with
+2026-11-27T18:32:19.5006615Z   | true => isTrue ⋯
+2026-11-27T18:32:19.5006997Z   | false => isFalse ⋯
+2026-11-27T18:32:19.5007494Z HermiteProbe.lean:834:62: error: Tactic `decide` failed for proposition
+2026-11-27T18:32:19.5008599Z   ¬modeFormula (1 + 1) + 3 = modeFormula 1
+2026-11-27T18:32:19.5009169Z because its `Decidable` instance
+2026-11-27T18:32:19.5009555Z   instDecidableNot
+2026-11-27T18:32:19.5009920Z did not reduce to `isTrue` or `isFalse`.
+2026-11-27T18:32:19.5010230Z 
+2026-11-27T18:32:19.5011118Z After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at the `Decidable` instance
+2026-11-27T18:32:19.5012444Z   match h : (modeFormula (1 + 1) + 3).beq (modeFormula 1) with
+2026-11-27T18:32:19.5012965Z   | true => isTrue ⋯
+2026-11-27T18:32:19.5013307Z   | false => isFalse ⋯
+2026-11-27T18:32:19.5013794Z HermiteProbe.lean:834:62: error: Tactic `decide` failed for proposition
+2026-11-27T18:32:19.5014454Z   ¬modeFormula (2 + 1) + 3 = modeFormula 2
+2026-11-27T18:32:19.5014890Z because its `Decidable` instance
+2026-11-27T18:32:19.5015412Z   instDecidableNot
+2026-11-27T18:32:19.5015815Z did not reduce to `isTrue` or `isFalse`.
+2026-11-27T18:32:19.5016156Z 
+2026-11-27T18:32:19.5017112Z After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at the `Decidable` instance
+2026-11-27T18:32:19.5018532Z   match h : (modeFormula (2 + 1) + 3).beq (modeFormula 2) with
+2026-11-27T18:32:19.5019098Z   | true => isTrue ⋯
+2026-11-27T18:32:19.5019506Z   | false => isFalse ⋯
+2026-11-27T18:32:19.5020044Z HermiteProbe.lean:834:62: error: Tactic `decide` failed for proposition
+2026-11-27T18:32:19.5020738Z   ¬modeFormula (3 + 1) + 3 = modeFormula 3
+2026-11-27T18:32:19.5021174Z because its `Decidable` instance
+2026-11-27T18:32:19.5021697Z   instDecidableNot
+2026-11-27T18:32:19.5022067Z did not reduce to `isTrue` or `isFalse`.
+2026-11-27T18:32:19.5022362Z 
+2026-11-27T18:32:19.5023326Z After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at the `Decidable` instance
+2026-11-27T18:32:19.5024748Z   match h : (modeFormula (3 + 1) + 3).beq (modeFormula 3) with
+2026-11-27T18:32:19.5025321Z   | true => isTrue ⋯
+2026-11-27T18:32:19.5025664Z   | false => isFalse ⋯
+2026-11-27T18:32:19.5026120Z HermiteProbe.lean:844:58: error: omega could not prove the goal:
+2026-11-27T18:32:19.5026782Z a possible counterexample may satisfy the constraints
+2026-11-27T18:32:19.5027362Z   c ≥ 0
+2026-11-27T18:32:19.5027701Z   b ≥ 4
+2026-11-27T18:32:19.5028197Z   b - c ≤ -3
+2026-11-27T18:32:19.5028529Z where
+2026-11-27T18:32:19.5028867Z  b := ↑n
+2026-11-27T18:32:19.5029256Z  c := ↑(Nat.choose 4 2)
+2026-11-27T18:32:19.5029893Z 'OMA.solution' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+2026-11-27T18:32:19.5030648Z PROBE_EXIT hermite/ProbeA381423Full.lean 1
+2026-11-27T18:32:19.5045684Z ##[error]Process completed with exit code 1.
+2026-11-27T18:32:19.5267859Z

@@ -91,8 +91,20 @@ theorem slab_drop (n q : ℕ) (hq : 4 ≤ q)
     · intro h
       exact (hf h.1).elim
 
+theorem initial_source (n : ℕ) (hn : n ≤ 4) : a n = n := by
+  rw [source_a_eq_selector]
+  have hw := selector_window n
+  have hs := (selector_spec n).1
+  have hl : n ≤ cutoff n := (cutoff_iff n n).mpr (by
+    interval_cases n <;> norm_num [Nat.choose_two_right])
+  omega
+
 theorem no_drop_small (n : ℕ) (hn : n < 4) : ¬ isDrop n := by
-  interval_cases n <;> simp only [isDrop, source_formula] <;> decide
+  have h0 := initial_source n (by omega)
+  have h1 := initial_source (n + 1) (by omega)
+  unfold isDrop
+  rw [h0, h1]
+  omega
 
 theorem drop_characterization (n : ℕ) : isDrop n ↔ ∃ q : ℕ, 4 ≤ q ∧
     ∃ r : ℕ, r ≤ fourCount q ∧ n = fiveEnd q + 4 * r := by
@@ -102,7 +114,9 @@ theorem drop_characterization (n : ℕ) : isDrop n ↔ ∃ q : ℕ, 4 ≤ q ∧
       by_contra hbad
       exact no_drop_small n (by omega) hd
     let q := cutoff n
-    have hq : 4 ≤ q := (cutoff_iff n 4).mpr (by norm_num; omega)
+    have hq : 4 ≤ q := (cutoff_iff n 4).mpr (by
+      norm_num [Nat.choose_two_right]
+      omega)
     have hn := (cutoff_interval n q hq).mp rfl
     have hstep := (slab_drop n q hq hn).mp hd
     have ho := offset_spec q

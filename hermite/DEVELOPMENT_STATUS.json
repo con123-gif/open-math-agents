@@ -24,5 +24,9 @@
     "Classical.choice",
     "Quot.sound"
   ],
-  "canonical_proof_static_lint": "PASS in isolated setup; actual import awaits statement merge"
+  "canonical_proof_static_lint": "PASS in isolated setup; actual import awaits statement merge",
+  "first_full_run": 46050067989,
+  "first_full_job": 140678882143,
+  "first_full_verdict": "FAILED: small initial-case Nat.sqrt reduction and choose4 proof obligations; no valid full certificate",
+  "full_repairs": "Avoid opaque sqrt computation using cutoff proof; expand choose_two_right for constant4"
 }

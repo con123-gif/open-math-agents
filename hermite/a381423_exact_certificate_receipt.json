@@ -1,0 +1,21 @@
+{
+  "scope": "Finite exact validation only; infinite proof is the mathematical argument and pending complete Lean certificate",
+  "coefficient_orders_checked": [
+    0,
+    501
+  ],
+  "transitions_checked": [
+    0,
+    500
+  ],
+  "source_revision": 8,
+  "published_terms_matched": 79,
+  "unique_signed_maxima": true,
+  "exact_closed_formula": true,
+  "every_negative_jump_formula": true,
+  "complete_four_or_five_blocks": true,
+  "five_block_endpoints": true,
+  "quadratic_period_eight_spacing": true,
+  "linear_four_block_count_shift": true,
+  "explicit_sqrt_bounds": true
+}
