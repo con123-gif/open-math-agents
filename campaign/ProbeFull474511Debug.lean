@@ -301,22 +301,32 @@ theorem full_solution : ∀ n : ℕ, ∀ A : ℝ≥0 → Mat n,
       ‖A p.1 * A p.2 - A p.2 * A p.1‖ < 1 := by
     simpa only [Filter.prod_atTop_atTop_eq] using hsmall
   trace "MO474_MAIN_STAGE_3_product_filter"
-  obtain ⟨T, hT⟩ := Filter.eventually_atTop_prod_self.mp hsmall'
-  let A' : ℝ≥0 → Mat n := fun t => A (max t T)
-  have hA' : Continuous A' := hA.comp (continuous_id.max continuous_const)
-  have hmax : Tendsto (fun t : ℝ≥0 => max t T) atTop atTop := by
-    apply tendsto_atTop.2
-    intro N
-    exact eventually_atTop.2 ⟨N, fun t ht => ht.trans (le_max_left t T)⟩
-  have hpair : Tendsto (fun p : ℝ≥0 × ℝ≥0 => (max p.1 T, max p.2 T))
-      (atTop ×ˢ atTop) (atTop ×ˢ atTop) :=
-    (hmax.comp tendsto_fst).prodMk (hmax.comp tendsto_snd)
-  have hcomm' : Tendsto (fun p : ℝ≥0 × ℝ≥0 => A' p.1 * A' p.2 - A' p.2 * A' p.1)
-      (atTop ×ˢ atTop) (𝓝 0) := hcomm.comp hpair
+  obtain ⟨T, hT⟩ :=
+    (Filter.eventually_atTop_prod_self (α := NNReal)
+      (p := fun p : NNReal × NNReal =>
+        ‖A p.1 * A p.2 - A p.2 * A p.1‖ < 1)).mp hsmall'
+  trace "MO474_MAIN_STAGE_3a_cutoff_obtained"
+  let A' : NNReal → Mat n := fun t => A (max t T)
+  have hclamp : Continuous (fun t : NNReal => max t T) :=
+    continuous_id.max continuous_const
+  have hA' : Continuous A' := hA.comp hclamp
+  trace "MO474_MAIN_STAGE_3b_clamp_continuous"
+  have hAe : A =ᶠ[atTop] A' := by
+    apply eventually_atTop.2
+    refine ⟨T, fun t ht => ?_⟩
+    simp only [A', max_eq_left ht]
+  trace "MO474_MAIN_STAGE_3c_eventual_equality"
+  have hcomm' : Tendsto (fun p : NNReal × NNReal => A' p.1 * A' p.2 - A' p.2 * A' p.1)
+      (atTop ×ˢ atTop) (𝓝 0) := by
+    apply hcomm.congr'
+    filter_upwards [hAe.prod_inl (atTop : Filter NNReal),
+      hAe.prod_inr (atTop : Filter NNReal)] with p hp1 hp2
+    exact congrArg₂ (fun X Y : Mat n => X * Y - Y * X) hp1 hp2
+  trace "MO474_MAIN_STAGE_3d_joint_limit_transferred"
   have hbound : ∀ s t, ‖A' t * A' s - A' s * A' t‖ ≤ 1 := by
     intro s t
     exact (hT (max t T) (max s T) (le_max_right t T) (le_max_right s T)).le
-  trace "MO474_MAIN_STAGE_4_clamped_curve"
+  trace "MO474_MAIN_STAGE_4_clamped_bound"
   obtain ⟨Z, hZZ, z, b, hzcont, hbcont, hzmem, hdecomp, hZb, hbbound⟩ :=
     bounded_mod_center A' hA' hbound
   trace "MO474_MAIN_STAGE_5_center_decomposition"
@@ -377,10 +387,6 @@ theorem full_solution : ∀ n : ℕ, ∀ A : ℝ≥0 → Mat n,
     rw [← hdecomp t, D.map_add, hDzero (z t) (le_sup_left (hzmem t))]
     simp
   trace "MO474_MAIN_STAGE_13_error_identity"
-  have hAe : A =ᶠ[atTop] A' := by
-    apply eventually_atTop.2
-    refine ⟨T, fun t ht => ?_⟩
-    simp only [A', max_eq_left ht]
   have he : (fun t => D (b t)) =ᶠ[atTop] (fun t => A t - B t) := by
     filter_upwards [hAe] with t ht
     rw [ht, herror]
