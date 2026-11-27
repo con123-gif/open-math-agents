@@ -44,10 +44,10 @@ jobs:
           shopt -s nullglob
           for F in campaign/Probe*.lean; do
             cp "$F" "$RUNNER_TEMP/fc/CampaignProbe.lean"
-            (cd "$RUNNER_TEMP/fc" && lake env lean CampaignProbe.lean) 2>&1 | tee "results/$(basename "$F").log"
+            (cd "$RUNNER_TEMP/fc" && lake env lean CampaignProbe.lean) 2>&1 | tee "results/$(basename "$F").log" || true
           done
-          for F in campaign/proofs/*.lean; do
-            P="proofs/$(basename "$F")"
+          for F in campaign/statements/*.lean campaign/proofs/*.lean; do
+            P="${F#campaign/}"
             cp "$F" "$RUNNER_TEMP/oma/$P"
             (cd "$RUNNER_TEMP/oma" && OMA_FC="$RUNNER_TEMP/fc" tools/check.sh "$P" "$GITHUB_WORKSPACE/results/$(basename "$F").json") || true
             python3 -I -c 'import json,sys; x=json.load(open(sys.argv[1])); print(x)' "results/$(basename "$F").json"

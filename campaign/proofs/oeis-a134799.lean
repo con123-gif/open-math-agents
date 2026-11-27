@@ -93,9 +93,10 @@ theorem OMA.solution : type_of% @OMA.S_oeis_a134799.main := by
     apply hp3
     exact Int.dvd_natAbs.mp (Int.natCast_dvd_natCast.mpr h)
   have hcop : Nat.Coprime p.natAbs (3 ^ e) := hcop3.pow_right e
-  have hden : (((p : ℚ) / ((3 : ℤ) ^ e : ℚ)).den : ℤ) = (3 : ℤ) ^ e :=
-    Rat.den_div_eq_of_coprime (a := p) (b := (3 : ℤ) ^ e)
-      (by positivity) (by simpa using hcop)
+  have hden : (((p : ℚ) / ((3 : ℤ) ^ e : ℚ)).den : ℤ) = (3 : ℤ) ^ e := by
+    simpa only [Int.cast_pow] using
+      (Rat.den_div_eq_of_coprime (a := p) (b := (3 : ℤ) ^ e)
+        (by positivity) (by simpa using hcop))
   have hnatden : ((p : ℚ) / (3 : ℚ) ^ e).den = (3 : ℕ) ^ e := by
     exact_mod_cast hden
   rw [hp]
