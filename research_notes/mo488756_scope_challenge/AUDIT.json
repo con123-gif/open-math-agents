@@ -1,0 +1,40 @@
+{
+  "problem_id": "mo-488756",
+  "status": "SEMANTIC_HOLD",
+  "new_solution_count": 0,
+  "kernel_verified": false,
+  "lease_held": false,
+  "official_submitted": false,
+  "report_sha256": "ef15070f9eb7d62db97ff2df8f7a66692968a4d17216ceb4e7fcaeaa93ee8029",
+  "source_url": "https://mathoverflow.net/questions/488756/conjecture-on-the-preservation-of-unfragmented-sets-under-element-addition",
+  "source_snapshots": {
+    "MO488756_question.json": {
+      "sha256": "c4cb731ebb05a1c06f144ce8c0502207694a26ba0f79bfa2ed55f70c06cab8d6",
+      "item_count": 1,
+      "has_more": false
+    },
+    "MO488756_answers.json": {
+      "sha256": "7e66a71c465533adeec4694a293f2a5c54366f69bbf76e1dd125039b57b71cda",
+      "item_count": 0,
+      "has_more": false
+    },
+    "MO488756_comments.json": {
+      "sha256": "519be64c68730a22eba208bc6f504bcbe707fbcf29b802894cbc8b13aec4d066",
+      "item_count": 1,
+      "has_more": false
+    },
+    "MO488756_history.json": {
+      "sha256": "a9199dd86daff2438c01f75197228aaef9983ce0ac82660d57dda3e96c3bbb1e",
+      "item_count": 5,
+      "has_more": false
+    }
+  },
+  "conditional_global_order_theorem": "PASS",
+  "arbitrary_input_dependent_sort_policy_counterexample": "PASS",
+  "mode_prefix_star_equivalence": "PASS forcard>=2; centerunique>=3; bothcard2choicesharmless",
+  "singleton_completion": "Must be made explicit; ordinary mode of empty list is undefined.",
+  "full_source_faithfulness": "HOLD: neither global restriction-consistency nor a universal/existential tie convention is specified.",
+  "prior_gate": "Scout-owned, not cleared by this lane.",
+  "timestamp": "2026-11-27T23:57:17.895831+00:00",
+  "attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed)."
+}
