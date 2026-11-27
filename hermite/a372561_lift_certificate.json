@@ -1,0 +1,799 @@
+{
+  "finite_data_only": true,
+  "no_infinite_theorem_claim_from_script": true,
+  "orbit": [
+    27,
+    41,
+    31,
+    47,
+    71,
+    107,
+    161,
+    121,
+    91,
+    137,
+    103,
+    155,
+    233,
+    175,
+    263,
+    395,
+    593,
+    445,
+    167,
+    251,
+    377,
+    283,
+    425,
+    319,
+    479,
+    719,
+    1079,
+    1619,
+    2429,
+    911,
+    1367,
+    2051,
+    3077,
+    577,
+    433,
+    325,
+    61,
+    23,
+    35,
+    53,
+    5,
+    1
+  ],
+  "valuation_steps": [
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    1,
+    2,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    2,
+    3,
+    1,
+    1,
+    2,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    4,
+    2,
+    2,
+    4,
+    3,
+    1,
+    1,
+    5,
+    4
+  ],
+  "rows": [
+    {
+      "s": 0,
+      "y": 27,
+      "q": 82,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        1,
+        4,
+        6
+      ]
+    },
+    {
+      "s": 1,
+      "y": 41,
+      "q": 124,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 2,
+      "y": 31,
+      "q": 94,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 3,
+      "y": 47,
+      "q": 142,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        3,
+        7
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 4,
+      "y": 71,
+      "q": 214,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        2,
+        4,
+        6,
+        7
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 5,
+      "y": 107,
+      "q": 322,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        1,
+        6,
+        8
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 6,
+      "y": 161,
+      "q": 484,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        5,
+        6,
+        7,
+        8
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 7,
+      "y": 121,
+      "q": 364,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        3,
+        5,
+        6,
+        8
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 8,
+      "y": 91,
+      "q": 274,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        1,
+        4,
+        8
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 9,
+      "y": 137,
+      "q": 412,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 10,
+      "y": 103,
+      "q": 310,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        2,
+        4,
+        5,
+        8
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 11,
+      "y": 155,
+      "q": 466,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        4,
+        6,
+        7,
+        8
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 12,
+      "y": 233,
+      "q": 700,
+      "W": 10,
+      "V": 8,
+      "R": 7,
+      "upper_exponents": [
+        2,
+        2,
+        2,
+        4,
+        5,
+        7,
+        9
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 13,
+      "y": 175,
+      "q": 526,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        3,
+        9
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 14,
+      "y": 263,
+      "q": 790,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        2,
+        4,
+        8,
+        9
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 15,
+      "y": 395,
+      "q": 1186,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        0,
+        0,
+        5,
+        7,
+        10
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 16,
+      "y": 593,
+      "q": 1780,
+      "W": 10,
+      "V": 11,
+      "R": 7,
+      "upper_exponents": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 27
+    },
+    {
+      "s": 17,
+      "y": 445,
+      "q": 1336,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        3,
+        4,
+        5,
+        8,
+        10
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 18,
+      "y": 167,
+      "q": 502,
+      "W": 10,
+      "V": 11,
+      "R": 7,
+      "upper_exponents": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "min_exponent": 3
+    },
+    {
+      "s": 19,
+      "y": 251,
+      "q": 754,
+      "W": 10,
+      "V": 8,
+      "R": 7,
+      "upper_exponents": [
+        0,
+        0,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 20,
+      "y": 377,
+      "q": 1132,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        3,
+        5,
+        6,
+        10
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 21,
+      "y": 283,
+      "q": 850,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        4,
+        6,
+        8,
+        9
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 22,
+      "y": 425,
+      "q": 1276,
+      "W": 10,
+      "V": 11,
+      "R": 7,
+      "upper_exponents": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 27
+    },
+    {
+      "s": 23,
+      "y": 319,
+      "q": 958,
+      "W": 13,
+      "V": 11,
+      "R": 9,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 24,
+      "y": 479,
+      "q": 1438,
+      "W": 10,
+      "V": 11,
+      "R": 7,
+      "upper_exponents": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        10
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 27
+    },
+    {
+      "s": 25,
+      "y": 719,
+      "q": 2158,
+      "W": 10,
+      "V": 8,
+      "R": 7,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        3,
+        5,
+        6,
+        11
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 26,
+      "y": 1079,
+      "q": 3238,
+      "W": 10,
+      "V": 8,
+      "R": 7,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        5,
+        7,
+        10,
+        11
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 27,
+      "y": 1619,
+      "q": 4858,
+      "W": 13,
+      "V": 11,
+      "R": 9,
+      "upper_exponents": [
+        0,
+        0,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 27,
+      "E1_minus7_weight": 10
+    },
+    {
+      "s": 28,
+      "y": 2429,
+      "q": 7288,
+      "W": 10,
+      "V": 11,
+      "R": 7,
+      "upper_exponents": [
+        3,
+        4,
+        5,
+        6,
+        10,
+        11,
+        12
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 33
+    },
+    {
+      "s": 29,
+      "y": 911,
+      "q": 2734,
+      "W": 13,
+      "V": 8,
+      "R": 9,
+      "upper_exponents": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        5,
+        7,
+        9,
+        11
+      ],
+      "min_exponent": 3
+    },
+    {
+      "s": 30,
+      "y": 1367,
+      "q": 4102,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        1,
+        2,
+        12
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 31,
+      "y": 2051,
+      "q": 6154,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        0,
+        0,
+        3,
+        11,
+        12
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 32,
+      "y": 3077,
+      "q": 9232,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        4,
+        10,
+        13
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 33,
+      "y": 577,
+      "q": 1732,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        6,
+        7,
+        9,
+        10
+      ],
+      "min_exponent": 4
+    },
+    {
+      "s": 34,
+      "y": 433,
+      "q": 1300,
+      "W": 4,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        1,
+        1,
+        4,
+        8,
+        10
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 35,
+      "y": 325,
+      "q": 976,
+      "W": 7,
+      "V": 8,
+      "R": 5,
+      "upper_exponents": [
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "min_exponent": 2
+    },
+    {
+      "s": 36,
+      "y": 61,
+      "q": 184,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        2,
+        2,
+        4,
+        5,
+        7
+      ],
+      "min_exponent": 4
+    },
+    {
+      "s": 37,
+      "y": 23,
+      "q": 70,
+      "W": 4,
+      "V": 5,
+      "R": 3,
+      "upper_exponents": [
+        1,
+        2,
+        6
+      ],
+      "min_exponent": 3
+    },
+    {
+      "s": 38,
+      "y": 35,
+      "q": 106,
+      "W": 7,
+      "V": 5,
+      "R": 5,
+      "upper_exponents": [
+        0,
+        0,
+        3,
+        5,
+        6
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 15
+    },
+    {
+      "s": 39,
+      "y": 53,
+      "q": 160,
+      "W": 4,
+      "V": 2,
+      "R": 3,
+      "upper_exponents": [
+        4,
+        4,
+        7
+      ],
+      "min_exponent": 1,
+      "E1_minus3_numerator": 21
+    },
+    {
+      "s": 40,
+      "y": 5,
+      "q": 16,
+      "W": 1,
+      "V": 2,
+      "R": 1,
+      "upper_exponents": [
+        4
+      ],
+      "min_exponent": 5
+    },
+    {
+      "s": 41,
+      "y": 1,
+      "q": 4,
+      "W": 1,
+      "V": 2,
+      "R": 1,
+      "upper_exponents": [
+        2
+      ],
+      "min_exponent": 4
+    }
+  ],
+  "E1_case_count": 24,
+  "source_three_clauses_retained": true
+}
