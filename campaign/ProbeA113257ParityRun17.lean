@@ -47,8 +47,8 @@ lemma sum_cast_four_mul (k : ℕ) :
       rw [ih]
       push_cast
       ring_nf
-      rw [show (10 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
-      rw [show (16 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+      rw [show (10 : ZMod 2) = 0 from (ZMod.natCast_eq_zero_iff 10 2).mpr (by norm_num)]
+      rw [show (16 : ZMod 2) = 0 from (ZMod.natCast_eq_zero_iff 16 2).mpr (by norm_num)]
       simp
 
 lemma sum_cast_four_mul_add_three (k : ℕ) :
@@ -59,8 +59,8 @@ lemma sum_cast_four_mul_add_three (k : ℕ) :
   rw [sum_cast_four_mul]
   push_cast
   ring_nf
-  rw [show (6 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
-  rw [show (12 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+  rw [show (6 : ZMod 2) = 0 from (ZMod.natCast_eq_zero_iff 6 2).mpr (by norm_num)]
+  rw [show (12 : ZMod 2) = 0 from (ZMod.natCast_eq_zero_iff 12 2).mpr (by norm_num)]
   simp
 
 theorem cast_a_four_mul (k : ℕ) : (a (4 * k) : ZMod 2) = 0 := by
