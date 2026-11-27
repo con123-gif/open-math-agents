@@ -1,0 +1,81 @@
+{
+  "problem_id": "mo430643",
+  "auditor": "ChatGPT/Codex (GPT-6; exact serving variant not exposed)",
+  "audited_at_utc": "2026-11-27T22:10:58.469292+00:00",
+  "verdict": "NO_EXACT_SETTLEMENT_LOCATED_IN_BOUNDED_PRIMARY_REVIEW",
+  "novelty_or_priority_claim": false,
+  "source_url": "https://mathoverflow.net/questions/430643/an-arithmetic-inequality",
+  "source_snapshot_sha256": "5f0ee109af3b7d18fc87fb5e9ca36281c82a059fa853cb9d0022a4e78a544b49",
+  "exact_statement": "For r=product_i p_i^a_i with distinct primes p_i and natural a_i>=2, product_i p_i^(a_i^2/4) <= r^(log_2(r)/4 +1-ell), excluding r in {36,72,900}.",
+  "papers": [
+    {
+      "arxiv": "2210.02972",
+      "authors": "Pablo Spiga",
+      "title": "An explicit upper bound on the number of subgroups of a finite group",
+      "date": "2022-10-06",
+      "url": "https://arxiv.org/abs/2210.02972",
+      "pdf_url": "https://arxiv.org/pdf/2210.02972",
+      "read_scope": "Sections 2–4; all arithmetic statements and final bound",
+      "assessment": "Theorem 1.1 bounds subgroup counts by 7.3722*r^(log_2(r)/4+1.5315). The per-prime arithmetic uses S(p,a); the explicit remaining exponent and constants prevent identifying this theorem with the source arithmetic inequality.",
+      "pdf_sha256": "ae100f68315e96e1f73990f01b7beaef69fc8f9c5f6fde484e944e21019fe20a",
+      "txt_sha256": "bd857c5cc65feb2ed6ea57e9ea336fc6e3672e0df07ec801342479e23e4376e0"
+    },
+    {
+      "arxiv": "2304.14200",
+      "authors": "Marco Fusari and Pablo Spiga",
+      "title": "On the maximum number of subgroups of a finite group",
+      "date": "2023-04-27; v2 2023-09-14",
+      "url": "https://arxiv.org/abs/2304.14200",
+      "pdf_url": "https://arxiv.org/pdf/2304.14200",
+      "read_scope": "Sections 2, 4; proofs in Sections 7.2–7.4; remaining statements scanned",
+      "assessment": "Theorem 1.1 is the sharp subgroup bound c(2)*r^(log_2(r)/4). Arithmetic reductions in Lemmas 4.1–4.3 concern a different function involving S(p,a), c(p) and normalizer factors; their reductions assume p_1=2, a_1>=2, ell>=3. No exact full source implication was identified.",
+      "pdf_sha256": "59eafe8e5639798bb11b65cc04019fb13e74e81c4bbb84cbd286620cfbf027f8",
+      "txt_sha256": "291c07d7ea3c53a3a64ebc77506952552fa384d5790cf345a7a7e5e9bf46eea2"
+    },
+    {
+      "arxiv": "2505.00413",
+      "authors": "Lorenzo Guerra, Fabio Mastrogiacomo and Pablo Spiga",
+      "title": "Counting subgroups of a finite group containing a prescribed subgroup",
+      "date": "2025-05-01",
+      "url": "https://arxiv.org/abs/2505.00413",
+      "pdf_url": "https://arxiv.org/pdf/2505.00413",
+      "read_scope": "Section 3 arithmetic observations and final assembly; theorem statements",
+      "assessment": "Theorem 1.1 bounds intervals by 7.3722*[R:T]^(log_2([R:T])/4+1.8919). Lemmas 3.3–3.4 and Proposition 3.5 reuse per-prime S(p,c) estimates. No exact source inequality or its exception set was located.",
+      "pdf_sha256": "3b517df163b07b7f6490d490ae1676742ebb882ab516472761b202a75a4f7430",
+      "txt_sha256": "1a1269cec3eaaf36747716e03255dc67273395a39282642f080ed8a7ebce41ca"
+    },
+    {
+      "arxiv": "2609.10343",
+      "authors": "Sebastien Palcoux and Pablo Spiga",
+      "title": "Sharp bounds for intervals in finite subgroup lattices",
+      "date": "2026-09-09",
+      "url": "https://arxiv.org/abs/2609.10343",
+      "pdf_url": "https://arxiv.org/pdf/2609.10343",
+      "read_scope": "Theorems 1.1/1.3, Corollary 1.2 and weighted packing consequences Sections 2–4",
+      "assessment": "The sharp interval bound uses a least prime divisor, weighted generating-tuple packing and a discrete Gaussian sum. It does not state the source prime-power product inequality or the exceptions 36,72,900; no full source implication was identified.",
+      "pdf_sha256": "1c3e55bd7883141a763ad342ae53861f941c3107ef6a48850d0b164dde94502b",
+      "txt_sha256": "2130981cc354da99222f0da3d4bd128f330c95baef33f8b6a7038be082d8b3ee"
+    }
+  ],
+  "closest_paper_comparison": {
+    "paper": "2304.14200",
+    "source_log_gap": "g = log(r)/(4 log(2)) - sum_i a_i^2 log(p_i)/(4 log(r)) - (ell-1)",
+    "auxiliary_function_difference": "f_bar - g = [log c(2) - sum_i log c(p_i) + (ell-2)log(2)]/log(r)",
+    "limitations": "The paper proves suitable good-number conditions for its subgroup target, with extra constants and different hypotheses. No theorem covering the exact source product inequality for every eligible r was found. Related ideas must be credited; the absence of an exact located result is not a novelty proof."
+  },
+  "searches": {
+    "both_engines": true,
+    "queries": [
+      "\"Pablo Spiga\" \"arithmetic inequality\"",
+      "\"Spiga\" \"36\" \"72\" \"900\" inequality",
+      "\"p_i\" \"a_i^2/4\" inequality",
+      "\"r\" \"log_2\" \"36,72,900\"",
+      "\"430643\" inequality proof",
+      "\"Spiga\" \"900\" \"inequality\""
+    ],
+    "outcome": "Only source/tag listings and unrelated exact-query hits; no additional exact resolution located."
+  },
+  "copyright_handling": "Third-party full PDFs and extracted texts remain scratch reading cache only. This audit contains own summaries, URLs, metadata and hashes. Do not include source cache in public checkpoint.",
+  "verification_claim": "No Lean verification or official acceptance is claimed for MO430643 by this review.",
+  "coordination": "Root and Scout own combined eligibility/source audit; no claim or verifier/main ref mutation performed."
+}
