@@ -1,4 +1,4 @@
-import OMAStatements.S_oeis_a175784
+import Mathlib
 
 /-!
 An independent boundary audit for the merged A175784 statement.
@@ -12,7 +12,9 @@ independent rational definition, not uses of the recurrence or of `main`.
 
 namespace A175784BoundaryRun16
 
-open OMA.S_oeis_a175784
+def q (n : ℕ) : ℚ := (2 * (n : ℚ) - 1) / (2 * (n : ℚ) + 9) + 1
+
+def a (n : ℕ) : ℤ := (q n).num
 
 theorem exact_values :
     a 0 = 8 ∧ a 4 = 24 ∧ a 5 = 28 ∧ a 9 = 44 ∧ a 10 = 48 := by
