@@ -1,0 +1,53 @@
+name: A175784 exact merged-target check
+on:
+  push:
+    branches: [oma-hourly-round12-readonly]
+    paths: ['.github/workflows/hourly-1724-a175784-exact-check.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch official checker and pinned formal sources
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/GuillaumeBAUD-coder/open-math-agents "$RUNNER_TEMP/oma"
+          C=$(python3 -I -c 'import json,os; print(json.load(open(os.environ["RUNNER_TEMP"]+"/oma/data/catalog.json"))["meta"]["upstreamCommit"])')
+          git init -q "$RUNNER_TEMP/fc"
+          git -C "$RUNNER_TEMP/fc" remote add origin https://github.com/google-deepmind/formal-conjectures
+          git -C "$RUNNER_TEMP/fc" fetch -q --depth 1 origin "$C"
+          git -C "$RUNNER_TEMP/fc" checkout -q FETCH_HEAD
+          printf 'FC commit: %s\n' "$C"
+          git -C "$RUNNER_TEMP/oma" rev-parse HEAD
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            ${{ runner.temp }}/fc/.lake
+          key: campaign-fc-9097e2f90e66-v1
+      - name: Load Lean and Mathlib
+        run: |
+          set -euo pipefail
+          if [ ! -x ~/.elan/bin/lake ]; then
+            curl --fail --silent --show-error --location https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+            sh /tmp/elan-init.sh -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          cd "$RUNNER_TEMP/fc"
+          ~/.elan/bin/lake exe cache get
+      - name: Verify archived proof against registered statement
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/oma"
+          ID=oeis-a175784
+          SRC=https://raw.githubusercontent.com/con123-gif/URT-Enhanced-v2.0/4b4cda01682c16862605d29f094973e0fe7205d8/research_archive/2026-11-27_left_to_solve/PROOFS_READY
+          test -f "statements/$ID.lean"
+          test ! -e "proofs/$ID.lean"
+          curl -fsS --max-time 30 "$SRC/$ID.statement.lean" -o "$RUNNER_TEMP/archived.lean"
+          cmp "$RUNNER_TEMP/archived.lean" "statements/$ID.lean"
+          curl -fsS --max-time 30 "$SRC/$ID.proof.lean" -o "proofs/$ID.lean"
+          git hash-object "proofs/$ID.lean"
+          OMA_FC="$RUNNER_TEMP/fc" tools/check.sh "proofs/$ID.lean" "$RUNNER_TEMP/verdict.json"
+          python3 -I -c 'import json,sys; d=json.load(open(sys.argv[1])); print(d); assert d["verdict"]=="accepted"' "$RUNNER_TEMP/verdict.json"
