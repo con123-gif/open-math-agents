@@ -62,6 +62,10 @@ Credit: Cornelius Lytollis (@con123-gif), assisted by ChatGPT
 The proof uses classical Rayleigh variational bounds, summed over every
 deleted coordinate. The original source and its later multipoles paper state
 the sharp bound as an empirical observation, without its theoretical proof.
+The later averaging operator of Blekherman, Dey, Molinaro and Sun,
+Sparse PSD approximation of the PSD cone, arXiv:2002.02988, Section 5,
+already implies this bound after a scalar shift. This certificate must therefore
+be described as an independent formalization of that known consequence.
 -/
 
 namespace OMA.MO288399
@@ -138,6 +142,7 @@ lemma drop_quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   simp only [dotProduct_single, single_dotProduct, Matrix.mulVec_single]
   change quadratic A v - v i * (A *ᵥ v) i -
     ((v ᵥ* A) i * v i - v i * (A i i * v i)) = _
+  unfold quadratic
   ring
 
 lemma sum_drop_norm {n : ℕ} (v : Fin n → ℝ) :
