@@ -18,9 +18,21 @@ lemma sourceSum_succ (n : ℕ) :
     sourceSum (n + 1) = sourceSum n + ((3 : ℤ) ^ (n + 1) + ((-2) : ℤ) ^ (n + 1)) := by
   simp [sourceSum, Finset.sum_Icc_succ_top]
 
+lemma three_pow_emod_two (n : ℕ) : ((3 : ℤ) ^ n) % 2 = 1 := by
+  induction n with
+  | zero => norm_num
+  | succ n ih =>
+      rw [pow_succ, Int.mul_emod, ih]
+      norm_num
+
+lemma neg_two_pow_succ_emod_two (n : ℕ) : ((-2 : ℤ) ^ (n + 1)) % 2 = 0 := by
+  rw [pow_succ, Int.mul_emod]
+  norm_num
+
 lemma sourceTerm_odd (n : ℕ) :
     ¬ Even (((3 : ℤ) ^ (n + 1) + ((-2) : ℤ) ^ (n + 1))) := by
-  norm_num [Int.even_add, Int.even_pow, Int.even_iff]
+  rw [Int.even_iff, Int.add_emod, three_pow_emod_two, neg_two_pow_succ_emod_two]
+  norm_num
 
 /-- Exact parity invariant for the independent integer sum in `OeisA116150.a`. -/
 theorem sourceSum_even_iff (n : ℕ) : Even (sourceSum n) ↔ Even n := by
@@ -28,7 +40,8 @@ theorem sourceSum_even_iff (n : ℕ) : Even (sourceSum n) ↔ Even n := by
   | zero => simp [sourceSum]
   | succ n ih =>
       rw [sourceSum_succ]
-      simp only [Int.even_add, sourceTerm_odd, iff_false, ih, Nat.even_add_one]
+      rw [Int.even_add, iff_false_intro (sourceTerm_odd n), ih, Nat.even_add_one]
+      simp
 
 lemma sourceTerm_nonneg {j : ℕ} (hj : 1 ≤ j) :
     0 ≤ ((3 : ℤ) ^ j + ((-2) : ℤ) ^ j) := by
