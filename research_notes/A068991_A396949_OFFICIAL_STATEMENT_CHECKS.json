@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-27T22:39:28.057859+00:00",
+  "scope": "Official statement checker verdicts only; neither is an accepted full proof",
+  "statements": [
+    {
+      "id": "oeis-a068991",
+      "pr": 12465,
+      "run": 46071742648,
+      "job": 140750068677,
+      "artifact": 15235110540,
+      "actual_verdict": "accepted",
+      "reason": "the statement compiles; it now needs a human review of the translation",
+      "accepted_at": "2026-11-27T22:20:24Z",
+      "state": "open",
+      "merged": false,
+      "repair_needed": false
+    },
+    {
+      "id": "oeis-a396949",
+      "pr": 12591,
+      "run": 46072485967,
+      "job": 140752459189,
+      "artifact": 15235392960,
+      "actual_verdict": "accepted",
+      "reason": "the statement compiles; it now needs a human review of the translation",
+      "accepted_at": "2026-11-27T22:36:39Z",
+      "state": "open",
+      "merged": false,
+      "repair_needed": false
+    }
+  ]
+}
