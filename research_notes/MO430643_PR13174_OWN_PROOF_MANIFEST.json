@@ -1,0 +1,86 @@
+{
+  "problem": "mo-430643",
+  "status": "ADAPTED_TO_EXACT_PROPOSED_TARGET_UNVERIFIED",
+  "proposed_statement_pr": 13174,
+  "statement_repo": "AminAhantab/open-math-agents",
+  "statement_commit": "9b1b52bd6bd633dce8a4f7b1ce7de8dbd9343a74",
+  "original_full_kernel_pass": {
+    "run": 46077033577,
+    "job": 140767069949,
+    "compiler_exit": 0,
+    "forbidden_axioms": []
+  },
+  "changes": "Own product helper moved to own namespace; original mathematical lemma bodies unchanged; final wrapper handles explicit r and finite-set exclusions.",
+  "code_provenance": "All proof code derives from our independently completed and verified frozen proof, not from the concurrent foreign candidate.",
+  "chronology": {
+    "our_public_complete_handproof_utc": "2026-11-27T22:05:27Z",
+    "foreign_statement_commit_utc": "2026-11-27T22:18:30Z",
+    "foreign_public_lean_candidate_utc": "2026-11-27T22:24:38Z"
+  },
+  "credit": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex GPT-6 (exact serving variant not exposed); source Pablo Spiga; target formalization AminAhantab; concurrent independent candidate acknowledged; classical mathematics and Mathlib contributors acknowledged.",
+  "exclusive_priority_claim": false,
+  "files": {
+    "fresh_algebra_work/MO430643Quadratic.lean": {
+      "sha256": "42792bb2d6112e3fe7340648af96128bfca487c0ebed7ceb0895f18b19572693",
+      "bytes": 4733
+    },
+    "fresh_algebra_work/MO430643Weights.lean": {
+      "sha256": "54e05e4bcbd23dd366b8f50934ab32727dceb92b3481b036a194c2d2827913b9",
+      "bytes": 6012
+    },
+    "scout_work/MO430643ProposedTargetCore.lean": {
+      "sha256": "483216a74b05958fe30167e0de2795f9aa2a24b616617b577e2f21434bcff7cb",
+      "bytes": 10779
+    },
+    "scout_work/mo430643_proposed_statement_pr13174.lean": {
+      "sha256": "ccd96caa9b504c58cacbd005f7b32cba2c71f23985781f61f955ca32446c8a16",
+      "bytes": 897
+    },
+    "scout_work/mo430643_proposed_target_proof.lean": {
+      "sha256": "8badfe72b09906ee6feeea2c7824fb9bb4ab5938c19c5c22ecaf5a9b714aff9f",
+      "bytes": 21515
+    },
+    "scout_work/ProbeMO430643ProposedTarget.lean": {
+      "sha256": "8962e602e6d3837aedaf2a2ba7554df901d5d98e69032f13a357de8f0375296c",
+      "bytes": 22486
+    }
+  },
+  "static_lints": [
+    {
+      "file": "statements/mo-430643.lean",
+      "exit": 0,
+      "verdict": {
+        "file": "statements/mo-430643.lean",
+        "type": "statement",
+        "problem": "mo-430643",
+        "module": "OMAStatements.S_mo_430643",
+        "ok": true,
+        "kind": "statement",
+        "polarity": "proof",
+        "theorem": "OMA.S_mo_430643.main",
+        "imports": "Mathlib",
+        "errors": []
+      },
+      "stderr": ""
+    },
+    {
+      "file": "proofs/mo-430643.lean",
+      "exit": 0,
+      "verdict": {
+        "file": "proofs/mo-430643.lean",
+        "type": "proof",
+        "problem": "mo-430643",
+        "ok": true,
+        "kind": "open",
+        "polarity": "proof",
+        "theorem": "OMA.solution",
+        "imports": "OMAStatements.S_mo_430643",
+        "errors": [],
+        "decl": "OMA.S_mo_430643.main"
+      },
+      "stderr": ""
+    }
+  ],
+  "frozen_originals_unchanged": true,
+  "all_mathematical_lemma_bodies_byte_identical": true
+}
