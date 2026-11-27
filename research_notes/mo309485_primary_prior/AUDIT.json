@@ -1,0 +1,97 @@
+{
+  "problem_id": "mo309485",
+  "date_utc": "2026-11-27T22:43:12.019283+00:00",
+  "auditor": "ChatGPT/Codex (GPT-6; exact serving variant not exposed)",
+  "verdict": "SOURCE_AND_INFORMAL_MATH_PASS_NO_EXACT_PRIOR_SETTLEMENT_LOCATED_IN_BOUNDED_PRIMARY_REVIEW",
+  "source_url": "https://mathoverflow.net/questions/309485/an-eigenvalue-of-certain-family-of-matrices",
+  "question_sha256": "cd68e78542f9450c4f991d747dad1d4934c137972bc87b6544bd73e1281ae648",
+  "comments_sha256": "68e9a5d1bc7140d7afbd10f903c8dc407bcfe2160d05c2726e34a2eabf3b0064",
+  "hand_proof_sha256": "e0ad77cf4aea6698adf8b70c0b6ab65e0ee80f2d9b2f67701669e13374b4fc9f",
+  "current_source": {
+    "answers": 0,
+    "all_comments_read": 6,
+    "correct_revisions_endpoint": "https://api.stackexchange.com/2.3/posts/309485/revisions?site=mathoverflow&filter=withbody&pagesize=100",
+    "revision_count": 1,
+    "revision_has_more": false,
+    "timeline_has_more": false,
+    "source_edits_found": 0,
+    "legacy_history_file_was_api_error_not_absence_evidence": true
+  },
+  "source_statement": {
+    "entry": "M_n(i,j)=C(i,j)+C(2n+1-i,j-i)+C(2n+1-i,j), 0<=i,j<=n",
+    "zero_convention": "C(N,k)=0 for k<0 or k>N; guard middle term when j<i. The signed-binomial helper identities must preserve the same lower-index zero convention.",
+    "faithful_complete_answer": "For natural n, zero is an eigenvalue iff n>=1. At n=0, M_0=[3]. The full positive-n proof is required; n=0 alone is not counted as a disproof.",
+    "field": "Complex matrices faithfully express the ordinary eigenvalue question; integer/rational kernel and determinant arguments bridge to this characteristic-zero target."
+  },
+  "mathematical_challenge": {
+    "signed_identities": "A and B follow from coefficient extraction in finite polynomial binomial expansions, C from (-X)^h. All uses have N>=h and valid zero-convention endpoints.",
+    "odd_case": "Lampe proposed nonzero left nullvector v_i=(-1)^i(C(n,i)+C(n+1,i)); its first coordinate2 is nonzero. Three summed components cancel exactly.",
+    "even_case": "MTyson proposed right nullvector w_j=(-1)^j C(2m-j,m)-2[j=m-1], m=n+1 odd>=3. Its first coordinate is positive; extending the raw sums adds only the j=m endpoint, and Pascal cancels the final terms.",
+    "n0": "The even-vector formula degenerates to zero at n=0 and is not used; M_0=[3] has no zero eigenvalue overC.",
+    "finite_computation_role": "Read the collaborator’s exact n1..60 screen receipt; it is corroboration only, not the universal proof and not claimed as independently rerun here."
+  },
+  "credits": [
+    {
+      "author": "Philipp Lampe",
+      "comment_id": 771010,
+      "role": "Proposed odd left nullvector; Aug31,2018.",
+      "url": "https://mathoverflow.net/questions/309485#comment771010_309485"
+    },
+    {
+      "author": "MTyson",
+      "comment_id": 771562,
+      "role": "Proposed even right nullvector; Sep2,2018.",
+      "url": "https://mathoverflow.net/questions/309485#comment771562_309485"
+    },
+    {
+      "author": "T. Amdeberhan",
+      "comment_id": 771342,
+      "role": "Sep1 proof request for the earlier Lampe/MTyson proposals; this predates the even-kernel comment.",
+      "url": "https://mathoverflow.net/questions/309485#comment771342_309485"
+    }
+  ],
+  "papers": [
+    {
+      "name": "Fischer, Extreme DADASMs",
+      "url": "https://www.mat.univie.ac.at/~kratt/esi3/Fischer.pdf",
+      "file": "Fischer_Extreme_DADASMs",
+      "scope": "Dimension-halving section and adjoining definitions (presentation pages around40–45).",
+      "assessment": "Signed triangular binomial and reflection matrices with eigenvalue1/−1 are discussed for refined ASM/AST enumeration. The three-term source M_n, its two proposed nullvectors and full zero-eigenvalue classification were not identified in the reviewed section.",
+      "pdf_sha256": "9e980b2d54b11b5462f76f9e052898518967ff6f68a230382e5b7874e1d03dc2",
+      "text_sha256": "355925584496703750198c2c884e4b4acb2301066d81f6826bc0fcefe9913d37"
+    },
+    {
+      "name": "Bacher, Matrices related to the Pascal triangle (2001v2; journal2002)",
+      "url": "https://arxiv.org/abs/math/0109013",
+      "file": "Bacher2002",
+      "scope": "Introduction, all theorem/proposition statements; Section1 determinant families, Section3 recursion setup, Section8 diagonal construction.",
+      "assessment": "Results concern shifted symmetric Pascal minors, polynomial perturbations and fixed Pascal or diagonal recursions. No theorem supplying the exact M_n singularity for all positive n or a complete source-family specialization was located.",
+      "pdf_sha256": "9ee04c7fc86bd5eb8406c05bf30f605fcfa8283089c55b7b912a7eab0caf155b",
+      "text_sha256": "f216b3c0e979bf968322d29f2ad30faf2619679b9027700ff1ea1c2c04d411d9"
+    },
+    {
+      "name": "Lunnon, The Pascal matrix (Fibonacci Quarterly15(3),1977,201–204)",
+      "url": "https://www.fq.math.ca/Scanned/15-3/lunnon.pdf",
+      "file": "Lunnon1977",
+      "scope": "Entire four-page article.",
+      "assessment": "The symmetric matrix with entries C(i+j,i), its determinant1, inverse, positive minors and reciprocal eigenvalues are treated. That matrix is different from the three-term M_n; no exact source closure was located.",
+      "pdf_sha256": "eed1b7048163d0dd164c76bdbfbaa54241479ecfcba231d6d3e8559f8c55af7f",
+      "text_sha256": "16be844fbe80bf90bdaad8fb53f27a3b8724720aae1ef44770b8f10671c4b5f9"
+    },
+    {
+      "name": "Molinari, Graphene nanocones and Pascal matrices (2022v2)",
+      "url": "https://arxiv.org/abs/2206.14428",
+      "file": "Molinari2022",
+      "scope": "Runtime reviewed Pascal definitions and first determinant conjecture; collaborating Algebra worker independently read the entire15-page paper and recorded MO309485_MOLINARI_2022_SCOPE.md.",
+      "assessment": "Signed triangular/symmetric Pascal and honeycomb matrices differ from the source family. The full collaborator review found no exact M_n kernel/classification or supplied identification with the source parameters.",
+      "pdf_sha256": "c23adc8585cb84a69cd11e4076cb2363545bb4f93b10d6220c5fb32beca9f6e3",
+      "text_sha256": "36f983d41fd6df1684aa0b02a93dfc5bee324f5f1c351518089a4493591ae2ea"
+    }
+  ],
+  "search_scope": "Both web engines: exact source title/ID, Amdeberhan+binomial/eigenvalue/singular, exact matrix fragments, Lampe/MTyson, Pascal spectrum0/1/3 and related primary papers. No exact published settlement located in this bounded scope.",
+  "limits": "No exhaustive novelty or priority certification. Current catalogue/PR race/claim must be checked by the designated owner before publication. No claim was made by this auditor.",
+  "no_new_method_claim": "Binomial coefficient extraction, alternating Vandermonde, Pascal and left/right-kernel linear algebra are classical. Both proposed source vectors are fully credited.",
+  "no_lean_or_acceptance_claim": true,
+  "worker_live_leases": 0,
+  "copyright_handling": "Public audit contains our own scope assessment, metadata, originalURLs and hashes only. Full third-party papers/text remain scratch reading cache; do not bundle them into a public checkpoint."
+}
