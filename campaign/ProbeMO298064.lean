@@ -26,6 +26,7 @@ theorem main : ∀ (F : Type) [Field F] [Fintype F] (m t : ℕ) (a : F),
 
 end OMA.S_mo_298064
 
+import Mathlib
 
 /-!
 For size and rank 1 over the field with two elements, the trace-zero family
@@ -61,6 +62,9 @@ theorem conjecture_false : ¬ (∀ (F : Type) [Field F] [Fintype F]
   intro h
   letI : IsEmpty (traceRankFamily (ZMod 2) 1 1 0) := trace_zero_family_empty
   letI : Nonempty (traceRankFamily (ZMod 2) 1 1 1) := trace_one_family_nonempty
+  letI : Finite (traceRankFamily (ZMod 2) 1 1 1) := by
+    unfold traceRankFamily
+    infer_instance
   have hzero : Nat.card (traceRankFamily (ZMod 2) 1 1 0) = 0 :=
     Nat.card_of_isEmpty
   have hpos : 0 < Nat.card (traceRankFamily (ZMod 2) 1 1 1) := Nat.card_pos
@@ -71,4 +75,5 @@ end OMA.S_mo_298064
 
 theorem OMA.disproof : ¬ (type_of% @OMA.S_mo_298064.main) := by
   exact OMA.S_mo_298064.conjecture_false
+
 #print axioms OMA.disproof
