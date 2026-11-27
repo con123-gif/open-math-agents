@@ -1,19 +1,25 @@
 import Mathlib
 
+
 /-!
-# Joint centralizers with transpose: Question 3 of MO487192
+# Semisimplicity questions for joint centralizers with transpose
 
 Source: https://mathoverflow.net/questions/487192
 Original question: Mare (MathOverflow user61949), February 4, 2025, CC BY-SA 4.0.
 Credit: Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex
 (GPT-6; exact serving variant not exposed).
 
-This statement addresses precisely Question 3, for an arbitrary invertible
-matrix over any characteristic-zero field. The source's Questions 1 and 2
-about poset incidence matrices are separate and are not asserted here.
-Transpose is the ordinary transpose, not conjugate transpose.
-Semisimplicity is the usual ring/module notion for this finite-dimensional
-unital algebra. Positive sizes include the three-dimensional counterexample.
+The three conjuncts retain all three explicit semisimplicity questions in the
+source. The first concerns an arbitrary finite poset, the second the product
+of n chains with t elements (the source's t=2 gives the Boolean lattice), and
+the third arbitrary invertible matrices over characteristic-zero fields.
+All centralizers are associative, unital algebras and transpose is ordinary
+transpose. Decidability instances merely allow the finite incidence matrices
+to be written; every finite poset admits these instances classically.
+The open-ended requests for an interpretation, dimensions, and Wedderburn
+decompositions assert no formula that could be included as another conjecture.
+Steinberg's source comments already address the positive real/poset cases.
+Our disproof addresses the third conjunct; it does not refute the first two.
 -/
 
 namespace OMA.S_mo_487192
@@ -22,9 +28,23 @@ def jointCentralizer (K : Type) [Field K] {n : ℕ}
     (A : Matrix (Fin n) (Fin n) K) : Subalgebra K (Matrix (Fin n) (Fin n) K) :=
   Subalgebra.centralizer K ({A, A.transpose} : Set (Matrix (Fin n) (Fin n) K))
 
-theorem main : ∀ (K : Type) [Field K] [CharZero K] (n : ℕ),
-    0 < n → ∀ A : Matrix (Fin n) (Fin n) K,
-      IsUnit A → IsSemisimpleRing (jointCentralizer K A) := by
+def cartan (K : Type) [Field K] (P : Type) [PartialOrder P] [DecidableLE P] :
+    Matrix P P K :=
+  fun i j => if i ≤ j then 1 else 0
+
+def posetCentralizer (K : Type) [Field K] (P : Type) [PartialOrder P]
+    [Fintype P] [DecidableEq P] [DecidableLE P] : Subalgebra K (Matrix P P K) :=
+  Subalgebra.centralizer K ({cartan K P, (cartan K P).transpose} : Set (Matrix P P K))
+
+theorem main :
+    (∀ (K : Type) [Field K] [CharZero K] (P : Type) [PartialOrder P]
+      [Fintype P] [DecidableEq P] [DecidableLE P],
+      IsSemisimpleRing (posetCentralizer K P)) ∧
+    (∀ (K : Type) [Field K] [CharZero K] (n t : ℕ),
+      0 < n → 0 < t → IsSemisimpleRing (posetCentralizer K (Fin n → Fin t))) ∧
+    (∀ (K : Type) [Field K] [CharZero K] (n : ℕ),
+      0 < n → ∀ A : Matrix (Fin n) (Fin n) K,
+        IsUnit A → IsSemisimpleRing (jointCentralizer K A)) := by
   sorry
 
 end OMA.S_mo_487192
@@ -85,8 +105,8 @@ lemma A_isUnit : IsUnit A := by
 
 abbrev R := OMA.S_mo_487192.jointCentralizer ℂ A
 
-def nilpotentElement : R := ⟨N, by
-  apply Subalgebra.mem_centralizer_iff.mpr
+noncomputable def nilpotentElement : R := ⟨N, by
+  apply (Subalgebra.mem_centralizer_iff ℂ).mpr
   intro g hg
   have hgA : g = A := by simpa [A_transpose] using hg
   subst g
@@ -106,7 +126,7 @@ lemma nilpotentElement_nonzero : nilpotentElement ≠ 0 := by
 lemma nilpotentElement_central (x : R) :
     nilpotentElement * x = x * nilpotentElement := by
   apply Subtype.ext
-  have hx := Subalgebra.mem_centralizer_iff.mp x.property A (by simp)
+  have hx := (Subalgebra.mem_centralizer_iff ℂ).mp x.property A (by simp)
   change A * (x : Mat) = (x : Mat) * A at hx
   change N * (x : Mat) = (x : Mat) * N
   simpa only [A, add_mul, mul_add, one_mul, mul_one, add_left_cancel_iff] using hx
@@ -122,5 +142,5 @@ end MO487192Certificate
 theorem OMA.disproof : ¬ (type_of% @OMA.S_mo_487192.main) := by
   intro h
   exact MO487192Certificate.not_semisimple
-    (h ℂ 3 (by decide) MO487192Certificate.A MO487192Certificate.A_isUnit)
+    (h.2.2 ℂ 3 (by decide) MO487192Certificate.A MO487192Certificate.A_isUnit)
 #print axioms OMA.disproof
