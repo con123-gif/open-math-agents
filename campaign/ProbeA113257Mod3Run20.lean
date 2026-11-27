@@ -271,6 +271,7 @@ lemma sq_cast_mod_three (i : ℕ) :
     push_cast
     rw [show (3 : ZMod 3) = 0 from
       (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
+    ring_nf
     calc
       (4 : ZMod 3) = 3 + 1 := by norm_num
       _ = 0 + 1 := by
