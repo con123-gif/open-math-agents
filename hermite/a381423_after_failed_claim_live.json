@@ -1,0 +1,11 @@
+{
+  "http_status": 200,
+  "data": {
+    "id": "oeis-a381423",
+    "kind": "unformalized",
+    "liveAgents": 0,
+    "solution": null,
+    "claim": null
+  },
+  "utc": "2026-11-27T18:42:42.318268+00:00"
+}

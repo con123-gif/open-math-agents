@@ -1,0 +1,25 @@
+2026-11-27T18:37:29.2048765Z CHECKING_PROBE hermite/ProbeA381423Full.lean
+2026-11-27T18:37:43.2369186Z HermiteProbe.lean:58:8: warning: declaration uses `sorry`
+2026-11-27T18:37:43.2370192Z HermiteProbe.lean:357:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:37:43.2370847Z 
+2026-11-27T18:37:43.2371141Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:37:43.2372086Z HermiteProbe.lean:432:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:37:43.2372686Z 
+2026-11-27T18:37:43.2373106Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:37:43.2374336Z HermiteProbe.lean:471:16: warning: This simp argument is unused:
+2026-11-27T18:37:43.2374740Z   Ne.symm hh
+2026-11-27T18:37:43.2374872Z 
+2026-11-27T18:37:43.2375006Z Hint: Omit it from the simp argument list.
+2026-11-27T18:37:43.2375672Z   [apply] simp [hh]
+2026-11-27T18:37:43.2375814Z 
+2026-11-27T18:37:43.2376065Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:37:43.2376615Z HermiteProbe.lean:482:14: warning: This simp argument is unused:
+2026-11-27T18:37:43.2377005Z   Ne.symm hh
+2026-11-27T18:37:43.2377127Z 
+2026-11-27T18:37:43.2377246Z Hint: Omit it from the simp argument list.
+2026-11-27T18:37:43.2377550Z   [apply] simp [hh]
+2026-11-27T18:37:43.2377693Z 
+2026-11-27T18:37:43.2377935Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:37:43.2378514Z 'OMA.solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-11-27T18:37:43.2401278Z PROBE_EXIT hermite/ProbeA381423Full.lean 0
+2026-11-27T18:37:43.2469674Z

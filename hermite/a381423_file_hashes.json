@@ -1,0 +1,14 @@
+{
+  "a381423_statement.lean": {
+    "sha256": "9a14d5d779be23aac8d155b92bd8834bfb1c1a10537d7eabc178d4ead1eaa38d",
+    "git_blob_sha": "794b21d0572c1a76ae635898b72bfe3707d5f24c"
+  },
+  "oeis-a381423_proof.lean": {
+    "sha256": "1b3d524b3b322e81c29e16d0e81ae111566310d6958383c18a4914ed384328c2",
+    "git_blob_sha": "f4fe3f920d7718c3c49ddb7fc2ce3f25d1fccc9f"
+  },
+  "ProbeA381423Full.lean": {
+    "sha256": "3ed15ae85369f426c9c589d95653e749680f28d79116bac6fb539abde259f5d5",
+    "git_blob_sha": "b75b9c242e472fc94494181ffd054458535c3d61"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "target": "oeis-a381423",
+  "stage": "Complete source-faithful proof ACTUALLY PASSED exact pinned Lean kernel",
+  "statement_static_lint": "PASS",
+  "first_run": 46048737354,
+  "first_job": 140674449298,
+  "first_verdict": "FAILED: unterminated comment; no valid helper or full solution certificate",
+  "first_repair": "Replaced slash-hyphen text in statement comment; balanced block comments checked",
+  "current_probe": "ProbeA381423Full.lean",
+  "scope": "Complete source claim: actual unique signed maximum, closed mode formula, every4/5 block location, quadratic-periodic spacing and sqrt bounds",
+  "full_OMA_solution_kernel_pass": true,
+  "official_submission": null,
+  "lease_held": false,
+  "selector_run": 46049255576,
+  "selector_job": 140676180015,
+  "selector_run_verdict": "FAILED: one ordered multiplication API error in uniqueness helper; repaired",
+  "closed_source_formula_actual_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "known_difference_actual_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "canonical_proof_static_lint": "PASS in isolated setup; actual import awaits statement merge",
+  "first_full_run": 46050067989,
+  "first_full_job": 140678882143,
+  "first_full_verdict": "FAILED: small initial-case Nat.sqrt reduction and choose4 proof obligations; no valid full certificate",
+  "full_repairs": "Avoid opaque sqrt computation using cutoff proof; expand choose_two_right for constant4",
+  "full_run": 46050735604,
+  "full_job": 140681094261,
+  "full_verified_commit": "00e8488018183316ee9f0cb1a32767b4e332595a",
+  "full_probe_sha256": "3ed15ae85369f426c9c589d95653e749680f28d79116bac6fb539abde259f5d5",
+  "full_solution_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "exit_code": 0,
+  "accepted_full_official_proof": false,
+  "active_lease_confirmed": false
+}
