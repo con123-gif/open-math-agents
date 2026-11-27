@@ -71,6 +71,10 @@ def coreGood (c : Core) : Prop :=
     3 * c.T ≤ max (2 * D (3 * c.y) - 3) (2 * D (2 * (3 * c.y)) + 3) ∧
     (c.T = 9 → 7 < D (2 * (3 * c.y - 1))))
 
+instance coreGood_decidable (c : Core) : Decidable (coreGood c) := by
+  unfold coreGood
+  infer_instance
+
 set_option maxHeartbeats 4000000 in
 lemma core_good : ∀ i : Fin 41, coreGood (coreAt i) := by
   decide

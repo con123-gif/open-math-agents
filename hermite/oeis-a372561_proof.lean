@@ -565,14 +565,14 @@ lemma D_power_two (i : ℕ) :
   · have hi : i = 2 * (i / 2) := by omega
     have hp : 2 ^ i = 4 ^ (i / 2) * 1 := by
       calc
-        2 ^ i = 2 ^ (2 * (i / 2)) := by congr 1; omega
+        2 ^ i = 2 ^ (2 * (i / 2)) := by congr 1 <;> omega
         _ = 4 ^ (i / 2) * 1 := by rw [pow_mul]; norm_num
     rw [hp, D_shift]
     simp [he]
   · have hi : i = 2 * (i / 2) + 1 := by omega
     have hp : 2 ^ i = 4 ^ (i / 2) * 2 := by
       calc
-        2 ^ i = 2 ^ (2 * (i / 2) + 1) := by congr 1; omega
+        2 ^ i = 2 ^ (2 * (i / 2) + 1) := by congr 1 <;> omega
         _ = 4 ^ (i / 2) * 2 := by rw [pow_add, pow_mul]; norm_num
     rw [hp, D_shift]
     simp [ho]
@@ -623,7 +623,10 @@ lemma powerSum_four_dvd {n : ℕ} {m : Multiset ℕ} (hm : represents n m) :
     have hi : 2 ≤ i := hvalid i (by simp)
     have hrest : ∀ j ∈ m, 2 ≤ j := by intro j hj; exact hvalid j (by simp [hj])
     have hpow : 4 ∣ 2 ^ i := by
-      simpa using (pow_dvd_pow 2 hi)
+      refine ⟨2 ^ (i - 2), ?_⟩
+      have he : i = 2 + (i - 2) := by omega
+      rw [he, pow_add]
+      norm_num
     simpa [powerSum] using dvd_add hpow (ih hrest)
 
 end A372561Certificate
@@ -698,7 +701,11 @@ lemma lift_lower_packet {q R E N : ℕ} (hE : 1 ≤ E) (hR9 : R ≤ 9)
   have hPdiv := powerSum_four_dvd hm
   have hPmod : P % 4 = 0 := Nat.mod_eq_zero_of_dvd hPdiv
   have h4pow : 4 ∣ 4 ^ E := by
-    simpa using (pow_dvd_pow 4 hE)
+    refine ⟨4 ^ (E - 1), ?_⟩
+    calc
+      4 ^ E = 4 ^ ((E - 1) + 1) := by congr 1 <;> omega
+      _ = 4 ^ (E - 1) * 4 := by rw [pow_succ]
+      _ = 4 * 4 ^ (E - 1) := by omega
   have hNdiv : 4 ∣ 3 * N + 1 := by rw [hN]; exact dvd_mul_of_dvd_right h4pow q
   have hNmod : (3 * N + 1) % 4 = 0 := Nat.mod_eq_zero_of_dvd hNdiv
   have heo : (e + 3 * o) % 4 = 1 := by omega
@@ -765,7 +772,9 @@ lemma lift_lower_one {q R N : ℕ} (hq : 2 ≤ q) (heven : q % 2 = 0)
   apply lift_lower_packet (E := 1) (by decide) hR9 hRodd hR (by simpa using hN)
     (D_plus_four heven (by decide)) ?_ ?_ hm
   · have hd := D_minus_four (q := q) (E := 1) (by omega) (by decide)
-    simpa [hd.1, hd.2] using hc3
+    simp only [pow_one, Nat.sub_self, Nat.mul_zero, Nat.add_zero] at hd
+    rw [hd.1, hd.2]
+    exact hc3
   · intro hr
     have heq : 2 * (q * 4 ^ 1 - 8) = 4 * (2 * (q - 2)) := by norm_num; omega
     rw [heq, D_mul_four]
@@ -845,6 +854,10 @@ def coreGood (c : Core) : Prop :=
   (c.v = 1 →
     3 * c.T ≤ max (2 * D (3 * c.y) - 3) (2 * D (2 * (3 * c.y)) + 3) ∧
     (c.T = 9 → 7 < D (2 * (3 * c.y - 1))))
+
+instance coreGood_decidable (c : Core) : Decidable (coreGood c) := by
+  unfold coreGood
+  infer_instance
 
 set_option maxHeartbeats 4000000 in
 lemma core_good : ∀ i : Fin 41, coreGood (coreAt i) := by

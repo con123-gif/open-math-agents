@@ -81,14 +81,14 @@ lemma D_power_two (i : ℕ) :
   · have hi : i = 2 * (i / 2) := by omega
     have hp : 2 ^ i = 4 ^ (i / 2) * 1 := by
       calc
-        2 ^ i = 2 ^ (2 * (i / 2)) := by congr 1; omega
+        2 ^ i = 2 ^ (2 * (i / 2)) := by congr 1 <;> omega
         _ = 4 ^ (i / 2) * 1 := by rw [pow_mul]; norm_num
     rw [hp, D_shift]
     simp [he]
   · have hi : i = 2 * (i / 2) + 1 := by omega
     have hp : 2 ^ i = 4 ^ (i / 2) * 2 := by
       calc
-        2 ^ i = 2 ^ (2 * (i / 2) + 1) := by congr 1; omega
+        2 ^ i = 2 ^ (2 * (i / 2) + 1) := by congr 1 <;> omega
         _ = 4 ^ (i / 2) * 2 := by rw [pow_add, pow_mul]; norm_num
     rw [hp, D_shift]
     simp [ho]
@@ -139,7 +139,10 @@ lemma powerSum_four_dvd {n : ℕ} {m : Multiset ℕ} (hm : represents n m) :
     have hi : 2 ≤ i := hvalid i (by simp)
     have hrest : ∀ j ∈ m, 2 ≤ j := by intro j hj; exact hvalid j (by simp [hj])
     have hpow : 4 ∣ 2 ^ i := by
-      simpa using (pow_dvd_pow 2 hi)
+      refine ⟨2 ^ (i - 2), ?_⟩
+      have he : i = 2 + (i - 2) := by omega
+      rw [he, pow_add]
+      norm_num
     simpa [powerSum] using dvd_add hpow (ih hrest)
 
 end A372561Certificate
