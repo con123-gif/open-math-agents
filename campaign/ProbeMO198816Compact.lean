@@ -43,12 +43,12 @@ open scoped BigOperators Matrix
 
 namespace OMA.MO198816Witness
 
-/-- Strictly positive perturbation of the lazy chain into a sink. -/
+/- Strictly positive perturbation of the lazy chain into a sink. -/
 def P : Matrix (Fin 13) (Fin 13) ℝ := fun i j =>
-  1 / 260000 + (if i = j then 1 / 2 else 0) +
+  1 / 260000 + (if i.val = j.val then 1 / 2 else 0) +
     (if i.val = min (j.val + 1) 12 then 9999 / 20000 else 0)
 
-/-- Positive rational probability vector, independently checked exactly. -/
+/- Positive rational probability vector, independently checked exactly. -/
 def w : Fin 13 → ℝ := ![
   20608487633771132747/23404066337684849000,
   36401387099591457/11702033168842424500,
@@ -64,13 +64,13 @@ def w : Fin 13 → ℝ := ![
   1/1000,
   2488735266337684849/23404066337684849000]
 
-/-- Rational complex eigenvalue outside the unit disk. -/
+/- Rational complex eigenvalue outside the unit disk. -/
 def lam : ℂ := ⟨183241/186500, 69993/373000⟩
 
-/-- The scalar 1/lam-1, written without a division of complex numbers. -/
+/- The scalar 1/lam-1, written without a division of complex numbers. -/
 def c : ℂ := ⟨-6730001/373212001, -69993000/373212001⟩
 
-/-- Exact rational complex eigenvector. -/
+/- Exact rational complex eigenvector. -/
 def v : Fin 13 → ℂ := ![
   ⟨305911991/3732120010, 1212624007/7464240020⟩,
   ⟨1758379989/5971392016, 16513056063/37321200100⟩,
@@ -148,14 +148,14 @@ lemma one_lt_norm_lam : 1 < ‖lam‖ := by
   have hnonneg := norm_nonneg lam
   nlinarith
 
-/-- Exact weighted mean of the eigenvector. -/
+/- Exact weighted mean of the eigenvector. -/
 set_option maxRecDepth 4096 in
 set_option maxHeartbeats 0 in
 lemma w_dot_v : ∑ j, (w j : ℂ) * v j = c := by
   apply Complex.ext <;>
     norm_num [w, v, c, Fin.sum_univ_succ, Complex.mul_re, Complex.mul_im]
 
-/-- Finite rational matrix/vector identity; no numerical approximation. -/
+/- Finite rational matrix/vector identity; no numerical approximation. -/
 set_option maxRecDepth 4096 in
 set_option maxHeartbeats 0 in
 lemma P_mul_v : ∀ i,
@@ -167,7 +167,7 @@ lemma P_mul_v : ∀ i,
 set_option maxRecDepth 4096 in
 set_option maxHeartbeats 0 in
 lemma eig :
-    ((P - fun i j => (∑ k, P i k) * w j).map Complex.ofReal) *ᵥ v = lam • v := by
+    ((P - (fun i j => (∑ k, P i k) * w j : Matrix (Fin 13) (Fin 13) ℝ)).map Complex.ofReal) *ᵥ v = lam • v := by
   funext i
   change (∑ j, ((P i j - (∑ k, P i k) * w j : ℝ) : ℂ) * v j) = lam * v i
   calc
@@ -198,7 +198,7 @@ lemma lam_mem_spectrum :
   let M := (OMA.S_mo_198816.perturbation P w).map Complex.ofReal
   have heig : M *ᵥ v = lam • v := by
     simpa [M, OMA.S_mo_198816.perturbation] using eig
-  have hevec : M.toLin'.HasEigenvector lam v := by
+  have hevec : Module.End.HasEigenvector M.toLin' lam v := by
     apply Module.End.hasEigenvector_iff.mpr
     refine ⟨Module.End.mem_eigenspace_iff.mpr ?_, vne⟩
     simpa only [Matrix.toLin'_apply] using heig
@@ -219,12 +219,12 @@ theorem OMA.disproof : ¬ (type_of% @OMA.S_mo_198816.main) := by
     OMA.MO198816Witness.irreducible OMA.MO198816Witness.Pcolsum
     OMA.MO198816Witness.ProwDD OMA.MO198816Witness.w
     OMA.MO198816Witness.wpos OMA.MO198816Witness.wsum
-  have hnn : (1 : ℝ≥0) < ‖OMA.MO198816Witness.lam‖₊ := by
+  have hnn : (1 : NNReal) < ‖OMA.MO198816Witness.lam‖₊ := by
     exact_mod_cast OMA.MO198816Witness.lam_norm_gt_one
-  have hnorm : (1 : ℝ≥0∞) <
-      (‖OMA.MO198816Witness.lam‖₊ : ℝ≥0∞) := by
+  have hnorm : (1 : ENNReal) <
+      (‖OMA.MO198816Witness.lam‖₊ : ENNReal) := by
     exact_mod_cast hnn
-  have hbound : (‖OMA.MO198816Witness.lam‖₊ : ℝ≥0∞) ≤
+  have hbound : (‖OMA.MO198816Witness.lam‖₊ : ENNReal) ≤
       spectralRadius ℂ ((OMA.S_mo_198816.perturbation
         OMA.MO198816Witness.P OMA.MO198816Witness.w).map Complex.ofReal) :=
     le_iSup₂ OMA.MO198816Witness.lam OMA.MO198816Witness.lam_mem_spectrum
