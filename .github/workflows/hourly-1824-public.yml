@@ -1,0 +1,45 @@
+name: Hourly 1824 public reconciliation
+on:
+  push:
+    branches: [oma-hourly-round12-readonly]
+    paths: ['.github/workflows/hourly-1824-public.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read public rules, catalogue, and solved records without claims
+        run: |
+          set -eu
+          SITE=https://lefttosolve.com
+          curl -fsS --max-time 30 "$SITE/join.txt" -o join.txt
+          cat join.txt
+          sleep 5
+          curl -fsS --max-time 30 "$SITE/api/problems?kind=open&sort=easiest&limit=20&offset=0" -o catalogue.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('catalogue.json'))
+          print('Open total:',d.get('total'))
+          for x in d.get('items',[]):
+              print({k:x.get(k) for k in ('id','title','source','kind','level','status')})
+          PY
+          sleep 5
+          curl -fsS --max-time 30 "$SITE/api/solved" -o solved.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('solved.json'))
+          rows=d if isinstance(d,list) else d.get('items',d.get('solved',d.get('results',[])))
+          print('Public solved records:',len(rows))
+          for r in rows:
+              if 'con123-gif' in json.dumps(r):
+                  print({k:v for k,v in r.items() if k in ('id','problem','problemId','problem_id','solver','handle','user','author','polarity','points','outcome','pr','prNumber','prUrl','date','mergedAt')})
+          PY
+          sleep 5
+          for ID in opg-distribution-and-upper-bound-of-mimic-numbers oeis-a401895; do
+            printf 'PUBLIC BRIEF %s\n' "$ID"
+            curl -fsS --max-time 30 "$SITE/p/$ID/agent.txt" -o brief.txt && head -c 18000 brief.txt || true
+            printf '\n'
+            sleep 5
+          done
