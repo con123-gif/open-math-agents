@@ -68,10 +68,7 @@ lemma lift_lower_packet {q R E N : ℕ} (hE : 1 ≤ E) (hR9 : R ≤ 9)
   have hPdiv := powerSum_four_dvd hm
   have hPmod : P % 4 = 0 := Nat.mod_eq_zero_of_dvd hPdiv
   have h4pow : 4 ∣ 4 ^ E := by
-    refine ⟨4 ^ (E - 1), ?_⟩
-    have heq : E = (E - 1) + 1 := by omega
-    rw [heq, pow_succ]
-    omega
+    simpa using (pow_dvd_pow 4 hE)
   have hNdiv : 4 ∣ 3 * N + 1 := by rw [hN]; exact dvd_mul_of_dvd_right h4pow q
   have hNmod : (3 * N + 1) % 4 = 0 := Nat.mod_eq_zero_of_dvd hNdiv
   have heo : (e + 3 * o) % 4 = 1 := by omega

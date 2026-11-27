@@ -79,11 +79,17 @@ lemma D_power_two (i : ℕ) :
     D (2 ^ i) = if i % 2 = 0 then 1 else 2 := by
   rcases Nat.mod_two_eq_zero_or_one i with he | ho
   · have hi : i = 2 * (i / 2) := by omega
-    have hp : 2 ^ i = 4 ^ (i / 2) * 1 := by rw [hi, pow_mul]; norm_num
+    have hp : 2 ^ i = 4 ^ (i / 2) * 1 := by
+      calc
+        2 ^ i = 2 ^ (2 * (i / 2)) := by congr 1; omega
+        _ = 4 ^ (i / 2) * 1 := by rw [pow_mul]; norm_num
     rw [hp, D_shift]
     simp [he]
   · have hi : i = 2 * (i / 2) + 1 := by omega
-    have hp : 2 ^ i = 4 ^ (i / 2) * 2 := by rw [hi, pow_add, pow_mul]; norm_num
+    have hp : 2 ^ i = 4 ^ (i / 2) * 2 := by
+      calc
+        2 ^ i = 2 ^ (2 * (i / 2) + 1) := by congr 1; omega
+        _ = 4 ^ (i / 2) * 2 := by rw [pow_add, pow_mul]; norm_num
     rw [hp, D_shift]
     simp [ho]
 
@@ -109,13 +115,19 @@ lemma power_weights (m : Multiset ℕ) :
     · simp only [he, if_true] at hpi hpdi
       have hcs : evenCount (i ::ₘ m) = 1 + evenCount m := by simp [evenCount, he]
       have hco : oddCount (i ::ₘ m) = oddCount m := by simp [oddCount, he]
-      rw [hps, hps2, hcs, hco]
-      omega
+      constructor
+      · rw [hps, hcs, hco]
+        omega
+      · rw [hps2, hcs, hco]
+        omega
     · simp only [ho, show ¬ (1 = 0) by decide, if_false] at hpi hpdi
       have hcs : evenCount (i ::ₘ m) = evenCount m := by simp [evenCount, ho]
       have hco : oddCount (i ::ₘ m) = 1 + oddCount m := by simp [oddCount, ho]
-      rw [hps, hps2, hcs, hco]
-      omega
+      constructor
+      · rw [hps, hcs, hco]
+        omega
+      · rw [hps2, hcs, hco]
+        omega
 
 lemma powerSum_four_dvd {n : ℕ} {m : Multiset ℕ} (hm : represents n m) :
     4 ∣ powerSum m := by
@@ -127,10 +139,7 @@ lemma powerSum_four_dvd {n : ℕ} {m : Multiset ℕ} (hm : represents n m) :
     have hi : 2 ≤ i := hvalid i (by simp)
     have hrest : ∀ j ∈ m, 2 ≤ j := by intro j hj; exact hvalid j (by simp [hj])
     have hpow : 4 ∣ 2 ^ i := by
-      refine ⟨2 ^ (i - 2), ?_⟩
-      have he : i = 2 + (i - 2) := by omega
-      rw [he, pow_add]
-      norm_num
+      simpa using (pow_dvd_pow 2 hi)
     simpa [powerSum] using dvd_add hpow (ih hrest)
 
 end A372561Certificate
