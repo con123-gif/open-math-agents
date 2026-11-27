@@ -18,13 +18,15 @@ namespace OMA.S_oeis_a385478
 def sigma (n : ℕ) : ℕ := ∑ d ∈ n.divisors, d
 
 /-- Divisors of sigma(n) absent from all earlier positive indices. -/
-def freshDivisors (n : ℕ) : Finset ℕ :=
-  (sigma n).divisors.filter fun d =>
+noncomputable def freshDivisors (n : ℕ) : Finset ℕ := by
+  classical
+  exact (sigma n).divisors.filter fun d =>
     ∀ k ∈ Finset.Ico 1 n, ¬ d ∣ sigma k
 
 /-- A385478(n), with the source's zero convention for an empty set. -/
-def term (n : ℕ) : ℕ :=
-  if h : (freshDivisors n).Nonempty then (freshDivisors n).min' h else 0
+noncomputable def term (n : ℕ) : ℕ := by
+  classical
+  exact if h : (freshDivisors n).Nonempty then (freshDivisors n).min' h else 0
 
 theorem main :
     ∀ n : ℕ, 0 < n → ∀ d ∈ freshDivisors n, term n ∣ d := by
