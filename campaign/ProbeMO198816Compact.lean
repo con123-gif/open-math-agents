@@ -167,7 +167,7 @@ lemma P_mul_v : ∀ i,
 set_option maxRecDepth 4096 in
 set_option maxHeartbeats 0 in
 lemma eig :
-    ((fun i j => P i j - (∑ k, P i k) * w j : Matrix (Fin 13) (Fin 13) ℝ).map Complex.ofReal) *ᵥ v = lam • v := by
+    (Matrix.map (fun i j => P i j - (∑ k, P i k) * w j : Matrix (Fin 13) (Fin 13) ℝ) Complex.ofReal) *ᵥ v = lam • v := by
   funext i
   change (∑ j, ((P i j - (∑ k, P i k) * w j : ℝ) : ℂ) * v j) = lam * v i
   calc
@@ -228,6 +228,6 @@ theorem OMA.disproof : ¬ (type_of% @OMA.S_mo_198816.main) := by
       spectralRadius ℂ ((OMA.S_mo_198816.perturbation
         OMA.MO198816Witness.P OMA.MO198816Witness.w).map Complex.ofReal) := by
     unfold spectralRadius
-    exact le_iSup₂ OMA.MO198816Witness.lam OMA.MO198816Witness.lam_mem_spectrum
+    exact le_iSup₂ (α := ENNReal) OMA.MO198816Witness.lam OMA.MO198816Witness.lam_mem_spectrum
   exact (not_lt_of_ge (le_trans (le_of_lt hnorm) hbound)) hradius
 #print axioms OMA.disproof
