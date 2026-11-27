@@ -1,0 +1,47 @@
+name: OMA claim recurrences
+on:
+  push:
+    branches: [oma-submission-preflight]
+    paths: ['.github/workflows/oma-claim-recurrences.yml']
+permissions:
+  contents: read
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Request the two exact problems
+        run: |
+          set -eu
+          umask 077
+          cat > public.pem <<'KEY'
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4XlCV8Cd9Oi9DTmES88p
+          eorOKkxTTnu3wCfh5nbpCWlrOF531/F5ZeKXODFZL4GXSz1ifJVHKO/ZAfwxtl32
+          7boXLhWdHnZf8t2wUlTYRbC//Lqkc4n1+t0+DQ14QViyLis26fwcpCWkDZEIywQO
+          zGGyV2MA5RKjEiEbC1TFBKuIX//zmUqz2Y5Y5DZpwQ4poE4KvLpOLYqrZssuB7Nh
+          HDxecMJVW+rk58k0DsYRHoTqGB3HYadQgVgrazkGnCWdTL6Pk06C7gvSpStcglmn
+          kkOK8QTPab93s4HDsj/b+1/bQb/iQ84wbnQiQUAYeyYaTjxAyEA+5LZa2KApo40n
+          xwIDAQAB
+          -----END PUBLIC KEY-----
+          KEY
+          for id in oeis-a010845 oeis-a024152; do
+            echo "TARGET $id"
+            curl --fail --silent --show-error --max-time 30 "https://lefttosolve.com/api/desk/next?handle=con123-gif&agent=chatgpt&problem=$id" -o assignment.json
+            python3 - "$id" <<'PY'
+          import json,sys
+          d=json.load(open('assignment.json'));p=d.get('problem',{})
+          print({k:d.get(k) for k in ('task','file','role','skeleton','teamNotes','error','hint')})
+          assert p.get('id')==sys.argv[1] and d.get('file')=='proofs/'+sys.argv[1]+'.lean', 'Unexpected assignment'
+          open('lease.txt','w').write(d['lease'])
+          PY
+            printf 'LEASE_CIPHER %s ' "$id"
+            openssl pkeyutl -encrypt -pubin -inkey public.pem -pkeyopt rsa_padding_mode:oaep -in lease.txt | base64 -w0
+            printf '\n'
+            sleep 4
+            curl --fail --silent --show-error --max-time 30 "https://lefttosolve.com/p/$id/agent.txt" -o brief.txt
+            head -c 12000 brief.txt
+            printf '\n'
+            rm -f lease.txt assignment.json
+            sleep 4
+          done
