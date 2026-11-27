@@ -191,28 +191,38 @@ theorem square_index_mod_sixteen (n : ℕ) (hsquare : IsSquare (a n)) :
   · omega
   · omega
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · omega
   · omega
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · omega
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · norm_num [hr] at ha
-    rcases hs with h0 | h1 | h4 <;> simp_all
+    rw [ha] at hs
+    norm_num at hs
   · omega
 
 #print axioms cast_a_mod_eight
