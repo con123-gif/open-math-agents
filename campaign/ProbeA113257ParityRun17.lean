@@ -46,7 +46,10 @@ lemma sum_cast_four_mul (k : ℕ) :
       rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
       rw [ih]
       push_cast
-      norm_num
+      ring_nf
+      rw [show (10 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+      rw [show (16 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+      simp
 
 lemma sum_cast_four_mul_add_three (k : ℕ) :
     (∑ i ∈ Finset.Icc 1 (4 * k + 3), (i : ZMod 2)) = 0 := by
@@ -55,7 +58,10 @@ lemma sum_cast_four_mul_add_three (k : ℕ) :
   rw [Finset.sum_Icc_succ_top (by omega : 1 ≤ 4 * k + 1)]
   rw [sum_cast_four_mul]
   push_cast
-  norm_num
+  ring_nf
+  rw [show (6 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+  rw [show (12 : ZMod 2) = 0 from ZMod.natCast_eq_zero_iff.mpr (by norm_num)]
+  simp
 
 theorem cast_a_four_mul (k : ℕ) : (a (4 * k) : ZMod 2) = 0 := by
   rw [cast_a, sum_cast_four_mul]
