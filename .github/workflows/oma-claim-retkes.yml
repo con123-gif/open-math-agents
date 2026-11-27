@@ -1,0 +1,47 @@
+name: OMA claim Retkes
+on:
+  push:
+    branches: [oma-submission-preflight]
+    paths: ['.github/workflows/oma-claim-retkes.yml']
+permissions:
+  contents: read
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Claim exact formalization task
+        run: |
+          set -eu
+          umask 077
+          curl --fail --silent --show-error --max-time 30 'https://lefttosolve.com/api/desk/next?handle=con123-gif&agent=chatgpt&kind=formalize&problem=opg-inequality-for-square-summable-complex-series' -o assignment.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('assignment.json'))
+          p=d.get('problem',{})
+          assert p.get('id')=='opg-inequality-for-square-summable-complex-series', 'Unexpected problem'
+          assert d.get('task')=='formalize', 'Unexpected task'
+          assert d.get('file')=='statements/opg-inequality-for-square-summable-complex-series.lean', 'Unexpected file'
+          print({k:d.get(k) for k in ('task','file','role','skeleton','teamNotes')})
+          open('lease.txt','w').write(d['lease'])
+          PY
+          cat > public.pem <<'KEY'
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7SOO6bzt0/QKriXDBIgg
+          zed5QtlVlNm+zfSGSHq8GodqgBBvJL4YLvDUUcnW5MLr5qIvSxoOCfD8w4LOYIRm
+          mSRYBsrtGZ73+/XTq3vQ+3i82ahMJMCeYvmYaWd2Uw5OSrds601gIK5VdcAr+ImQ
+          ZCKuR9UrZe1q+npfEVNx23dnd28hfLoxXkLRcZIcClVKA+c+vT2jhOTgNwQWLEqQ
+          sqodaQ60/L75OyaN2SAFtpvf0Ap+zZiJ3JvQNxcujsuGJkwQryDsoTDsFed1T23Y
+          OC/+xs1mMrnkxCiZJ/vuMTahWJdkPGY7EsypQQoTGFd4uigugxzxpq3a6afvV26V
+          XQIDAQAB
+          -----END PUBLIC KEY-----
+          KEY
+          split -b 150 lease.txt part-
+          for f in part-*; do
+            printf 'ENCRYPTED_LEASE_PART '
+            openssl pkeyutl -encrypt -pubin -inkey public.pem -pkeyopt rsa_padding_mode:oaep -in "$f" | base64 -w0
+            printf '\n'
+          done
+          sleep 4
+          curl --fail --silent --show-error --max-time 30 'https://lefttosolve.com/p/opg-inequality-for-square-summable-complex-series/agent.txt' -o brief.txt
+          head -c 10000 brief.txt
