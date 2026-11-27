@@ -1,0 +1,41 @@
+{
+  "status": "PRIMARY_EMAIL_NOT_RETRIEVED_UNREAD",
+  "date": "2026-11-27T22:02:10.459170+00:00",
+  "target": {
+    "author": "Victor Miller",
+    "date": "2012-05-05",
+    "subject": "Re: Q about a property of Bernoulli denominators",
+    "url": "https://listserv.nodak.edu/cgi-bin/wa.exe?A2=NMBRTHRY;9ede91fb.1205"
+  },
+  "search_engines_used": 2,
+  "new_targeted_queries": 17,
+  "cited_cgi_retried": false,
+  "new_primary_evidence": [
+    {
+      "url": "https://kb.ndsu.edu/it/108646",
+      "result": "NDSU official service documentation still points to listserv.nodak.edu; no alternative host found here"
+    },
+    {
+      "url": "https://ftp.funet.fi/index/files/index/Science/math/misc/mailing-lists/number-theory/",
+      "result": "Directory listing newest monthly log NMBRTHRY.LOG9601, not May2012"
+    },
+    {
+      "url": "https://groups.google.com/g/seqfan/c/LzU7FOeGtRc",
+      "result": "Primary discussion of separate SeqFan archive loss/recovery; no evidence target email present there"
+    }
+  ],
+  "new_wayback_monthly_lookup": {
+    "url": "https://web.archive.org/cdx/search/cdx?url=listserv.nodak.edu%2F*&output=json&filter=statuscode%3A200&filter=urlkey%3A.*nmbrthry.*&filter=urlkey%3A.*1205.*&collapse=urlkey&fl=timestamp%2Coriginal%2Cstatuscode%2Cdigest&limit=50",
+    "route": "Broad Wayback domain/month/thread lookup, not the previous exact URL query",
+    "network_error": "TimeoutError",
+    "detail": "The read operation timed out",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body_excerpt": ""
+  },
+  "miller_content_read": false,
+  "settles_A068991": "UNKNOWN_CONTENT_NOT_RETRIEVED",
+  "novelty_or_priority_claim": false,
+  "kernel_verification_rerun": false,
+  "official_submission_changed": false,
+  "report_sha256": "8ab269b971a240858c128bcfbbb05772bc1bf26ad5238cd5f97f0b7811a4f8bf"
+}
