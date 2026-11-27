@@ -1,0 +1,11 @@
+{
+  "tested_n_min": 0,
+  "tested_n_max": 100000,
+  "all_exact_cardinalities": true,
+  "all_exchange_normal_forms": true,
+  "all_prefix_bounds": true,
+  "all_largest_two_coin_conclusions": true,
+  "all_source_terms": 107,
+  "finite_test_only": true,
+  "lean_kernel_verification": false
+}
