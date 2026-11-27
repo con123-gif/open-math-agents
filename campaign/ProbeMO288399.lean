@@ -30,7 +30,7 @@ def squaredNorm {n : ℕ} (v : Fin n → ℝ) : ℝ := v ⬝ᵥ v
 def quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
   v ⬝ᵥ (A *ᵥ v)
 
-def rayleigh {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
+noncomputable def rayleigh {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
   quadratic A v / squaredNorm v
 
 noncomputable def leastValue {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) : ℝ :=
@@ -76,6 +76,7 @@ lemma drop_self {n : ℕ} (i : Fin n) (v : Fin n → ℝ) : drop i v i = 0 := by
   simp [drop]
 
 lemma squaredNorm_nonneg {n : ℕ} (v : Fin n → ℝ) : 0 ≤ squaredNorm v := by
+  change 0 ≤ ∑ i, v i * v i
   exact Finset.sum_nonneg (fun i _ => mul_self_nonneg (v i))
 
 lemma squaredNorm_pos {n : ℕ} {v : Fin n → ℝ} (hv : v ≠ 0) :
@@ -125,7 +126,7 @@ lemma deleted_lower {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
 lemma drop_norm {n : ℕ} (i : Fin n) (v : Fin n → ℝ) :
     squaredNorm (drop i v) = squaredNorm v - v i * v i := by
   simp only [squaredNorm, drop, sub_dotProduct, dotProduct_sub,
-    dotProduct_single, single_dotProduct, Pi.single_apply_same]
+    dotProduct_single, single_dotProduct, Pi.sub_apply, Pi.single_eq_same]
   ring
 
 lemma drop_quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
@@ -133,8 +134,9 @@ lemma drop_quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     quadratic A (drop i v) = quadratic A v -
       (v ᵥ* A) i * v i - v i * (A *ᵥ v) i + v i * (A i i * v i) := by
   simp only [quadratic, drop, Matrix.mulVec_sub, sub_dotProduct, dotProduct_sub]
-  rw [dotProduct_mulVec v A (Pi.single i (v i))]
-  simp [Matrix.mulVec_single]
+  rw [Matrix.dotProduct_mulVec v A (Pi.single i (v i))]
+  simp only [dotProduct_single, single_dotProduct, Matrix.mulVec_single]
+  ring
 
 lemma sum_drop_norm {n : ℕ} (v : Fin n → ℝ) :
     (∑ i, squaredNorm (drop i v)) = ((n : ℝ) - 1) * squaredNorm v := by
@@ -152,7 +154,7 @@ lemma sum_drop_quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   rw [Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.sum_sub_distrib]
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   have hleft : (∑ i, (v ᵥ* A) i * v i) = quadratic A v :=
-    (dotProduct_mulVec v A v).symm
+    (Matrix.dotProduct_mulVec v A v).symm
   have hright : (∑ i, v i * (A *ᵥ v) i) = quadratic A v := rfl
   rw [hleft, hright]
   change (n : ℝ) * quadratic A v - quadratic A v - quadratic A v +
@@ -209,22 +211,21 @@ theorem upper_bound {n : ℕ} (hn : 2 ≤ n)
 
 noncomputable def equicorrelation (n : ℕ) : Matrix (Fin n) (Fin n) ℝ :=
   (1 + 1 / ((n : ℝ) - 1)) • (1 : Matrix (Fin n) (Fin n) ℝ) -
-    fun _ _ => 1 / ((n : ℝ) - 1)
+    Matrix.of (fun (_ _ : Fin n) => 1 / ((n : ℝ) - 1))
 
 lemma equicorrelation_quadratic {n : ℕ} (v : Fin n → ℝ) :
     quadratic (equicorrelation n) v =
       (1 + 1 / ((n : ℝ) - 1)) * squaredNorm v -
         (1 / ((n : ℝ) - 1)) * (∑ i, v i) ^ 2 := by
-  have hc : quadratic (fun _ _ : Fin n => (1 : ℝ)) v = (∑ i, v i) ^ 2 := by
-    simp [quadratic, Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum,
-      pow_two]
   change v ⬝ᵥ (((1 + 1 / ((n : ℝ) - 1)) • (1 : Matrix (Fin n) (Fin n) ℝ) -
-    fun _ _ => 1 / ((n : ℝ) - 1)) *ᵥ v) = _
+    Matrix.of (fun (_ _ : Fin n) => 1 / ((n : ℝ) - 1))) *ᵥ v) = _
   simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
     dotProduct_sub, dotProduct_smul]
-  have hc' : (v ⬝ᵥ ((fun _ _ : Fin n => 1 / ((n : ℝ) - 1)) *ᵥ v)) =
+  have hc' : (v ⬝ᵥ (Matrix.of (fun (_ _ : Fin n) => 1 / ((n : ℝ) - 1)) *ᵥ v)) =
       (1 / ((n : ℝ) - 1)) * (∑ i, v i) ^ 2 := by
-    simp [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum, pow_two]
+    simp only [Matrix.mulVec, dotProduct, Matrix.of_apply]
+    simp_rw [← Finset.mul_sum]
+    rw [← Finset.sum_mul]
     ring
   rw [hc']
   rfl
@@ -232,7 +233,7 @@ lemma equicorrelation_quadratic {n : ℕ} (v : Fin n → ℝ) :
 lemma sum_sq_bound {n : ℕ} (v : Fin n → ℝ) :
     (∑ i, v i) ^ 2 ≤ (n : ℝ) * squaredNorm v := by
   simpa [squaredNorm, dotProduct, pow_two] using
-    (Finset.sq_sum_le_card_mul_sum_sq (s := Finset.univ) (f := v))
+    (sq_sum_le_card_mul_sum_sq (s := Finset.univ) (f := v))
 
 lemma deleted_sum_sq_bound {n : ℕ} (i : Fin n) (v : Fin n → ℝ) (hvi : v i = 0) :
     (∑ j, v j) ^ 2 ≤ ((n : ℝ) - 1) * squaredNorm v := by
@@ -240,13 +241,16 @@ lemma deleted_sum_sq_bound {n : ℕ} (i : Fin n) (v : Fin n → ℝ) (hvi : v i 
     rw [drop_norm]
     simp [squaredNorm, dotProduct]
   have hdot : (v ⬝ᵥ drop i (fun _ : Fin n => (1 : ℝ))) = ∑ j, v j := by
-    simp [drop, dotProduct_sub, hvi, dotProduct]
+    unfold drop
+    rw [dotProduct_sub, dotProduct_single]
+    simp [hvi, dotProduct]
   have h := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ v
     (drop i (fun _ : Fin n => (1 : ℝ)))
-  change (v ⬝ᵥ drop i (fun _ : Fin n => (1 : ℝ))) ^ 2 ≤
-    squaredNorm v * squaredNorm (drop i (fun _ : Fin n => (1 : ℝ))) at h
-  rw [hdot, hd] at h
-  nlinarith [h]
+  have h' : (v ⬝ᵥ drop i (fun _ : Fin n => (1 : ℝ))) ^ 2 ≤
+      squaredNorm v * squaredNorm (drop i (fun _ : Fin n => (1 : ℝ))) := by
+    simpa only [squaredNorm, dotProduct, pow_two] using h
+  rw [hdot, hd] at h'
+  nlinarith [h']
 
 lemma equicorrelation_isCorrelation {n : ℕ} (hn : 2 ≤ n) :
     IsCorrelation (equicorrelation n) := by
@@ -262,6 +266,9 @@ lemma equicorrelation_isCorrelation {n : ℕ} (hn : 2 ≤ n) :
     change 0 ≤ quadratic (equicorrelation n) v
     rw [equicorrelation_quadratic]
     have h := mul_le_mul_of_nonneg_left (sum_sq_bound v) hb
+    have hbn : (1 / ((n : ℝ) - 1)) * n = 1 + 1 / ((n : ℝ) - 1) := by
+      nlinarith [heq]
+    rw [← mul_assoc, hbn] at h
     nlinarith [h, squaredNorm_nonneg v]
   · intro i
     simp [equicorrelation]
@@ -313,11 +320,14 @@ lemma equicorrelation_deleted {n : ℕ} (hn : 2 ≤ n) (i : Fin n) :
     · exact ⟨0, fun r ⟨w, _, _, hr⟩ => hr ▸ rayleigh_nonneg
         (equicorrelation_isCorrelation hn).1 w⟩
     · exact ⟨v, hv, drop_self i _, hq⟩
-  · apply le_csInf ⟨_, v, hv, drop_self i _, rfl⟩
-    rintro r ⟨w, hw, hwi, rfl⟩
-    rw [rayleigh, le_div_iff₀ (squaredNorm_pos hw), equicorrelation_quadratic]
-    have h := mul_le_mul_of_nonneg_left (deleted_sum_sq_bound i w hwi) hb
-    nlinarith [h]
+  · unfold deletedLeastValue
+    apply le_csInf
+    · exact ⟨rayleigh (equicorrelation n) v, v, hv, drop_self i _, rfl⟩
+    · rintro r ⟨w, hw, hwi, rfl⟩
+      rw [rayleigh, le_div_iff₀ (squaredNorm_pos hw), equicorrelation_quadratic]
+      have h := mul_le_mul_of_nonneg_left (deleted_sum_sq_bound i w hwi) hb
+      rw [← mul_assoc, heq, one_mul] at h
+      nlinarith [h]
 
 end OMA.MO288399
 

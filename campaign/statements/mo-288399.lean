@@ -30,7 +30,7 @@ def squaredNorm {n : ℕ} (v : Fin n → ℝ) : ℝ := v ⬝ᵥ v
 def quadratic {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
   v ⬝ᵥ (A *ᵥ v)
 
-def rayleigh {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
+noncomputable def rayleigh {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (v : Fin n → ℝ) : ℝ :=
   quadratic A v / squaredNorm v
 
 noncomputable def leastValue {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) : ℝ :=
