@@ -1,0 +1,32 @@
+2026-11-27T18:26:58.2211724Z CHECKING_PROBE hermite/ProbeA381423Selector.lean
+2026-11-27T18:27:11.3068626Z HermiteProbe.lean:58:8: warning: declaration uses `sorry`
+2026-11-27T18:27:11.3069695Z HermiteProbe.lean:357:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:27:11.3070419Z 
+2026-11-27T18:27:11.3070862Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:27:11.3071955Z HermiteProbe.lean:432:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-11-27T18:27:11.3072652Z 
+2026-11-27T18:27:11.3073127Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-11-27T18:27:11.3074153Z HermiteProbe.lean:471:16: warning: This simp argument is unused:
+2026-11-27T18:27:11.3074855Z   Ne.symm hh
+2026-11-27T18:27:11.3075644Z 
+2026-11-27T18:27:11.3075799Z Hint: Omit it from the simp argument list.
+2026-11-27T18:27:11.3076164Z   [apply] simp [hh]
+2026-11-27T18:27:11.3076338Z 
+2026-11-27T18:27:11.3076606Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:27:11.3077208Z HermiteProbe.lean:482:14: warning: This simp argument is unused:
+2026-11-27T18:27:11.3077624Z   Ne.symm hh
+2026-11-27T18:27:11.3077754Z 
+2026-11-27T18:27:11.3077888Z Hint: Omit it from the simp argument list.
+2026-11-27T18:27:11.3078220Z   [apply] simp [hh]
+2026-11-27T18:27:11.3078371Z 
+2026-11-27T18:27:11.3078638Z Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+2026-11-27T18:27:11.3079368Z HermiteProbe.lean:692:9: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+2026-11-27T18:27:11.3080153Z   MulLeftStrictMono ℚ
+2026-11-27T18:27:11.3080319Z 
+2026-11-27T18:27:11.3080788Z Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+2026-11-27T18:27:11.3081729Z 'A381423Certificate.source_unique' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+2026-11-27T18:27:11.3082536Z 'A381423Certificate.source_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-11-27T18:27:11.3083386Z 'A381423Certificate.source_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-11-27T18:27:11.3103921Z PROBE_EXIT hermite/ProbeA381423Selector.lean 1
+2026-11-27T18:27:11.3119671Z ##[error]Process completed with exit code 1.
+2026-11-27T18:27:11.3197961Z

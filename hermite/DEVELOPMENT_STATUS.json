@@ -1,14 +1,28 @@
 {
   "target": "oeis-a381423",
   "stage": "Full hand proof and independent mathematical challenge passed; full Lean certificate in development",
-  "statement_static_lint": "PASS after fixing a nested-comment typo",
+  "statement_static_lint": "PASS",
   "first_run": 46048737354,
   "first_job": 140674449298,
   "first_verdict": "FAILED: unterminated comment; no valid helper or full solution certificate",
   "first_repair": "Replaced slash-hyphen text in statement comment; balanced block comments checked",
-  "current_probe": "ProbeA381423Selector.lean",
-  "scope": "Known prior coefficient bridge plus new exact triangular cutoff, unique signed maximum and closed selector; exact block/growth proof still being written",
+  "current_probe": "ProbeA381423Full.lean",
+  "scope": "Complete source claim: actual unique signed maximum, closed mode formula, every4/5 block location, quadratic-periodic spacing and sqrt bounds",
   "full_OMA_solution_kernel_pass": false,
   "official_submission": null,
-  "lease_held": false
+  "lease_held": false,
+  "selector_run": 46049255576,
+  "selector_job": 140676180015,
+  "selector_run_verdict": "FAILED: one ordered multiplication API error in uniqueness helper; repaired",
+  "closed_source_formula_actual_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "known_difference_actual_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "canonical_proof_static_lint": "PASS in isolated setup; actual import awaits statement merge"
 }
