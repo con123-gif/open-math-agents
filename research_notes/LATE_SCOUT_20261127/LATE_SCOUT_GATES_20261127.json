@@ -1,0 +1,91 @@
+{
+  "checkpoint_utc": "2026-11-27T23:56:25.841914+00:00",
+  "credit": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex GPT-6; exact serving variant not exposed.",
+  "records": [
+    {
+      "id": "mo-488756",
+      "status": "SEMANTIC_HOLD_NO_CLAIM",
+      "result": "Complete hereditary fixed-global-edge-order proof; arbitrary input-dependent tie policy has explicit counterexample. No silent distinctness or global-consistency assumption permitted.",
+      "live": "unformalized,0 agents,null solution",
+      "proper_all_state_pr_hits": 0,
+      "source_answers": 0,
+      "source_comments": 1,
+      "source_revisions": 5,
+      "note": "MO488756_SEMANTIC_RESEARCH_NOTE.md"
+    },
+    {
+      "id": "mo-478522",
+      "status": "NOT_SELECTED_PRIOR_RESOLUTION_AMBIGUOUS",
+      "source_answers": 0,
+      "source_comments": 12,
+      "source_revisions": 6,
+      "proper_all_state_pr_hits": 0,
+      "live": "unformalized,0 agents,null solution",
+      "reason": "Source author explicitly concedes negative conclusion in2024comments after a convex-plus-concave observation; that observation itself is not a complete counterexample. No honest new-resolution claim or completed proof is asserted."
+    },
+    {
+      "id": "mo-469781",
+      "status": "WITHHELD_KNOWN_RELEASED_RESULT",
+      "proper_all_state_pr_hits": 0,
+      "source_answers": 0,
+      "source_comments": 1,
+      "crosspost": "https://math.stackexchange.com/questions/4902019",
+      "known_record": "mathoverflow-469781-weighted-orthogonal-minors",
+      "known_declaration": "D5/S3/Geometry/ProbabilityTransport/WeightedProjectionMinors.weighted_minors",
+      "known_source_commit": "687878cf845802aba2692eeb304cb960d1306431",
+      "reason": "Released TrureTuring metadata states the exact full weighted inequality as proved; no claim or formalization attempted."
+    },
+    {
+      "id": "mo-490637",
+      "status": "WITHHELD_SOURCE_AUTHOR_COMPLETE_PRIOR",
+      "proper_all_state_pr_hits": 0,
+      "source_answers": 1,
+      "prior_answer_id": 513210,
+      "prior_url": "https://arxiv.org/abs/2607.07837",
+      "reason": "Current source author answer explicitly supplies a complete proof in named Sequential Analysis article/preprint. We did not independently certify that paper; the direct exact-resolution claim is enough to withhold duplicate research."
+    },
+    {
+      "id": "mo-506044",
+      "status": "UNSETTLED_LEAD_NOT_SOLVED",
+      "proper_all_state_pr_hits": 0,
+      "source_answers": 0,
+      "source_comments": 4,
+      "reason": "Complete current question and all comments read. Author seeks optimal fourth-moment constant and conjectures a two-block optimizer; no complete argument obtained, so no Lean/claim/count."
+    },
+    {
+      "id": "oeis-a401714",
+      "aliases": [
+        "oeis-a401715"
+      ],
+      "status": "WITHHELD_KNOWN_RELEASED_RESULT",
+      "proper_all_state_pr_hits": 0,
+      "known_record": "oeis-a401714-unitary-squarefree-divisor-sum",
+      "known_declaration": "D5/S3/Arith/Divisors/KarttunenA401714.result",
+      "known_source_commit": "687878cf845802aba2692eeb304cb960d1306431",
+      "reason": "Current three complete OEIS entries read. Released TrureTuring metadata matches the exact conjectured implication; no claim or formalization attempted."
+    }
+  ],
+  "claims": 0,
+  "official_submissions": 0,
+  "verified_new_solutions": 0,
+  "accepted_new_solutions": 0,
+  "source_file_sha256": {
+    "MO488756_answers.json": "7e66a71c465533adeec4694a293f2a5c54366f69bbf76e1dd125039b57b71cda",
+    "MO488756_comments.json": "519be64c68730a22eba208bc6f504bcbe707fbcf29b802894cbc8b13aec4d066",
+    "MO488756_live.json": "0d2b443852f46565d47eeabbbe396ad8209e421c3b014e8d19673361938939d1",
+    "MO488756_history.json": "a9199dd86daff2438c01f75197228aaef9983ce0ac82660d57dda3e96c3bbb1e",
+    "MO488756_question.json": "c4cb731ebb05a1c06f144ce8c0502207694a26ba0f79bfa2ed55f70c06cab8d6",
+    "MO478522_live.json": "5f20a06b6571645959a2e9a3c6c846d58f869176cf4c793e1e160f6a5eb127f4",
+    "MO478522_answers.json": "764c76e2f4d40c2a691f226c14b0fde6910ed885ff3e3a8dbbc1525867fb6cbf",
+    "MO478522_question.json": "27814647f4734b7af8655d9908f00fe20b84a695d9616a89dbe8656ebf25f5f6",
+    "MO478522_history.json": "c19c4645e8c30f2bbb223d1f0a8186944265c7845ffcd25aa35cce9ef05a16ea",
+    "MO478522_comments.json": "b272920822d1184779a2c19493be03a13fa92c2855fc242063b9377a55388c60",
+    "new_combinatorics_questions.json": "164e8e65fcb10038b26432a38822ea5963c7a45a2d46eca101bf27831f35d0c8",
+    "new_combinatorics_answers.json": "b23a1e837fe3754e25225007a7a34a9d6d85c02e42dc90d6a4a28502cb75c4a0",
+    "new_combinatorics_comments.json": "9177f73f8e34d09d982734233841b6cdc82d92bed06097e316c2d0c865d3a97b",
+    "A401714.seq": "34bc04455cc4d8f1cda968a71d5019413ad83f3c48d5425d136376ab248b11aa",
+    "A401715.seq": "58d1586c9051380dab7d636133915d9840c0f802459de66abe88d240473893bb",
+    "A053669.seq": "11985bd1770ba09f9f140196fbb5b253df0eb16302117cb50b20ad3fac559402"
+  },
+  "trure_cache": "scout_work/mo487180_current_trureturing_catalog.json, retrieved earlier this session; exact known records suffice for conservative exclusion, not a claim of exhaustive current worldwide prior coverage."
+}
