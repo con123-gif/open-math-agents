@@ -1,0 +1,76 @@
+{
+  "problem": "mo-513259",
+  "status": "Complete hand-proof candidate, independently mathematically challenged; Lean not yet built",
+  "claim": null,
+  "official_submission": null,
+  "accepted": false,
+  "source_gate": {
+    "question_answers": 0,
+    "question_comments": 0,
+    "related_question_answers_read": 1,
+    "related_comments": 0,
+    "live": "unformalized,0agents,nullsolution",
+    "proper_all_state_pr_matches": 0
+  },
+  "known_prior": [
+    "Characteristic3 inverse-permanent identity, arXiv1710.01783 LemmaII.2.5.1; inspected primary PDF page21",
+    "Related MO513095 permanent/determinant congruence modulo4; complete answer read",
+    "Even-diagonal determinant stability under even symmetric offdiagonal perturbations: MSE2688219, Darij Grinberg comments (2018), all6 comments read by algebra lane."
+  ],
+  "new_candidate_identity": "For symmetric even-diagonal A invertible modulo8: per(A inverse) det(A)=det(A\u2212diag(A)) modulo8",
+  "independent_challenge": "Algebra lane verified shear permanent counts/Jacobi cancellations, inverse-shear algebra, even-offdiagonal determinant invariance, half odd-minor identity, 2\u00d72 block elimination and base case; no mathematical gap found. No formal verification asserted.",
+  "math_note_sha256": "82651901ebbd4dbdda1185d4905339dab6f1207d274d239e3c9cc05054aa1134",
+  "finite_computation_role": "Exploratory only; no finite computation used as an infinite proof",
+  "remaining": "Generic Lean permanent expansion and congruence invariance lemmas; exact pinned certificate; final prior/current eligibility gate; official lease/statement/proof stages",
+  "optional_extension_counterexamples": {
+    "mod8": {
+      "A": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "inverse": [
+        [
+          6,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "inverse_permanent": 5
+    },
+    "mod24": {
+      "A": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "inverse": [
+        [
+          18,
+          13
+        ],
+        [
+          13,
+          22
+        ]
+      ],
+      "permanent": 13,
+      "inverse_permanent": 13,
+      "failed_residue": 12
+    },
+    "count": 0
+  }
+}

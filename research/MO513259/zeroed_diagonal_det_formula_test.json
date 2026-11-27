@@ -1,0 +1,32 @@
+[
+  {
+    "n": 2,
+    "eligible": 1013,
+    "trials": 2000,
+    "bad": null
+  },
+  {
+    "n": 4,
+    "eligible": 860,
+    "trials": 2000,
+    "bad": null
+  },
+  {
+    "n": 6,
+    "eligible": 890,
+    "trials": 2000,
+    "bad": null
+  },
+  {
+    "n": 8,
+    "eligible": 848,
+    "trials": 2000,
+    "bad": null
+  },
+  {
+    "n": 10,
+    "eligible": 862,
+    "trials": 2000,
+    "bad": null
+  }
+]

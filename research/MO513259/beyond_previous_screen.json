@@ -1,0 +1,28 @@
+{
+  "method": "Exact modular random simple graphs beyond the previous exhaustive n<=6 screen",
+  "seed": 513259,
+  "finite_only": true,
+  "checked": [
+    {
+      "n": 8,
+      "trials": 2000,
+      "invertible8": 882,
+      "invertible24": 694,
+      "seconds": 0.296
+    },
+    {
+      "n": 10,
+      "trials": 1000,
+      "invertible8": 427,
+      "invertible24": 290,
+      "seconds": 0.574
+    },
+    {
+      "n": 12,
+      "trials": 400,
+      "invertible8": 167,
+      "invertible24": 110,
+      "seconds": 1.024
+    }
+  ]
+}
