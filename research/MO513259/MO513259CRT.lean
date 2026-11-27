@@ -27,8 +27,12 @@ lemma zero_of_mod_eight_and_three (x : ZMod 24)
     (h8 : modEightTwentyFour x = 0) (h3 : modThreeTwentyFour x = 0) : x = 0 := by
   change (x.val : ZMod 8) = 0 at h8
   change (x.val : ZMod 3) = 0 at h3
-  revert h8 h3
-  fin_cases x <;> decide
+  apply (ZMod.chineseRemainder (by decide : Nat.Coprime 8 3)).injective
+  apply Prod.ext
+  · change (x.val : ZMod 8) = 0
+    exact h8
+  · change (x.val : ZMod 3) = 0
+    exact h3
 
 lemma twice_mod_eight_of_mod_four (x : ZMod 24)
     (h4 : modFourTwentyFour x = 1) : modEightTwentyFour (2 * x) = 2 := by

@@ -82,4 +82,3 @@ end OMA.MO513259
 #print axioms OMA.MO513259.permanent_fin_two
 #print axioms OMA.MO513259.even_diagonal_extension_eight_false
 #print axioms OMA.MO513259.even_diagonal_extension_twenty_four_false
-

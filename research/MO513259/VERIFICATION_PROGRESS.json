@@ -40,7 +40,81 @@
       ],
       "file_errors": 0,
       "scope_warning": "Optional even-diagonal extension counterexamples do not solve the original graph conjectures",
-      "sha256": "7a61f382d08a582ca58338be98ac4649ba2655c90e75ac860a894e5bb4253175"
+      "sha256": "2fa81dd3b07a73d595c21a25b9e2b8a3310d813d2caff86345647c8cdcc08fb3"
+    },
+    {
+      "files": [
+        "campaign/ProbeMO513259DetInfrastructureSixth.lean",
+        "campaign/ProbeMO513259SignedHalves.lean",
+        "campaign/ProbeMO513259TwoByTwoFourth.lean"
+      ],
+      "commit": "dbd58383bc8d8a6f4e984132d99e8501ed6d688d",
+      "run": 46059124382,
+      "job": 140708800359,
+      "at": "2026-11-27T19:49:02\u201319:49:16Z",
+      "file_errors": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "Generic determinant stability, inverse alternation, pivots, conditional CRT, exact signed half, odd integer skew determinant, complete2x2 base and optional extension witnesses"
+    },
+    {
+      "file": "campaign/ProbeMO513259RowReplacement.lean",
+      "commit": "3b9d391db2d5d450185b8a2cbf1b182d66d2c202",
+      "run": 46059690247,
+      "job": 140710658385,
+      "at": "2026-11-27T19:53:23Z",
+      "file_errors": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "Generic rank-r coordinate-row replacement determinant identity and full entry semantics"
+    },
+    {
+      "file": "campaign/ProbeMO513259RowExpansion.lean",
+      "commit": "8a30cd0733526f9f8ad93e1eab679f4cf20f2f34",
+      "run": 46059977287,
+      "job": 140711597024,
+      "at": "2026-11-27T19:56:30Z",
+      "file_errors": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "Generic two-row permanent expansion"
+    },
+    {
+      "file": "campaign/ProbeMO513259CopyRowOrbit.lean",
+      "commit": "b86169b8c97a520cf26294532f7ec5dc8287a233",
+      "run": 46060500112,
+      "job": 140713320198,
+      "at": "2026-11-27T20:00:41Z",
+      "file_errors": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "Ordered-pair decomposition and exact copied-row orbit factor R=2R0"
+    },
+    {
+      "file": "campaign/ProbeMO513259DetShearSecond.lean",
+      "commit": "37cdedfb00fe997f7d47fa8db73820678219d01f",
+      "run": 46061453283,
+      "job": 140716446371,
+      "at": "2026-11-27T20:09:19Z",
+      "file_errors": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "Exact zero-diagonal inverse-shear identity, diagonal determinant update, principal-adjugate invariance, zero-diagonal unit preservation and complete determinant shear increment"
     }
   ],
   "statement_checker": {
@@ -60,18 +134,42 @@
       "map_inverse_diagonal_zero_mod_two",
       "exists_unit_offdiagonal"
     ],
-    "remaining_errors": "Four finite even-witness Decidable inferences and pivot symmetry rewrite; repaired in next candidate"
+    "remaining_errors": "Four finite even-witness Decidable inferences and pivot symmetry rewrite; repaired in next candidate",
+    "superseded_by_clean_sixth_check": true
   },
   "pending_probe": {
-    "commit": "dec1fc3e6b2e1623f02be15aa5bd6aea86ec3a50",
-    "scope": "Repaired determinant integration, pivot, conditional CRT and complete two-dimensional induction base",
+    "commit": "8c71fca8ca974e50c4be0e63540fb2debc0ffe23",
+    "scope": "Repaired copied-row inverse minor/polar integration, forced-edge cleanup and independent first-order determinant modulo4",
     "verdict": "Not yet read"
   },
   "remaining_general_proof": [
-    "Duplicate-row and duplicated-row/column orbit expansions modulo four and eight",
-    "Complementary minor identities in the needed generic form",
-    "General congruence invariance and symmetric block elimination induction",
-    "Known graph modulo-four and characteristic-three identities in Lean",
-    "Full exact registered target check, final eligibility gate, lease, official submission and acceptance"
-  ]
+    "Final copied-row half F2 collapse",
+    "Doubled-row/column orbit expansion modulo8 and four-index inverse determinant",
+    "Half odd-principal-minor quadratic identity",
+    "Congruence invariance and symmetric block-elimination induction",
+    "Known graph modulo4 and characteristic3 identities in Lean",
+    "Full exact target check, final eligibility gate, lease and official submission/acceptance"
+  ],
+  "verified_artifacts": {
+    "CoreDeterminantAndCRT.lean": "cca35730f9422d08708aba52428fce433e40871a1c07f120fe850778182eca56",
+    "SignedHalves.lean": "378b45659e268cf330386949056ca1b29246779b6b00a09d32396f3aaa751ef6",
+    "TwoByTwoBaseAndExtensions.lean": "372c7ff4ef5f6771a13770a9e91f1b405ac9207e221bd17f5adc92ab6c4cd836",
+    "TwoByTwoExtensions.lean": "2fa81dd3b07a73d595c21a25b9e2b8a3310d813d2caff86345647c8cdcc08fb3",
+    "RowReplacement.lean": "ab4f056282cd4593fd5a39215ece44f71c48eaa470cd941e0c7b130190aa929b",
+    "RowExpansion.lean": "b83ad7df3a7cc1cb3078fe5461aef43ed1d98d9f9c74822752a193905ec0683c",
+    "CopyRowOrbit.lean": "a9255e0f393092e8738982f3cf6820e958d6c7afd1562f92fe6d1a929fb712a5",
+    "DetShear.lean": "d16e6dcda907e1c53500227453a11147943ebe9cf597e5da02f9a1c740d6dc47"
+  },
+  "partial_polar_check": {
+    "run": 46061453283,
+    "job": 140716446371,
+    "file_pass": false,
+    "clean_theorem": "upperPairSum_polar",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "remaining_errors": "Forced-row/minor normalization and explicit determinant-map equality; candidate repaired"
+  }
 }

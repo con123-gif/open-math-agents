@@ -27,7 +27,7 @@ def evenTwo (a b c : ZMod 8) : Matrix (Fin 2) (Fin 2) (ZMod 8) :=
 def evenTwoCandidateInverse (a b c : ZMod 8) : Matrix (Fin 2) (Fin 2) (ZMod 8) :=
   (4 * a * c - b ^ 2) • !![2 * c, -b; -b, 2 * a]
 
-/-- A finite scalar-ring calculation covers every possible two-dimensional pivot.
+/- A finite scalar-ring calculation covers every possible two-dimensional pivot.
 It is only the base case of the proposed general congruence induction. -/
 set_option maxRecDepth 10000 in
 lemma evenTwo_mul_candidate (a b c : ZMod 8) (hb : Nat.Coprime b.val 8) :

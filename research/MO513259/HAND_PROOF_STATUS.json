@@ -1,6 +1,6 @@
 {
   "problem": "mo-513259",
-  "status": "Complete independently challenged informal proof; several generic Lean helpers verified; full certificate unfinished",
+  "status": "Complete independently challenged informal proof; extensive generic Lean infrastructure passed, full graph certificate unfinished",
   "claim": null,
   "official_submission": null,
   "accepted": false,
@@ -21,7 +21,7 @@
   "independent_challenge": "Algebra lane verified shear permanent counts/Jacobi cancellations, inverse-shear algebra, even-offdiagonal determinant invariance, half odd-minor identity, 2\u00d72 block elimination and base case; no mathematical gap found. No formal verification asserted.",
   "math_note_sha256": "82651901ebbd4dbdda1185d4905339dab6f1207d274d239e3c9cc05054aa1134",
   "finite_computation_role": "Exploratory only; no finite computation used as an infinite proof",
-  "remaining": "Duplicate-row/column orbit identities; complementary minor identities; congruence induction and mod24 reduction; full pinned exact-target certificate; final source/prior/eligibility gates and official lease/submission stages",
+  "remaining": "Four-row/column orbit expansion, odd-principal-minor quadratic identity, congruence-invariance induction, graph mod4 and characteristic3 Lean identities, full target/pipeline; copied-row integration has two mechanical repairs pending",
   "optional_extension_counterexamples": {
     "mod8": {
       "A": [
@@ -112,6 +112,9 @@
       "map_inverse_diagonal_zero_mod_two"
     ],
     "det_rank_two_and_conditional_even_update_elaborated": true,
-    "full_graph_certificate": false
-  }
+    "full_graph_certificate": false,
+    "superseded_by_clean_sixth_check": true
+  },
+  "verification_progress": "VERIFICATION_PROGRESS.json",
+  "latest_clean_partial_run": 46061453283
 }
