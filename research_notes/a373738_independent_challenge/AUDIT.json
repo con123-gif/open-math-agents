@@ -1,0 +1,23 @@
+{
+  "problem_id": "oeis-a373738",
+  "status": "KNOWN_CONSEQUENCE_EXCLUDED",
+  "mathematical_challenge": "PASS",
+  "genuine_new_solution_count": 0,
+  "kernel_verified": false,
+  "lease_held": false,
+  "official_submitted": false,
+  "proof_note": "A373738_INDEPENDENT_CHALLENGE.md",
+  "proof_note_sha256": "5d2e2fa7d3572714066727701bdd94cb8ee024b29cfc7044e88456d619fe4507",
+  "source_url": "https://github.com/oeis/oeisdata/blob/main/seq/A373/A373738.seq",
+  "source_revision": 13,
+  "source_sha256": "b55bf56bf192cbae87f0937c9e9aba9ce07bf6ef90a4e0f67e3901f918df9b26",
+  "source_scope": "Absolute A010846(k) minus floor product at fixed squarefree kernel, omega>1; subset prime factors including1.",
+  "independent_inequality": "C(30^m)-A(30^m) >= (b+c-2a)/(12abc)*L^2+(bc-2ab-2ac)/(12abc)*L-1/6, a=log2,b=log3,c=log5,L=m*log30,m>=1",
+  "classical_prior_url": "https://arxiv.org/abs/1212.1581",
+  "classical_prior_scope": "Moree Section6 pp6-7 reports Pillai fixed-prime second term; k=3 implies gap~log30*L^2/(12abc), fully settling literal negative claim.",
+  "classical_prior_reader": "Root independently read the exact primary survey section; this lane independently proves a weaker elementary lower bound.",
+  "ennola_close_prior_url": "https://www.acadsci.fi/mathematica/1969/no440pp01-16.pdf",
+  "no_heavy_lean_or_claims": true,
+  "timestamp": "2026-11-27T23:52:34.044244+00:00",
+  "attribution": "Cornelius Lytollis (@con123-gif), assisted by ChatGPT/Codex (GPT-6; exact serving variant not exposed)."
+}
