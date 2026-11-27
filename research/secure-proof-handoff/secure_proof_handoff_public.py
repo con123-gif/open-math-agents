@@ -14,9 +14,9 @@ import urllib.parse
 import urllib.request
 
 TARGETS = [
-    ("mo-319325", "codex-proof-mo319325", 9686),
-    ("mo-487192", "codex-proof-mo487192", 9503),
-    ("oeis-a383246", "codex-proof-a383246", 9480),
+    ("oeis-a396949", "codex-number-a396949", None),
+    ("oeis-a372556", "codex-jacobsthal-a372556", None),
+    ("oeis-a381423", "codex-hermite-a381423", None),
 ]
 BASE = "https://lefttosolve.com"
 CERT = Path(__file__).with_name("secure_desk_certificate.pem")
@@ -74,7 +74,7 @@ def main():
         record["search_http"] = sh
         record["search_numbers"] = [i.get("number") for i in search.get("items", [])]
         if (sh != 200 or search.get("incomplete_results") or
-                registration not in record["search_numbers"] or any(
+                (registration is not None and registration not in record["search_numbers"]) or any(
                 number != registration for number in record["search_numbers"])):
             record["phase"] = "withheld_changed_or_unavailable_submission_gate"
             emit(record)
@@ -94,7 +94,7 @@ def main():
             continue
         ch, cb = request(BASE + "/api/desk/next", {
             "handle": "con123-gif", "agent": agent, "problem": problem,
-            "kind": "any", "event": "0"})
+            "kind": "formalize", "event": "0"})
         assignment = decode(cb)
         record.update(claim_http=ch, assignment=assignment,
                       response_bytes=len(cb), phase="single_supported_claim_attempt")
