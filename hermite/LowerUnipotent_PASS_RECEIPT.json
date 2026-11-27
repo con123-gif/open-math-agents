@@ -1,0 +1,30 @@
+{
+  "scope": "Complete lower-unipotent factorization and shear reachability helper; not a full graph proof.",
+  "run_id": 46066757009,
+  "job_id": 140733815035,
+  "code_commit": "2a634d6c1da758b72e84e98c66313f7f8207da45",
+  "canonical_helper_sha256": "c6d70f4d04e03173a0451088555aa5c23e35e31d83f0a9b183c09c7690771dda",
+  "probe_sha256": "e20bca9a8a59ca29bf4bc3ace3c7d6ef8b59585c9e4f5aed1a5a79e560c7be37",
+  "immutable_probe_byte_exact": true,
+  "remote_probe_git_blob": "efb7db02efc5c9c1521d3cd9ee89653cd5528a15",
+  "observed_exit": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "compiler_errors": false,
+  "artifact_id": 15231351708,
+  "artifact_zip_sha256": "c8f114523352483b9862346a4909176e2c33d95cfa9572dd0c65656e4d17b594",
+  "digest_matches_GitHub": true,
+  "exit_file": "ProbeMO513259LowerUnipotentSecond.lean.exit",
+  "exit_contents": "0\n",
+  "theorems": [
+    "OMA.MO513259.LowerUnipotent.unipotent_factorization",
+    "OMA.MO513259.LowerUnipotent.transvection_double_shear",
+    "OMA.MO513259.LowerUnipotent.unipotent_congruence_preserves"
+  ],
+  "full_graph_certificate": false,
+  "official_acceptance": false,
+  "counted_solve": false
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Complete block-Schur algebra helper only; not a full MO513259 proof or official acceptance.",
+  "run_id": 46065841749,
+  "job_id": 140730812144,
+  "code_commit": "b614b1c376f3797a54605247ae8cd84c1b42e7f9",
+  "formal_conjectures_commit": "9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+  "canonical_helper_sha256": "d16d1d7efade2620478d8199d35cb8bc466fa391b9b6e0884c5228549a9b709c",
+  "combined_probe_sha256": "6b69ab70bc1c2c7380d9743d6b9febc6445f0f92052a006ea6bfa2638020ad11",
+  "remote_probe_git_blob": "01542949e7dd10d40fee942db313c6ab9ee5404a",
+  "immutable_probe_byte_exact": true,
+  "theorem": "OMA.MO513259.BlockSchur.block_reduction",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "compiler_errors": false,
+  "observed_exit": 0,
+  "exit_evidence": {
+    "artifact_id": 15231380214,
+    "artifact_zip_sha256": "652bd81659b4e58879611efd7edc233c225523bdad618488e4c776b1ef5542c1",
+    "digest_matches_GitHub": true,
+    "exit_file": "ProbeMO513259BlockSchurThird.lean.exit",
+    "exit_contents": "0\n"
+  },
+  "full_graph_certificate": false,
+  "official_acceptance": false,
+  "counted_solve": false
+}
