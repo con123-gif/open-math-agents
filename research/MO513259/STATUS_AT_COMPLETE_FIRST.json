@@ -1,0 +1,42 @@
+{
+  "problem": "mo-513259",
+  "as_of_utc": "2026-11-27T21:27:08.759134+00:00",
+  "status": "FIRST_COMPLETE_CANDIDATE_PENDING_FULL_KERNEL_CHECK",
+  "both_original_graph_conjectures_included": true,
+  "full_graph_kernel_pass": false,
+  "official_claim": null,
+  "official_submission": null,
+  "official_acceptance": false,
+  "counted_campaign_solutions": 0,
+  "canonical_proof_sha256": "4f016493f3e728c754768b32451d8ba5d5c680109a15a64d7ebc96aa93fd8683",
+  "canonical_statement_sha256": "236cc7849d274d12067daf1290bb8ff29656797468a5c07235fdc6ae5a2d2980",
+  "proof_static_lint": {
+    "actual_exit": 0,
+    "statement_static_lint_actual_exit": 0,
+    "canonical_entry": "OMA.solution : type_of% @OMA.S_mo_513259.main"
+  },
+  "pending_full_run": {
+    "commit": "86677361bc1aa5ea287bf9fcaf62a8cb585fa066",
+    "run_id": 46070289768,
+    "probe": "campaign/ProbeMO513259CompleteFirst.lean"
+  },
+  "latest_completed_component_run": {
+    "commit": "6892e2341becabcfb457c35e6088c3ac80b23e8d",
+    "run_id": 46069626169,
+    "job_id": 140743180033,
+    "actual_artifact_zip_sha256": "c883d159ae67408e6d148b3cda79b6a59b37b787b0bb1468e7aa751a29876dca",
+    "observed_exits": {
+      "ProbeMO513259OrbitIncrementFirst.lean.exit": "1",
+      "ProbeMO513259FourRowsSecond.lean.exit": "1",
+      "ProbeMO513259InverseShearFirst.lean.exit": "0",
+      "ProbeMO513259InvariantStructureFirst.lean.exit": "0",
+      "ProbeMO513259PairCancellationFirst.lean.exit": "1"
+    }
+  },
+  "verification_policy": "No clean-pass label without exact artifact exit0, all plain/tagged compiler errors absent, and standard target axioms. See VERIFICATION_CORRECTION.md for historical correction.",
+  "known_background": [
+    "Knezevic, Greg Cohen and Domanskaya, arXiv:1710.01783 (2017): characteristic-three inverse-permanent identity",
+    "Darij Grinberg, Math.StackExchange2688219 comments (2018): even symmetric perturbation determinant congruence modulo8"
+  ],
+  "mathematical_review": "Independent AI-lane full informal argument challenge; not claimed human review."
+}

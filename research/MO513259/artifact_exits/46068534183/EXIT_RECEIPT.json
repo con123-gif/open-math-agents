@@ -1,0 +1,10 @@
+{
+  "run_id": 46068534183,
+  "artifact_id": 15231946732,
+  "zip_sha256": "b2f7a43513b365833958ba2c10f6bb630e24ce41a2dd454254d2123f8765fcb1",
+  "exits": {
+    "ProbeMO513259FourRowsFirst.lean.exit": "1",
+    "ProbeMO513259FourKernelSecond.lean.exit": "1",
+    "ProbeMO513259PermanentModFourSecond.lean.exit": "0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": 46069626169,
+  "artifact_id": 15233055480,
+  "zip_sha256": "c883d159ae67408e6d148b3cda79b6a59b37b787b0bb1468e7aa751a29876dca",
+  "exits": {
+    "ProbeMO513259OrbitIncrementFirst.lean.exit": "1",
+    "ProbeMO513259FourRowsSecond.lean.exit": "1",
+    "ProbeMO513259InverseShearFirst.lean.exit": "0",
+    "ProbeMO513259InvariantStructureFirst.lean.exit": "0",
+    "ProbeMO513259PairCancellationFirst.lean.exit": "1"
+  }
+}
