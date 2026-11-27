@@ -26,7 +26,6 @@ theorem main : ∀ (F : Type) [Field F] [Fintype F] (m t : ℕ) (a : F),
 
 end OMA.S_mo_298064
 
-import Mathlib
 
 /-!
 For size and rank 1 over the field with two elements, the trace-zero family
@@ -75,5 +74,4 @@ end OMA.S_mo_298064
 
 theorem OMA.disproof : ¬ (type_of% @OMA.S_mo_298064.main) := by
   exact OMA.S_mo_298064.conjecture_false
-
 #print axioms OMA.disproof
