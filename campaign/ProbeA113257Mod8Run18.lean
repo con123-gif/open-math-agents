@@ -120,8 +120,6 @@ lemma even_sq_cast_formula (n : ℕ) (hn : Even n) :
     rw [if_pos hmod]
     push_cast
     ring_nf
-    rw [show (8 : ZMod 8) = 0 from
-      (ZMod.natCast_eq_zero_iff 8 8).mpr (by norm_num)]
     rw [show (16 : ZMod 8) = 0 from
       (ZMod.natCast_eq_zero_iff 16 8).mpr (by norm_num)]
     simp
