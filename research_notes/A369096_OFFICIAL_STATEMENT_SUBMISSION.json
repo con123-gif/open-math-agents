@@ -1,0 +1,28 @@
+{
+  "problem": "oeis-a369096",
+  "stage": "official_statement_registration_only",
+  "number": 13431,
+  "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/13431",
+  "head": "5604c910c201ee3d32b32c065629b3126d924a8a",
+  "one_file": true,
+  "exact_statement": true,
+  "entire_verified_proof_in_body": true,
+  "statement_sha256": "13f3efd8ae51ceec78b3da977f484cb0b8226a76a9ac935ed1f4ba97bcbe4b64",
+  "proof_sha256": "355495db6918d5f5526620012cec7c6c8185b948f571adc7bb9e4c2defb81785",
+  "desk": [
+    {
+      "action": "note",
+      "http": 200,
+      "ok": true,
+      "id": 55972,
+      "at": "2026-11-27T22:37:01.113338+00:00"
+    },
+    {
+      "action": "release",
+      "http": 200,
+      "ok": true,
+      "at": "2026-11-27T22:37:08.770413+00:00"
+    }
+  ],
+  "official_full_proof_accepted": false
+}
