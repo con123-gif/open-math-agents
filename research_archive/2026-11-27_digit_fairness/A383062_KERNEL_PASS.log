@@ -1,0 +1,3 @@
+2026-11-27T17:39:05.6468212Z CHECKING_PROBE campaign/ProbeA383062Pred.lean
+2026-11-27T17:39:09.0393874Z CampaignProbe.lean:43:8: warning: declaration uses `sorry`
+2026-11-27T17:39:09.0394579Z 'OMA.solution' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,22 @@
+{
+  "a180195_pr7724": {
+    "number": 7724,
+    "title": "oeis-a180195",
+    "state": "closed",
+    "merged": true,
+    "merged_at": "2026-11-27T17:05:50Z",
+    "merge_commit_sha": "4c3981b3cba7fe5345bfb5343dfe75056789d645",
+    "html_url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/7724"
+  },
+  "a383248_search": {
+    "total_count": 1,
+    "items": [
+      {
+        "number": 9482,
+        "title": "statement: oeis-a383248",
+        "state": "open",
+        "html_url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9482"
+      }
+    ]
+  }
+}

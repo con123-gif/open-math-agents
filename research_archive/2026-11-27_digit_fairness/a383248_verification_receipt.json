@@ -1,0 +1,32 @@
+{
+  "problem": "oeis-a383248",
+  "first_combined_kernel_run": "https://github.com/con123-gif/open-math-agents/actions/runs/46036883361",
+  "first_combined_kernel_job": 140634423828,
+  "first_run_verdict": "FAILED: four Lean elaboration/API errors; no valid solution certificate",
+  "first_run_log": "A383248_FIRST_CHECK.log",
+  "repair_status": "PASS: repaired full combined proof checked by actual pinned Lean kernel",
+  "statement_sha256": "dcf88976b09ff62d4ca0145f94070b5df3b79af23b6069fea85ceb2d5ea405e9",
+  "probe_sha256": "a0d843245df361629f7db6ef5df107ceb3a56b44b2c23febc7a60a13f16ccaa2",
+  "proof_sha256": "69fa78708160c9b0c6405d77e508eafabd843dfdfabb8aa5047927814d26c765",
+  "statement_static_lint": "PASS; exactly one sorry in main",
+  "proof_static_lint": "PASS in isolated official lint setup; canonical import not yet executable before statement merge",
+  "official_submission": "https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/9482",
+  "acceptance": false,
+  "combined_kernel_run": "https://github.com/con123-gif/open-math-agents/actions/runs/46039599862",
+  "combined_kernel_job": 140643653986,
+  "verified_fork_commit": "5494206962443e49eaeab9da203ca32026af4245",
+  "formal_conjectures_pin": "9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+  "lean_version": "4.33.1",
+  "combined_kernel_verdict": "PASS; no errors; OMA.solution depends only on propext, Classical.choice, Quot.sound",
+  "combined_kernel_log": "A383248_KERNEL_PASS.log",
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "canonical_import_verification": "Pending statement merge; clean proof has byte-identical mathematical body",
+  "independent_mathematical_and_source_challenge": "PASS; exact full-source claim and entire argument audited by fresh-algebra lane",
+  "independent_audit_file": "fresh_algebra_work/A383248_PRIOR_AND_CHALLENGE.md",
+  "submission_kind": "statement prerequisite only",
+  "human_statement_review": "Pending; PR open at fresh observation"
+}

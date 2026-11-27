@@ -1,0 +1,6 @@
+2026-11-27T17:38:58.7336080Z CHECKING_PROBE campaign/ProbeA382465Pred.lean
+2026-11-27T17:39:02.2385410Z CampaignProbe.lean:42:8: warning: declaration uses `sorry`
+2026-11-27T17:39:02.2385936Z CampaignProbe.lean:70:6: warning: try 'simp' instead of 'simpa'
+2026-11-27T17:39:02.2386254Z 
+2026-11-27T17:39:02.2386493Z Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+2026-11-27T17:39:02.2386941Z 'OMA.solution' depends on axioms: [propext, Classical.choice, Quot.sound]

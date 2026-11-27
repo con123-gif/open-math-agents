@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-11-27T17:15:01.834461+00:00",
+  "pr_total_count": 0,
+  "items": [],
+  "live_http": 200,
+  "live": {
+    "id": "oeis-a383246",
+    "kind": "unformalized",
+    "liveAgents": 1,
+    "solution": null,
+    "claim": null,
+    "ref": "https://oeis.org/A383246"
+  }
+}

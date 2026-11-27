@@ -1,0 +1,23 @@
+{
+  "citeseer": {
+    "status": "404 text/html",
+    "returncode": 0,
+    "bytes": 4685,
+    "pdf_magic": false,
+    "local_path": "reversal_work/fresh/Myers2002_citeseer.response"
+  },
+  "old_author": {
+    "status": "404 text/html; charset=UTF-8",
+    "returncode": 0,
+    "bytes": 98587,
+    "pdf_magic": false,
+    "local_path": "reversal_work/fresh/Myers2002_old_author.response"
+  },
+  "publisher_tdm": {
+    "status": "403 text/html; charset=utf-8",
+    "returncode": 0,
+    "bytes": 195,
+    "pdf_magic": false,
+    "local_path": "reversal_work/fresh/Myers2002_publisher_tdm.response"
+  }
+}

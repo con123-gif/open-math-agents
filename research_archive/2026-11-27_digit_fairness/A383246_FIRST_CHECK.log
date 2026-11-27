@@ -1,0 +1,24 @@
+2026-11-27T16:52:11.0195770Z CHECKING_PROBE campaign/ProbeA383246.lean
+2026-11-27T16:52:14.1776884Z CampaignProbe.lean:46:8: warning: declaration uses `sorry`
+2026-11-27T16:52:14.1777375Z CampaignProbe.lean:74:6: warning: try 'simp' instead of 'simpa'
+2026-11-27T16:52:14.1777945Z 
+2026-11-27T16:52:14.1778196Z Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+2026-11-27T16:52:14.1778665Z CampaignProbe.lean:109:2: error: Type mismatch: After simplification, term
+2026-11-27T16:52:14.1779345Z   have this := Decidable.byContradiction fun a => follows_repunit._proof_1_3 he hge a;
+2026-11-27T16:52:14.1779710Z   this
+2026-11-27T16:52:14.1779964Z  has type
+2026-11-27T16:52:14.1780183Z   1 < lastDigit n
+2026-11-27T16:52:14.1780438Z but is expected to have type
+2026-11-27T16:52:14.1780755Z   (List.replicate j 1).head?.getD 1 < lastDigit n
+2026-11-27T16:52:14.1781108Z CampaignProbe.lean:120:14: error: Type mismatch
+2026-11-27T16:52:14.1781533Z   Finset.le_sup (hm j)
+2026-11-27T16:52:14.1781748Z has type
+2026-11-27T16:52:14.1782287Z   ?m.38 (repunit j) ≤ used.sup ?m.38
+2026-11-27T16:52:14.1782576Z but is expected to have type
+2026-11-27T16:52:14.1782853Z   repunit j ≤ used.sup id
+2026-11-27T16:52:14.1783872Z CampaignProbe.lean:126:21: error: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+2026-11-27T16:52:14.1784373Z CampaignProbe.lean:134:12: error: failed to synthesize
+2026-11-27T16:52:14.1784732Z   Decidable (admissible (state 0).2)
+2026-11-27T16:52:14.1784893Z 
+2026-11-27T16:52:14.1785163Z Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+2026-11-27T16:52:14.1785867Z 'OMA.solution' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

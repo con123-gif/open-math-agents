@@ -1,0 +1,141 @@
+{
+  "openalex": {
+    "id": "https://openalex.org/W2102040169",
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "bronze",
+      "oa_url": "https://www.sciencedirect.com/science/article/pii/S0097316502932796/pdf",
+      "any_repository_has_fulltext": false
+    },
+    "best_oa_location": {
+      "id": "doi:10.1006/jcta.2002.3279",
+      "doi": "https://doi.org/10.1006/jcta.2002.3279",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1006/jcta.2002.3279",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0097316502932796/pdf",
+      "source": {
+        "id": "https://openalex.org/S128556326",
+        "display_name": "Journal of Combinatorial Theory Series A",
+        "issn_l": "0097-3165",
+        "issn": [
+          "0097-3165",
+          "1096-0899"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "listed_in": [
+          "anvur-scientific",
+          "cwts-core",
+          "dongbi-a",
+          "jufo-3",
+          "norway-2",
+          "poland-100",
+          "russia-white-list-1"
+        ],
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of Combinatorial Theory, Series A",
+      "raw_type": "journal-article"
+    },
+    "locations": [
+      {
+        "id": "doi:10.1006/jcta.2002.3279",
+        "doi": "https://doi.org/10.1006/jcta.2002.3279",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1006/jcta.2002.3279",
+        "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0097316502932796/pdf",
+        "source": {
+          "id": "https://openalex.org/S128556326",
+          "display_name": "Journal of Combinatorial Theory Series A",
+          "issn_l": "0097-3165",
+          "issn": [
+            "0097-3165",
+            "1096-0899"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "listed_in": [
+            "anvur-scientific",
+            "cwts-core",
+            "dongbi-a",
+            "jufo-3",
+            "norway-2",
+            "poland-100",
+            "russia-white-list-1"
+          ],
+          "host_organization": "https://openalex.org/P4310320990",
+          "host_organization_name": "Elsevier BV",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320990"
+          ],
+          "host_organization_lineage_names": [
+            "Elsevier BV"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Journal of Combinatorial Theory, Series A",
+        "raw_type": "journal-article"
+      },
+      {
+        "id": "pmh:oai:CiteSeerX.psu:10.1.1.84.7815",
+        "doi": null,
+        "is_oa": false,
+        "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.84.7815",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "http://www.sju.edu/~amyers/PAPERS/Perms.pdf",
+        "raw_type": "text"
+      }
+    ]
+  },
+  "crossref": {
+    "title": [
+      "Counting Permutations by Their Rigid Patterns"
+    ],
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0097316502932796?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0097316502932796?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0097316502932796"
+      }
+    },
+    "URL": "https://doi.org/10.1006/jcta.2002.3279"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "a383246": {
+    "statement_is_exact_probe_prefix": true,
+    "body_is_in_probe": true,
+    "body_is_in_canonical_proof": true,
+    "probe_sha256": "9ee4a1f84e004f63715b8ca71c6d39b61048749897b2f9ff7fefafe3d442b26d",
+    "statement_sha256": "c89d1667ee20f8d9bc3357c205136b20578368f5bdba43bdf9121d35c7ad7ae9",
+    "canonical_proof_sha256": "bb5068729aa0d654bf5a8e6bccebf080a9832ab3bc93540f6e5b34910e6cb92b"
+  },
+  "a383248": {
+    "statement_is_exact_probe_prefix": true,
+    "body_is_in_probe": true,
+    "body_is_in_canonical_proof": true,
+    "probe_sha256": "a0d843245df361629f7db6ef5df107ceb3a56b44b2c23febc7a60a13f16ccaa2",
+    "statement_sha256": "dcf88976b09ff62d4ca0145f94070b5df3b79af23b6069fea85ceb2d5ea405e9",
+    "canonical_proof_sha256": "69fa78708160c9b0c6405d77e508eafabd843dfdfabb8aa5047927814d26c765"
+  }
+}

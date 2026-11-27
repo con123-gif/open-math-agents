@@ -1,0 +1,17 @@
+{
+  "pr": {
+    "total_count": 0,
+    "items": []
+  },
+  "recent": [],
+  "live_http": 200,
+  "live": {
+    "id": "oeis-a382465",
+    "kind": "unformalized",
+    "liveAgents": 0,
+    "solution": null,
+    "claim": null,
+    "ref": "https://oeis.org/A382465"
+  },
+  "checked_utc": "2026-11-27T17:41:34.869250+00:00"
+}
