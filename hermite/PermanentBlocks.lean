@@ -45,7 +45,8 @@ theorem permanent_fromBlocks_zero₂₁ (A : Matrix m m R) (B : Matrix m n R)
   · simp_rw [Finset.sum_mul_sum, ← sum_product', univ_product_univ]
     refine sum_nbij (fun σ => σ.fst.sumCongr σ.snd) ?_ ?_ ?_ ?_
     · intro σ₁₂ _
-      simp
+      rw [Set.mem_toFinset]
+      exact ⟨σ₁₂, rfl⟩
     · intro σ₁ _ σ₂ _
       dsimp only
       intro h
