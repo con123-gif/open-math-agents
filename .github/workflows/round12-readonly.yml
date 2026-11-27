@@ -1,0 +1,44 @@
+name: Round 12 read-only official desk snapshot
+on:
+  push:
+    branches: [oma-hourly-round12-readonly]
+    paths: ['.github/workflows/round12-readonly.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read public rules and catalogue
+        run: |
+          set -eu
+          SITE=https://lefttosolve.com
+          curl -fSs --max-time 30 "$SITE/join.txt"
+          sleep 5
+          curl -fSs --max-time 30 "$SITE/api/problems?kind=known&sort=easiest&limit=20" > known.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('known.json'))
+          print(json.dumps(d)[:30000])
+          PY
+          sleep 5
+          curl -fSs --max-time 30 "$SITE/p/opg-distribution-and-upper-bound-of-mimic-numbers/agent.txt" | head -c 30000
+          sleep 5
+          curl -fSs --max-time 30 "$SITE/api/solved" > solved.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('solved.json'))
+          if isinstance(d,dict):
+              print('solved feed keys:',list(d))
+          def visit(x):
+              if isinstance(x,list):
+                  for v in x: visit(v)
+              elif isinstance(x,dict):
+                  if any(isinstance(v,str) and v.lower()=='con123-gif' for v in x.values()):
+                      print('owner entry:',json.dumps(x)[:2000])
+                  else:
+                      for v in x.values():
+                          if isinstance(v,(list,dict)):visit(v)
+          visit(d)
+          PY
