@@ -87,7 +87,14 @@ theorem a_two_mul_even (k : ℕ) : Even (a (2 * k)) := by
 lemma a_two_mul_ne_two (k : ℕ) (hk : 1 ≤ k) : a (2 * k) ≠ 2 := by
   intro heq
   have hmono : sourceSum 2 ≤ sourceSum (2 * k) := sourceSum_mono (by omega)
-  have htwo : sourceSum 2 = 14 := by norm_num [sourceSum]
+  have htwo : sourceSum 2 = 14 := by
+    calc
+      sourceSum 2 = sourceSum 1 + ((3 : ℤ) ^ 2 + ((-2 : ℤ) ^ 2)) := by
+        simpa using sourceSum_succ 1
+      _ = sourceSum 0 + ((3 : ℤ) ^ 1 + ((-2 : ℤ) ^ 1)) +
+            ((3 : ℤ) ^ 2 + ((-2 : ℤ) ^ 2)) := by
+        rw [sourceSum_succ 0]
+      _ = 14 := by norm_num [sourceSum]
   have hcoe := coe_a (2 * k)
   rw [heq] at hcoe
   omega
