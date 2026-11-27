@@ -345,7 +345,8 @@ lemma partialValue_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) 
       interval_cases h <;> norm_num [partialValue, Finset.sum_range_succ, jac, hc0, hc1]
     · have hh : 2 ≤ h := by omega
       have hstep : partialValue m h = partialValue m (h - 1) + m.count h * jac h := by
-        convert partialValue_succ m (h - 1) using 1 <;> congr 1 <;> omega
+        have heq : h - 1 + 1 = h := by omega
+        simpa only [heq] using partialValue_succ m (h - 1)
       rcases Nat.mod_two_eq_zero_or_one h with he | ho
       · have hip := (ih (h - 1) (by omega)).2 (by omega)
         have heq : h - 1 + 1 = h := by omega
@@ -390,11 +391,15 @@ lemma partialValue_bound {n : ℕ} {m : Multiset ℕ} (hm : best n m) (h : ℕ) 
             rw [heq2] at hi2
             have hstep2 : partialValue m (h - 1) =
                 partialValue m (h - 2) + m.count (h - 1) * jac (h - 1) := by
-              convert partialValue_succ m (h - 2) using 1 <;> congr 1 <;> omega
+              have heq : h - 2 + 1 = h - 1 := by omega
+              simpa only [heq] using partialValue_succ m (h - 2)
             have hmul := Nat.mul_le_mul_right (jac (h - 1)) ha
             have hj : jac (h + 1) = jac h + 2 * jac (h - 1) := by
-              convert (show jac ((h - 1) + 2) =
-                jac ((h - 1) + 1) + 2 * jac (h - 1) from rfl) using 1 <;> congr 1 <;> omega
+              have hr : jac ((h - 1) + 2) =
+                  jac ((h - 1) + 1) + 2 * jac (h - 1) := rfl
+              have heq1 : h - 1 + 1 = h := by omega
+              have heq2 : h - 1 + 2 = h + 1 := by omega
+              simpa only [heq1, heq2] using hr
             rw [hstep, hstep2, h1]
             omega
         exact ⟨by intro hbad; omega, fun _ => hres⟩
@@ -409,7 +414,8 @@ lemma value_eq_partialValue {m : Multiset ℕ} {h : ℕ} (hm : ∀ i ∈ m, i �
     exact Finset.mem_range.mpr (by have hh := hm i (Multiset.mem_toFinset.mp hi); omega)
   · intro i hi hnot
     have hn : i ∉ m := by simpa using hnot
-    simp [Multiset.count_eq_zero_of_not_mem hn]
+    rw [Multiset.count_eq_zero.mpr hn]
+    simp
 
 end A372556Certificate
 
