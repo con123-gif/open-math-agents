@@ -1,0 +1,59 @@
+name: Campaign Lean verification
+on:
+  push:
+    branches: [oma-campaign-20261127]
+    paths: ['.github/workflows/campaign-verify.yml', 'campaign/**']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch official checker and pinned formal sources
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/GuillaumeBAUD-coder/open-math-agents "$RUNNER_TEMP/oma"
+          C=$(python3 -I -c 'import json,os; print(json.load(open(os.environ["RUNNER_TEMP"]+"/oma/data/catalog.json"))["meta"]["upstreamCommit"])')
+          git init -q "$RUNNER_TEMP/fc"
+          git -C "$RUNNER_TEMP/fc" remote add origin https://github.com/google-deepmind/formal-conjectures
+          git -C "$RUNNER_TEMP/fc" fetch -q --depth 1 origin "$C"
+          git -C "$RUNNER_TEMP/fc" checkout -q FETCH_HEAD
+          printf 'FC commit: %s\n' "$C"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            ${{ runner.temp }}/fc/.lake
+          key: campaign-fc-9097e2f90e66-v1
+      - name: Load Lean and Mathlib
+        run: |
+          set -euo pipefail
+          if [ ! -x ~/.elan/bin/lake ]; then
+            curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+            sh /tmp/elan-init.sh -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          cd "$RUNNER_TEMP/fc"
+          ~/.elan/bin/lake exe cache get
+      - name: Execute probes and exact official checks
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          shopt -s nullglob
+          for F in campaign/Probe*.lean; do
+            cp "$F" "$RUNNER_TEMP/fc/CampaignProbe.lean"
+            (cd "$RUNNER_TEMP/fc" && lake env lean CampaignProbe.lean) 2>&1 | tee "results/$(basename "$F").log"
+          done
+          for F in campaign/proofs/*.lean; do
+            P="proofs/$(basename "$F")"
+            cp "$F" "$RUNNER_TEMP/oma/$P"
+            (cd "$RUNNER_TEMP/oma" && OMA_FC="$RUNNER_TEMP/fc" tools/check.sh "$P" "$GITHUB_WORKSPACE/results/$(basename "$F").json") || true
+            python3 -I -c 'import json,sys; x=json.load(open(sys.argv[1])); print(x)' "results/$(basename "$F").json"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: campaign-verification
+          path: results/
