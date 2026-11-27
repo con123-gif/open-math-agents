@@ -192,37 +192,47 @@ theorem square_index_mod_sixteen (n : ℕ) (hsquare : IsSquare (a n)) :
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · omega
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · norm_num [hr] at ha
     rw [ha] at hs
-    rcases hs with h | h | h <;> norm_num at h
+    exfalso
+    rcases hs with h | h | h <;> exact (by decide) h
   · omega
 
 #print axioms cast_a_mod_eight
