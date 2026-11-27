@@ -1,0 +1,77 @@
+{
+  "problem": "mo-513259",
+  "scope": "Partial infrastructure for two universal graph congruences",
+  "full_graph_certificate": false,
+  "official_lease": null,
+  "official_submission": null,
+  "official_acceptance": false,
+  "counted_campaign_solutions": 0,
+  "passed_files": [
+    {
+      "file": "campaign/ProbeMO513259Permanent.lean",
+      "commit": "8faee0ab3daef866186da4b540a6dd39b6e7b808",
+      "run": 46054867616,
+      "job": 140694781261,
+      "at": "2026-11-27T19:12:45.5223658Z",
+      "theorem": "OMA.MO513259.permanent_double_shear",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "file_errors": 0
+    },
+    {
+      "file": "campaign/ProbeMO513259TwoByTwoSecond.lean",
+      "local_immutable_copy": "verified/TwoByTwoExtensions.lean",
+      "commit": "0955940afecf8fe9fb4e4a5780e3b774f0ac2266",
+      "run": 46057885977,
+      "job": 140704710871,
+      "at": "2026-11-27T19:37:46Z",
+      "theorems": [
+        "permanent_fin_two",
+        "even_diagonal_extension_eight_false",
+        "even_diagonal_extension_twenty_four_false"
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "file_errors": 0,
+      "scope_warning": "Optional even-diagonal extension counterexamples do not solve the original graph conjectures",
+      "sha256": "7a61f382d08a582ca58338be98ac4649ba2655c90e75ac860a894e5bb4253175"
+    }
+  ],
+  "statement_checker": {
+    "run": 46054867616,
+    "job": 140694781261,
+    "at": "2026-11-27T19:13:06.5735329Z",
+    "verdict": "ACCEPTED: compiles, requires human translation review"
+  },
+  "partial_theorems_from_errorful_fourth_file": {
+    "run": 46057885977,
+    "job": 140704710871,
+    "file_pass": false,
+    "standard_axiom_prints": [
+      "permanent_double_shear",
+      "duplicate_row_even_eight",
+      "base_two_scalar",
+      "map_inverse_diagonal_zero_mod_two",
+      "exists_unit_offdiagonal"
+    ],
+    "remaining_errors": "Four finite even-witness Decidable inferences and pivot symmetry rewrite; repaired in next candidate"
+  },
+  "pending_probe": {
+    "commit": "dec1fc3e6b2e1623f02be15aa5bd6aea86ec3a50",
+    "scope": "Repaired determinant integration, pivot, conditional CRT and complete two-dimensional induction base",
+    "verdict": "Not yet read"
+  },
+  "remaining_general_proof": [
+    "Duplicate-row and duplicated-row/column orbit expansions modulo four and eight",
+    "Complementary minor identities in the needed generic form",
+    "General congruence invariance and symmetric block elimination induction",
+    "Known graph modulo-four and characteristic-three identities in Lean",
+    "Full exact registered target check, final eligibility gate, lease, official submission and acceptance"
+  ]
+}

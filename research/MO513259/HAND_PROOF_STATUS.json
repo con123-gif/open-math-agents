@@ -1,6 +1,6 @@
 {
   "problem": "mo-513259",
-  "status": "Complete hand-proof candidate, independently mathematically challenged; Lean not yet built",
+  "status": "Complete independently challenged informal proof; several generic Lean helpers verified; full certificate unfinished",
   "claim": null,
   "official_submission": null,
   "accepted": false,
@@ -21,7 +21,7 @@
   "independent_challenge": "Algebra lane verified shear permanent counts/Jacobi cancellations, inverse-shear algebra, even-offdiagonal determinant invariance, half odd-minor identity, 2\u00d72 block elimination and base case; no mathematical gap found. No formal verification asserted.",
   "math_note_sha256": "82651901ebbd4dbdda1185d4905339dab6f1207d274d239e3c9cc05054aa1134",
   "finite_computation_role": "Exploratory only; no finite computation used as an infinite proof",
-  "remaining": "Generic Lean permanent expansion and congruence invariance lemmas; exact pinned certificate; final prior/current eligibility gate; official lease/statement/proof stages",
+  "remaining": "Duplicate-row/column orbit identities; complementary minor identities; congruence induction and mod24 reduction; full pinned exact-target certificate; final source/prior/eligibility gates and official lease/submission stages",
   "optional_extension_counterexamples": {
     "mod8": {
       "A": [
@@ -72,5 +72,46 @@
       "failed_residue": 12
     },
     "count": 0
+  },
+  "partial_kernel_verification": {
+    "problem": "mo-513259",
+    "scope": "PARTIAL generic permanent helper, not a full solution",
+    "commit": "8faee0ab3daef866186da4b540a6dd39b6e7b808",
+    "run": 46054867616,
+    "job": 140694781261,
+    "at": "2026-11-27T19:12:45.5223658Z",
+    "theorem": "OMA.MO513259.permanent_double_shear",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "errors": 0,
+    "helper_sha256": "e60d297ad2f61d29c129d0ab82ef96d0dac9ffe83419f638774707ff3192fa8c",
+    "exact_immutable_readback": true,
+    "official_statement_checker": {
+      "verdict": "accepted",
+      "at": "2026-11-27T19:13:06.5735329Z",
+      "reason": "Compiles; human translation review still required"
+    },
+    "full_kernel_certificate": false,
+    "official_acceptance": false,
+    "counted_solve": 0
+  },
+  "latest_partial_check": {
+    "commit": "c2d9378ccd1b3ff021290239fe6c9e02fd99576d",
+    "run": 46057121779,
+    "job": 140702224652,
+    "at": "2026-11-27T19:31:47Z",
+    "file_pass": false,
+    "remaining_error": "Decidable inference for the explicit residue-map equivalence, repaired and third probe queued",
+    "standard_axiom_prints": [
+      "permanent_double_shear",
+      "duplicate_row_even_eight",
+      "base_two_scalar",
+      "map_inverse_diagonal_zero_mod_two"
+    ],
+    "det_rank_two_and_conditional_even_update_elaborated": true,
+    "full_graph_certificate": false
   }
 }

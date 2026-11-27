@@ -1,0 +1,25 @@
+{
+  "problem": "mo-513259",
+  "scope": "PARTIAL generic permanent helper, not a full solution",
+  "commit": "8faee0ab3daef866186da4b540a6dd39b6e7b808",
+  "run": 46054867616,
+  "job": 140694781261,
+  "at": "2026-11-27T19:12:45.5223658Z",
+  "theorem": "OMA.MO513259.permanent_double_shear",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "errors": 0,
+  "helper_sha256": "e60d297ad2f61d29c129d0ab82ef96d0dac9ffe83419f638774707ff3192fa8c",
+  "exact_immutable_readback": true,
+  "official_statement_checker": {
+    "verdict": "accepted",
+    "at": "2026-11-27T19:13:06.5735329Z",
+    "reason": "Compiles; human translation review still required"
+  },
+  "full_kernel_certificate": false,
+  "official_acceptance": false,
+  "counted_solve": 0
+}
