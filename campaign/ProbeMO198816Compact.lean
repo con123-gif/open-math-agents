@@ -197,7 +197,8 @@ lemma lam_mem_spectrum :
     lam ∈ spectrum ℂ ((OMA.S_mo_198816.perturbation P w).map Complex.ofReal) := by
   let M := (OMA.S_mo_198816.perturbation P w).map Complex.ofReal
   have heig : M *ᵥ v = lam • v := by
-    simpa [M, OMA.S_mo_198816.perturbation] using eig
+    dsimp only [M, OMA.S_mo_198816.perturbation]
+    exact eig
   have hevec : Module.End.HasEigenvector M.toLin' lam v := by
     apply Module.End.hasEigenvector_iff.mpr
     refine ⟨Module.End.mem_eigenspace_iff.mpr ?_, vne⟩
