@@ -70,6 +70,7 @@ theorem sigma_pp_bound_coprime_two {n : ℕ} (hn : PP n) (hodd : Nat.Coprime 2 n
   rcases hn with ⟨p, e, hp, he, rfl⟩
   have hcp : Nat.Coprime 2 p := (Nat.coprime_pow_right_iff he 2 p).mp hodd
   have hp3 : 3 ≤ p := by
+    have hp2le : 2 ≤ p := hp.two_le
     by_contra h
     have hp2 : p = 2 := by omega
     subst p
@@ -210,7 +211,7 @@ theorem pp_product_dvd (a b : ℕ) (ha : 1 < a) (hb : 1 < b)
       norm_num at hcop
     have h := two_pp_budget b a (sigma b) (sigma a) hb4 ha3
       (sigma_pp_bound hpb) (sigma_pp_bound hpa)
-    omega
+    simpa only [Nat.add_comm, Nat.mul_comm] using h
   rw [hmul]
   exact (factorial_product_dvd
     (Nat.dvd_factorial (ArithmeticFunction.sigma_pos 1 a (by omega)) le_rfl)
@@ -252,11 +253,13 @@ theorem sigma_dvd_or_pp (n : ℕ) : 0 < n → sigma n ∣ n.factorial ∨ PP n :
             exact hnot had
           have hbudget : sigma b + a ≤ b * a :=
             mixed_budget b a (sigma b) (by omega) ha3 (sigma_pp_bound hpb)
+          have hbudget' : a + sigma b ≤ a * b := by
+            simpa only [Nat.add_comm, Nat.mul_comm] using hbudget
+          have hsbd : sigma b ∣ (sigma b).factorial :=
+            Nat.dvd_factorial (ArithmeticFunction.sigma_pos 1 b (by omega)) le_rfl
           rw [hmul]
-          simpa [Nat.mul_comm] using
-            (factorial_product_dvd
-              (Nat.dvd_factorial (ArithmeticFunction.sigma_pos 1 b (by omega)) le_rfl) had).trans
-              (Nat.factorial_dvd_factorial hbudget)
+          exact (factorial_product_dvd had hsbd).trans
+            (Nat.factorial_dvd_factorial hbudget')
       · rcases ihb (by omega) with hbd | hpb
         · left
           have hb3 : 3 ≤ b := by
@@ -310,7 +313,9 @@ theorem odd_geometric_factor (p m : ℕ) :
                 rw [ih, hpow0, hpow1]
         _ = (p + 1) * ((∑ j ∈ Finset.range (m + 1), (p ^ 2) ^ j) +
               (p ^ 2) ^ (m + 1)) := by ring
-        _ = _ := by rw [Finset.sum_range_succ]
+        _ = _ := by
+          congr 1
+          exact (Finset.sum_range_succ (fun j : ℕ => (p ^ 2) ^ j) (m + 1)).symm
 
 theorem prime_sigma_pp_square (n : ℕ) (hn : 4 ≤ n)
     (hsprime : (sigma n).Prime) (hslarge : n < sigma n) (hpp : PP n) :
@@ -326,7 +331,7 @@ theorem prime_sigma_pp_square (n : ℕ) (hn : 4 ≤ n)
       rw [show e + 1 = 2 * m + 2 by omega, odd_geometric_factor]
       exact dvd_mul_right _ _
     have hsum : p + 1 = sigma n :=
-      (hsprime.dvd_prime_two_le (by omega)).mp hdiv
+      (Nat.dvd_prime_two_le hsprime (by omega)).mp hdiv
     have hple : p ≤ n := by
       rw [hnEq]
       exact Nat.le_self_pow (Nat.ne_of_gt he) p
@@ -352,7 +357,7 @@ theorem OMA.solution : type_of% @OMA.S_oeis_a390815.main := by
           ArithmeticFunction.sigma_pos 1 n (by omega)
         change 1 < A390815Research.sigma n /
           Nat.gcd (A390815Research.sigma n) n.factorial at hd
-        rw [Nat.gcd_eq_left hdiv, Nat.div_self (Nat.ne_of_gt hspos)] at hd
+        rw [Nat.gcd_eq_left hdiv, Nat.div_self hspos] at hd
         omega
       · obtain ⟨hp, hlarge, hpp⟩ := A390815Research.sigma_prime_of_not_dvd n h6 hdiv
         have hcop : Nat.gcd (A390815Research.sigma n) n.factorial = 1 :=
