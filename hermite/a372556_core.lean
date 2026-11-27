@@ -17,9 +17,21 @@ lemma alt_step (n : ℕ) :
     have hr : jac (n + 2) = jac (n + 1) + 2 * jac n := rfl
     rcases Nat.mod_two_eq_zero_or_one n with h | h
     · have hh := ih.1 h
-      constructor <;> intro hn <;> omega
+      constructor
+      · intro hn
+        omega
+      · intro hn
+        change 2 * jac (n + 1) = jac (n + 2) + 1
+        rw [hr]
+        omega
     · have hh := ih.2 h
-      constructor <;> intro hn <;> omega
+      constructor
+      · intro hn
+        change jac (n + 2) = 2 * jac (n + 1) + 1
+        rw [hr]
+        omega
+      · intro hn
+        omega
 
 lemma even_quad {i : ℕ} (hi : i % 2 = 0) : jac (i + 2) = 4 * jac i + 1 := by
   have h := (alt_step i).1 hi
@@ -46,7 +58,7 @@ lemma jac_strict {i : ℕ} (hi : 2 ≤ i) : jac i < jac (i + 1) := by
   have hh : jac (j + 2) < jac (j + 3) := by
     have hr : jac (j + 3) = jac (j + 2) + 2 * jac (j + 1) := rfl
     omega
-  simpa [Nat.add_comm] using hh
+  convert hh using 1 <;> congr 1 <;> omega
 
 lemma index_le (i : ℕ) : i ≤ jac i + 1 := by
   induction i with
