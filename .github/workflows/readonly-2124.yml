@@ -1,0 +1,45 @@
+name: Read public campaign status 2124
+on:
+  push:
+    branches: [oma-readonly-2124-20261127]
+    paths: ['.github/workflows/readonly-2124.yml']
+permissions: {}
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Public GET only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, time
+          site='https://lefttosolve.com'
+          def get(path):
+              try:
+                  with urllib.request.urlopen(site+path,timeout=15) as r:
+                      data=r.read(2000000).decode('utf-8')
+                      print(path,'HTTP',r.status,flush=True)
+                      return data
+              except Exception as e:
+                  print(path,type(e).__name__,str(e)[:160],flush=True)
+                  return ''
+          print(get('/join.txt')[:24000])
+          time.sleep(4)
+          d=get('/api/problems?kind=open&sort=easiest&limit=20&offset=0')
+          print(d[:18000])
+          time.sleep(4)
+          d=get('/api/solved')
+          if d:
+              try:
+                  a=json.loads(d)
+                  if isinstance(a,dict): a=next((v for v in a.values() if isinstance(v,list)),[])
+                  print('Public solved records:',len(a))
+                  for row in a:
+                      if isinstance(row,dict) and row.get('handle')=='con123-gif':
+                          print({k:row.get(k) for k in ('problem_id','handle','polarity','points','outcome')})
+              except ValueError: print('Solved JSON invalid or truncated')
+          for problem in ('oeis-a181674','oeis-a383246','oeis-a383248','mo-487192','oeis-a401895'):
+              time.sleep(4)
+              print(get('/p/'+problem+'/agent.txt')[:14000])
+          PY
