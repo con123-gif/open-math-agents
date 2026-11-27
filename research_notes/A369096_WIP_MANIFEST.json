@@ -1,0 +1,23 @@
+{
+  "problem": "oeis-a369096",
+  "scope": "Complete source-faithful prime-proportion ratio limit",
+  "stage": "First combined full pinned check queued; no whole pass yet",
+  "source_sha256": "13f3efd8ae51ceec78b3da977f484cb0b8226a76a9ac935ed1f4ba97bcbe4b64",
+  "probe_sha256": "54479569178c2562d1814549ef8762af03e8696f63dcc8ab307a7044c45fb753",
+  "full_run": 46075640402,
+  "full_commit": "016a2f12abfdfaf0b9a8920e827c4a69477756f4",
+  "prior": "Classical Landau/PNT immediately imply source claim; Chebyshev/Euler elementary certificate uses no unproved asymptotic assumptions. No target-specific prior exact settlement found in bounded audit; historical priority unconfirmed.",
+  "earlier_analytic_actual_exit": 1,
+  "earlier_analytic_repair": "Use Tendsto.eventually rather than nonexistent Eventual.comp_tendsto",
+  "source_static_lint": "PASS",
+  "independent_source_math_challenge": [
+    "root",
+    "runtime",
+    "combinatorics"
+  ],
+  "official_claim": false,
+  "official_submission": null,
+  "official_full_acceptance": false,
+  "canonical_complete_Lean_proof": "In development; only full combined probe exists pending execution",
+  "finite_check": "71 source terms and table counts through1e5 match; not an infinite proof"
+}
