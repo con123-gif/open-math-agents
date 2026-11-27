@@ -23,6 +23,7 @@ jobs:
           printf 'FC commit: %s\n' "$(git -C "$RUNNER_TEMP/fc" rev-parse HEAD)"
           cat "$RUNNER_TEMP/fc/lean-toolchain"
       - uses: actions/cache@v4
+        id: hermite-cache
         with:
           path: |
             ~/.elan
@@ -39,6 +40,13 @@ jobs:
           cd "$RUNNER_TEMP/fc"
           ~/.elan/bin/lake exe cache get
           ~/.elan/bin/lake env lean --version
+      - uses: actions/cache/save@v4
+        if: steps.hermite-cache.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ~/.elan
+            ${{ runner.temp }}/fc/.lake
+          key: hermite-fc-9097e2f90e66-v1
       - name: Execute modified complete probes
         run: |
           set -euo pipefail
