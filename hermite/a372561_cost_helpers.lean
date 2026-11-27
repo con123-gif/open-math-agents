@@ -140,6 +140,7 @@ lemma lift_lower_one {q R N : ℕ} (hq : 2 ≤ q) (heven : q % 2 = 0)
     (D_plus_four heven (by decide)) ?_ ?_ hm
   · have hd := D_minus_four (q := q) (E := 1) (by omega) (by decide)
     simp only [pow_one, Nat.sub_self, Nat.mul_zero, Nat.add_zero] at hd
+    simp only [pow_one]
     rw [hd.1, hd.2]
     exact hc3
   · intro hr
