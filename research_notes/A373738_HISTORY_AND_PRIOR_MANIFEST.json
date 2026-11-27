@@ -1,0 +1,57 @@
+{
+  "problem": "oeis-a373738",
+  "status": "known_classical_consequence_exclusion",
+  "date": "2026-11-27",
+  "history_scope": "All six commits returned by official oeis/oeisdata Git history for this file; five readable snapshots, one file404; not all13 original interactive revisions",
+  "snapshots": [
+    {
+      "sha": "571197984aeda7b8b680fe3a1f6a43f9898cd441",
+      "date": "2024-11-24T14:57:50Z",
+      "status": "read",
+      "revision": "%I A373738 #13 Aug 29 2024 17:47:06",
+      "absolute_conjecture_unchanged": true
+    },
+    {
+      "sha": "82c868008340791ccc09a7901effa6e9568e4c70",
+      "date": "2024-11-24T08:08:07Z",
+      "status": "file404",
+      "revision": null,
+      "absolute_conjecture_unchanged": null
+    },
+    {
+      "sha": "4906e8697c6ca18451c11247338ea2c7cf3a4883",
+      "date": "2024-09-17T07:12:09Z",
+      "status": "read",
+      "revision": "%I A373738 #13 Aug 29 2024 17:47:06",
+      "absolute_conjecture_unchanged": true
+    },
+    {
+      "sha": "dc80c0c27febabbd39d22743ef5b3a88f0f1fe5b",
+      "date": "2024-08-30T07:13:15Z",
+      "status": "read",
+      "revision": "%I A373738 #13 Aug 29 2024 17:47:06",
+      "absolute_conjecture_unchanged": true
+    },
+    {
+      "sha": "2b487a09bfd5855726677a7716a06360bd70f4b6",
+      "date": "2024-08-27T07:12:56Z",
+      "status": "read",
+      "revision": "%I A373738 #8 Aug 12 2024 02:57:44",
+      "absolute_conjecture_unchanged": true
+    },
+    {
+      "sha": "512a73b1dc920ad30217f26a2925d6fb630c7d19",
+      "date": "2024-08-12T07:12:57Z",
+      "status": "read",
+      "revision": "%I A373738 #8 Aug 12 2024 02:57:44",
+      "absolute_conjecture_unchanged": true
+    }
+  ],
+  "upstream_allstate_pr_count": 0,
+  "trureturing_exact_code_count": 0,
+  "source_revision": 13,
+  "current_live_status": "Read-only API403; no live null-solution/agent status asserted",
+  "lease": "No claim attempted",
+  "lean": "No Lean execution",
+  "accepted": false
+}
