@@ -76,7 +76,7 @@ theorem OMA.solution : type_of% @OMA.S_oeis_a023365.main := by
     exact Int.dvd_natAbs.mp (Int.natCast_dvd_natCast.mpr h)
   have hcop : Nat.Coprime p.natAbs (2 ^ (3 ^ n)) := hcop2.pow_right _
   have hden : (((p : ℚ) / ((2 : ℤ) ^ (3 ^ n) : ℚ)).den : ℤ) = (2 : ℤ) ^ (3 ^ n) := by
-    simpa only [Int.cast_pow] using
+    simpa only [Int.cast_pow, Int.cast_ofNat] using
       (Rat.den_div_eq_of_coprime (a := p) (b := (2 : ℤ) ^ (3 ^ n))
         (by positivity) (by simpa using hcop))
   have hnatden : ((p : ℚ) / (2 : ℚ) ^ (3 ^ n)).den = (2 : ℕ) ^ (3 ^ n) := by

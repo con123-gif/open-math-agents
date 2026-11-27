@@ -13,6 +13,8 @@ The rate is positive. No stochasticity or invertibility hypothesis is added.
 
 namespace OMA.S_mo_466218
 
+open scoped BigOperators
+
 noncomputable def resolvent {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (t : ℝ) :
     Matrix (Fin n) (Fin n) ℝ := t • (t • 1 - A)⁻¹
 

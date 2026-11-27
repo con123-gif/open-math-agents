@@ -13,6 +13,8 @@ The rate is positive. No stochasticity or invertibility hypothesis is added.
 
 namespace OMA.S_mo_466218
 
+open scoped BigOperators
+
 noncomputable def resolvent {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (t : ℝ) :
     Matrix (Fin n) (Fin n) ℝ := t • (t • 1 - A)⁻¹
 
@@ -28,7 +30,7 @@ end OMA.S_mo_466218
 -- Source: user133281, MathOverflow question 466218, CC BY-SA 4.0.
 -- Credit: Cornelius Lytollis (@con123-gif), assisted by ChatGPT.
 
-open scoped BigOperators
+open scoped BigOperators Matrix
 
 lemma oma466218_identity {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (t : ℝ) (hr : ∀ i, ∑ j, A i j = 0) (v : Fin n → ℝ) (i : Fin n) :
