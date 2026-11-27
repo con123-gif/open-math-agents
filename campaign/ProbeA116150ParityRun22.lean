@@ -5,10 +5,12 @@ open BigOperators
 namespace A116150ParityRun22
 
 /-- Verbatim copy of `OeisA116150.a` at formal-conjectures commit
-`9097e2f90e66d2f6244209cb1c07f7120d17ec53`. -/
+`9097e2f90e66d2f6244209cb1c07f7120d17ec53`.  The probe uses this local copy because the
+campaign runner has source files but does not prebuild the `FormalConjectures` module prefix. -/
 def a (n : ℕ) : ℕ :=
   (∑ j ∈ Finset.Icc 1 n, ((3 : ℤ) ^ j + ((-2) : ℤ) ^ j)).toNat
 
+/-- The integer sum used independently in the OEIS source definition. -/
 def sourceSum (n : ℕ) : ℤ :=
   ∑ j ∈ Finset.Icc 1 n, ((3 : ℤ) ^ j + ((-2) : ℤ) ^ j)
 
@@ -18,13 +20,14 @@ lemma sourceSum_succ (n : ℕ) :
 
 lemma sourceTerm_odd (n : ℕ) :
     ¬ Even (((3 : ℤ) ^ (n + 1) + ((-2) : ℤ) ^ (n + 1))) := by
-  simp [Int.even_add, Int.even_pow]
+  norm_num [Int.even_add, Int.even_pow, Int.even_iff]
 
+/-- Exact parity invariant for the independent integer sum in `OeisA116150.a`. -/
 theorem sourceSum_even_iff (n : ℕ) : Even (sourceSum n) ↔ Even n := by
   induction n with
   | zero => simp [sourceSum]
   | succ n ih =>
-      rw [show Nat.succ n = n + 1 by omega, sourceSum_succ]
+      rw [sourceSum_succ]
       simp only [Int.even_add, sourceTerm_odd, iff_false, ih, Nat.even_add_one]
 
 lemma sourceTerm_nonneg {j : ℕ} (hj : 1 ≤ j) :
@@ -46,6 +49,7 @@ lemma sourceSum_nonneg (n : ℕ) : 0 ≤ sourceSum n := by
   intro j hj
   exact sourceTerm_nonneg (Finset.mem_Icc.mp hj).1
 
+/-- Source-faithful parity reduction, including the `Int.toNat` wrapper. -/
 theorem a_even_iff (n : ℕ) : Even (a n) ↔ Even n := by
   have hcoe : ((a n : ℕ) : ℤ) = sourceSum n := by
     change (((sourceSum n).toNat : ℕ) : ℤ) = sourceSum n
@@ -55,6 +59,7 @@ theorem a_even_iff (n : ℕ) : Even (a n) ↔ Even n := by
     _ ↔ Even (sourceSum n) := by rw [hcoe]
     _ ↔ Even n := sourceSum_even_iff n
 
+/-- Every positive even-index candidate is even; only odd indices can be a new odd prime. -/
 theorem a_two_mul_even (k : ℕ) : Even (a (2 * k)) := by
   rw [a_even_iff]
   exact ⟨k, by omega⟩
