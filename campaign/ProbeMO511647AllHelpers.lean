@@ -86,7 +86,7 @@ theorem cyclicBasis_apply (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
       rw [← hpre]
       simp [Fin.ext_iff, eq_comm]
     have hiff' : m - j.val + 1 = k.val ↔ k = (j - 1).rev := by
-      simpa only [Fin.val_rev] using hiff
+      simpa only [Fin.val_rev, Nat.succ_sub_succ_eq_sub] using hiff
     by_cases hk : k = j.rev
     · subst k
       simp [v, e, difference, Matrix.col_apply, hj, hne]
@@ -95,7 +95,7 @@ theorem cyclicBasis_apply (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
         simp only [v, if_neg hj, e, Pi.basisFun_apply, Pi.sub_apply,
           Pi.single_apply, Matrix.col_apply, difference, if_neg hne.symm, if_pos rfl]
         have hpre' : m - j.val + 1 = m - (j - 1).val := by
-          simpa only [Fin.val_rev] using hpre.symm
+          simpa only [Fin.val_rev, Nat.succ_sub_succ_eq_sub] using hpre.symm
         simp [Fin.val_rev, hpre', hne.symm]
       · simp [v, e, difference, Matrix.col_apply, hj, hk, hkp, hiff']
 
@@ -157,6 +157,7 @@ theorem T_v (m : ℕ) (hm : 2 ≤ m) (j : Fin (m + 1)) :
         add_sub_cancel_right, rev_sub_one_sub_one]
       abel
 
+open scoped Fin.NatCast in
 theorem T_pow_v (m : ℕ) (hm : 2 ≤ m) (r : ℕ) (j : Fin (m + 1)) :
     (T m ^ r) (v m j) = v m (j + (r : Fin (m + 1))) := by
   induction r with
@@ -166,6 +167,7 @@ theorem T_pow_v (m : ℕ) (hm : 2 ≤ m) (r : ℕ) (j : Fin (m + 1)) :
     congr 1
     simp [Nat.cast_add, add_assoc]
 
+open scoped Fin.NatCast in
 theorem T_period (m : ℕ) (hm : 2 ≤ m) : T m ^ (m + 1) = 1 := by
   apply (cyclicBasis m).ext
   intro j
@@ -214,6 +216,8 @@ namespace OMA.MO511647.Symmetric
 
 open Module
 
+noncomputable section
+
 abbrev Pair (n : ℕ) := {p : Fin n × Fin n // p.1 ≤ p.2}
 
 def exponent (n : ℕ) (p : Pair n) : Fin n →₀ ℕ :=
@@ -254,9 +258,14 @@ theorem quad_eq_monomial (n : ℕ) (p : Pair n) :
   simp [quad, exponent, MvPolynomial.X, MvPolynomial.monomial_mul]
 
 theorem quad_independent (n : ℕ) : LinearIndependent R (quad R n) := by
-  simpa only [quad_eq_monomial, MvPolynomial.coe_basisMonomials] using
-    (MvPolynomial.basisMonomials (Fin n) R).linearIndependent.comp
-      (exponent n) (exponent_injective n)
+  have hquad : quad R n =
+      (MvPolynomial.basisMonomials (Fin n) R :
+        (Fin n →₀ ℕ) → MvPolynomial (Fin n) R) ∘ exponent n := by
+    funext p
+    exact quad_eq_monomial R n p
+  rw [hquad]
+  exact (MvPolynomial.basisMonomials (Fin n) R).linearIndependent.comp
+    (exponent n) (exponent_injective n)
 
 def space (n : ℕ) : Submodule R (MvPolynomial (Fin n) R) :=
   Submodule.span R (Set.range (quad R n))
@@ -266,7 +275,7 @@ noncomputable def basis (n : ℕ) : Basis (Pair n) R (space R n) :=
 
 @[simp] theorem basis_coe (n : ℕ) (p : Pair n) :
     ((basis R n p : space R n) : MvPolynomial (Fin n) R) = quad R n p := by
-  simp [basis, Basis.span_apply]
+  exact Basis.coe_span_apply (quad_independent R n) p
 
 def sortedPair {n : ℕ} (i j : Fin n) : Pair n :=
   ⟨(min i j, max i j), min_le_max⟩
@@ -318,8 +327,10 @@ theorem linearForm_mul_mem {n : ℕ} (M : Matrix (Fin n) (Fin n) R) (a b : Fin n
   have hq : MvPolynomial.X i * MvPolynomial.X j ∈ space R n := by
     rw [← quad_sorted R i j]
     exact Submodule.subset_span (Set.mem_range_self _)
+  have hq' : MvPolynomial.X j * MvPolynomial.X i ∈ space R n := by
+    simpa only [mul_comm] using hq
   simpa only [smul_mul_assoc, mul_smul_comm, smul_smul] using
-    (space R n).smul_mem (M i a * M j b) hq
+    (space R n).smul_mem (M i b * M j a) hq'
 
 theorem substitute_mem {n : ℕ} (M : Matrix (Fin n) (Fin n) R)
     {p : MvPolynomial (Fin n) R} (hp : p ∈ space R n) :
@@ -345,13 +356,13 @@ noncomputable def qMap {n : ℕ} (M : Matrix (Fin n) (Fin n) R) :
     ((qMap R M p : space R n) : MvPolynomial (Fin n) R) = substitute R M p := rfl
 
 theorem qMap_one (n : ℕ) : qMap R (1 : Matrix (Fin n) (Fin n) R) = 1 := by
-  ext p
+  ext1 p
   apply Subtype.ext
   simp [qMap, substitute_one]
 
 theorem qMap_mul {n : ℕ} (M N : Matrix (Fin n) (Fin n) R) :
     qMap R (M * N) = qMap R M * qMap R N := by
-  ext p
+  ext1 p
   apply Subtype.ext
   simp [qMap, substitute_mul]
 
@@ -364,6 +375,8 @@ theorem qMatrix_one (n : ℕ) : qMatrix R (1 : Matrix (Fin n) (Fin n) R) = 1 := 
 theorem qMatrix_mul {n : ℕ} (M N : Matrix (Fin n) (Fin n) R) :
     qMatrix R (M * N) = qMatrix R M * qMatrix R N := by
   simp only [qMatrix, qMap_mul, LinearMap.toMatrix_mul]
+
+end
 
 end OMA.MO511647.Symmetric
 
@@ -407,8 +420,7 @@ theorem charpoly_cycleMatrix (n : ℕ) (hn : 0 < n) :
       basis := pb₀.basis.reindex (finCongr hd)
       basis_eq_pow := by
         intro i
-        change pb₀.basis ((finCongr hd).symm i) = pb₀.gen ^ i.val
-        rw [pb₀.basis_eq_pow]
+        rw [Module.Basis.reindex_apply, pb₀.basis_eq_pow]
         rfl }
   have hmin : minpoly ℚ pb.gen = p := by
     change minpoly ℚ (AdjoinRoot.root p) = p
@@ -417,10 +429,10 @@ theorem charpoly_cycleMatrix (n : ℕ) (hn : 0 < n) :
   have hminGen : pb.minpolyGen = p := by
     rw [PowerBasis.minpolyGen_eq, hmin]
   have hcoeff (i : Fin n) : p.coeff i.val = if i.val = 0 then -1 else 0 := by
-    have hni : n ≠ i.val := Nat.ne_of_gt i.isLt
     have hin : i.val ≠ n := Nat.ne_of_lt i.isLt
-    simp [p, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
-      Polynomial.coeff_one, hni, hin]
+    by_cases hi : i.val = 0 <;>
+      simp [p, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
+        Polynomial.coeff_one, hin, hi]
   have hmatrix : Algebra.leftMulMatrix pb.basis pb.gen = cycleMatrix n := by
     rw [PowerBasis.leftMulMatrix, hminGen]
     ext i j
@@ -430,7 +442,8 @@ theorem charpoly_cycleMatrix (n : ℕ) (hn : 0 < n) :
     by_cases hj : j.val + 1 = n
     · rw [if_pos hj, hcoeff i, hj, Nat.mod_self]
       by_cases hi : i.val = 0 <;> simp [hi]
-    · have hjlt : j.val + 1 < n := by omega
+    · have hjn : j.val < n := by simpa only [pb] using j.isLt
+      have hjlt : j.val + 1 < n := by omega
       rw [if_neg hj, Nat.mod_eq_of_lt hjlt]
   calc
     (cycleMatrix n).charpoly =
