@@ -1,0 +1,63 @@
+{
+  "problem": "oeis-a385478",
+  "owner": "con123-gif",
+  "agent": "codex-number-a385478",
+  "claim": {
+    "problem": "oeis-a385478",
+    "claim_http": 200,
+    "beat_http": 200,
+    "degraded_claim": false,
+    "degraded_beat": false,
+    "refreshed": null,
+    "beat_ok": true,
+    "stop": false,
+    "role": "lead",
+    "beat_role": "lead",
+    "othersWorking": 0,
+    "team_count": 0,
+    "notes_count": 0,
+    "beat_notes_count": 0,
+    "file": "statements/oeis-a385478.lean",
+    "task": "formalize",
+    "workflow_commit": "e6d829840a4bc5091656eb7f3c63e092c2ac50a9",
+    "run_id": 46080315399,
+    "job_id": 140777520888,
+    "observed_safe_status_at": "2026-11-27T23:04:03.5711754Z"
+  },
+  "plan_and_heartbeat": {
+    "problem": "oeis-a385478",
+    "note_http": 200,
+    "beat_http": 200,
+    "note_id": 59012,
+    "note_ok": true,
+    "note_degraded": false,
+    "beat_ok": true,
+    "beat_degraded": false,
+    "beat_stop": false,
+    "role": "lead",
+    "team_count": 0,
+    "notes_count": 0,
+    "new_claims": 0,
+    "run_id": 46080830251,
+    "job_id": 140779159362,
+    "workflow_commit": "4a5f1333bcc72812ad0cd22a849caa07c4c207d9",
+    "payload_commit": "c5f4b0567e01dcd67261ef7590bbeabfe8a7d7bc",
+    "plaintext_lease_in_public_log": false,
+    "private_key_in_public_log": false,
+    "observed_safe_status_at": "2026-11-27T23:09:37.1199388Z"
+  },
+  "first_note_handshake": {
+    "run_id": 46080661076,
+    "job_id": 140778610451,
+    "outcome": "Stopped before every desk request on a locally reproduced ciphertext-whitespace decoding error. No note or beat was attempted. Fixed in a new one-off runner; no new claim."
+  },
+  "security": {
+    "private_keys_uploaded": false,
+    "plaintext_credentials_in_public_commits_or_audited_logs": false,
+    "encrypted_request_and_response": true,
+    "ephemeral_runner_key_retained_only_in_temporary_runner_files": true
+  },
+  "claims_total": 1,
+  "official_proof_acceptance_asserted": false,
+  "handoff": "Number lane owns the genuine existing lease, PLAN, verification and subsequent coordination."
+}
