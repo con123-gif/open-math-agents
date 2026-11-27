@@ -257,17 +257,17 @@ lemma sq_cast_mod_three (i : ℕ) :
   have hi : i = 3 * (i / 3) + i % 3 := by omega
   have himod : i % 3 < 3 := Nat.mod_lt _ (by norm_num)
   interval_cases hr : i % 3
-  · rw [if_pos hr, hi, hr]
+  · rw [if_pos rfl, hi]
     push_cast
     rw [show (3 : ZMod 3) = 0 from
       (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
     ring
-  · rw [if_neg (by omega), hi, hr]
+  · rw [if_neg (by omega), hi]
     push_cast
     rw [show (3 : ZMod 3) = 0 from
       (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
     ring
-  · rw [if_neg (by omega), hi, hr]
+  · rw [if_neg (by omega), hi]
     push_cast
     rw [show (3 : ZMod 3) = 0 from
       (ZMod.natCast_eq_zero_iff 3 3).mpr (by norm_num)]
