@@ -182,7 +182,7 @@ lemma full_generating_function :
   have hN : numerator =
       -4 * (X : PowerSeries ℚ) *
         (-3 - 4*X - X^2 - 6*X^3 - 7*X^4 - 2*X^5 - X^6 + X^8 + 2*X^9) := by
-    norm_num [numerator]
+    simp only [numerator, map_ofNat]
     ring
   rw [hd, ← hN]
   exact generating_identity
