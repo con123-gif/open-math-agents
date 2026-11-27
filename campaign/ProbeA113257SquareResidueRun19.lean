@@ -193,46 +193,56 @@ theorem square_index_mod_sixteen (n : ℕ) (hsquare : IsSquare (a n)) :
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((5 : ZMod 8) = 0 ∨ (5 : ZMod 8) = 1 ∨
+      (5 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((2 : ZMod 8) = 0 ∨ (2 : ZMod 8) = 1 ∨
+      (2 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((2 : ZMod 8) = 0 ∨ (2 : ZMod 8) = 1 ∨
+      (2 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((3 : ZMod 8) = 0 ∨ (3 : ZMod 8) = 1 ∨
+      (3 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((7 : ZMod 8) = 0 ∨ (7 : ZMod 8) = 1 ∨
+      (7 : ZMod 8) = 4)) hs
   · omega
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((5 : ZMod 8) = 0 ∨ (5 : ZMod 8) = 1 ∨
+      (5 : ZMod 8) = 4)) hs
   · omega
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((6 : ZMod 8) = 0 ∨ (6 : ZMod 8) = 1 ∨
+      (6 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((6 : ZMod 8) = 0 ∨ (6 : ZMod 8) = 1 ∨
+      (6 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((7 : ZMod 8) = 0 ∨ (7 : ZMod 8) = 1 ∨
+      (7 : ZMod 8) = 4)) hs
   · norm_num [hr] at ha
     rw [ha] at hs
     exfalso
-    rcases hs with h | h | h <;> exact (by decide) h
+    exact (by decide : ¬ ((11 : ZMod 8) = 0 ∨ (11 : ZMod 8) = 1 ∨
+      (11 : ZMod 8) = 4)) hs
   · omega
 
 #print axioms cast_a_mod_eight
