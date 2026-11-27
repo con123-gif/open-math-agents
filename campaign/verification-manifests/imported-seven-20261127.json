@@ -1,0 +1,43 @@
+{
+  "purpose": "Exact imported-target check of seven newly registered complete proofs; not official acceptance",
+  "official_main_observed": "a1d87f1a69f1a7b5a87c77e3da6cb2f3b0ab29b4",
+  "proof_sources": {
+    "oeis-a383246": [
+      "reversal_work/fresh/a383246_statement.lean",
+      "reversal_work/fresh/oeis-a383246_proof.lean"
+    ],
+    "oeis-a383248": [
+      "reversal_work/fresh/a383248_statement.lean",
+      "reversal_work/fresh/oeis-a383248_proof.lean"
+    ],
+    "mo-319325": [
+      "scout_work/mo319325_statement.lean",
+      "scout_work/mo319325_disproof.lean"
+    ],
+    "mo-487192": [
+      "runtime_research/mo487192_statement.lean",
+      "runtime_research/mo487192_disproof.lean"
+    ],
+    "oeis-a382465": [
+      "reversal_work/fresh/a382465_statement.lean",
+      "reversal_work/fresh/oeis-a382465_proof.lean"
+    ],
+    "oeis-a382624": [
+      "reversal_work/fresh/a382624_statement.lean",
+      "reversal_work/fresh/oeis-a382624_proof.lean"
+    ],
+    "oeis-a383062": [
+      "reversal_work/fresh/a383062_statement.lean",
+      "reversal_work/fresh/oeis-a383062_proof.lean"
+    ]
+  },
+  "proof_git_blobs": {
+    "oeis-a383246": "28deaa51e6ebbc83abde09d9275a61b89f3f5e02",
+    "oeis-a383248": "72b50936bcdde3387b8521b93bba6a63e031a8fc",
+    "mo-319325": "be98286e4e89bf851e42917516dca5cb5ff7e875",
+    "mo-487192": "9f5d35a7e976be52d2864261e1068aa66dac2c5e",
+    "oeis-a382465": "c8cd78cffb414db0d8fa6d530fc4d3674620eecc",
+    "oeis-a382624": "bbf8629098c2cb30095aede7c865b3c373dfd327",
+    "oeis-a383062": "22ec2b777b78fd2228af45ea822ee1d4c178b3e6"
+  }
+}
