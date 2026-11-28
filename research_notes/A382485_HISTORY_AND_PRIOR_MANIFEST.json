@@ -1,0 +1,112 @@
+{
+  "problem": "oeis-a382485",
+  "status": "PRIOR_METHOD_OVERLAP_HOLD",
+  "read_at": "2026-11-28",
+  "history": [
+    {
+      "sha": "30c383550c8059b1712df8e32827d3b203765933",
+      "date": "2025-10-22T04:09:54Z",
+      "readable": true,
+      "header": "%I A382485 #64 May 01 2025 01:40:27",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n.",
+        "%C A382485 Conjecture: There exists some constant, k, approximately equal to 1.2, such that a(n) is of average order k*n/log(n). See Tooth Link for evidence.",
+        "%H A382485 Robert Israel, <a href=\"/A382485/b382485.txt\">Table of n, a(n) for n = 1..10000</a>",
+        "%H A382485 Clive Tooth, <a href=\"/A382485/a382485_4.png\">[Sum_{i=2..n} a(i)]/[Sum_{i=2..n} i/log(i)] for n=10^7 to 10^9</a>"
+      ]
+    },
+    {
+      "sha": "330e388b12d0203b2b3bd94b2af6d6d912f0c376",
+      "date": "2025-10-20T07:35:37Z",
+      "readable": false,
+      "header": "",
+      "claims": []
+    },
+    {
+      "sha": "a14644b925aa3dc1a0642d6f18995fb82b52c6f2",
+      "date": "2025-05-16T07:12:50Z",
+      "readable": true,
+      "header": "%I A382485 #64 May 01 2025 01:40:27",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n.",
+        "%C A382485 Conjecture: There exists some constant, k, approximately equal to 1.2, such that a(n) is of average order k*n/log(n). See Tooth Link for evidence.",
+        "%H A382485 Robert Israel, <a href=\"/A382485/b382485.txt\">Table of n, a(n) for n = 1..10000</a>",
+        "%H A382485 Clive Tooth, <a href=\"/A382485/a382485_4.png\">[Sum_{i=2..n} a(i)]/[Sum_{i=2..n} i/log(i)] for n=10^7 to 10^9</a>"
+      ]
+    },
+    {
+      "sha": "dd2a166e483556d6a714b1e0e164040d9d3c9a33",
+      "date": "2025-05-01T07:12:41Z",
+      "readable": true,
+      "header": "%I A382485 #64 May 01 2025 01:40:27",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n.",
+        "%C A382485 Conjecture: There exists some constant, k, approximately equal to 1.2, such that a(n) is of average order k*n/log(n). See Tooth Link for evidence.",
+        "%H A382485 Robert Israel, <a href=\"/A382485/b382485.txt\">Table of n, a(n) for n = 1..10000</a>",
+        "%H A382485 Clive Tooth, <a href=\"/A382485/a382485_4.png\">[Sum_{i=2..n} a(i)]/[Sum_{i=2..n} i/log(i)] for n=10^7 to 10^9</a>"
+      ]
+    },
+    {
+      "sha": "a2fdc31670a9a434cf9ebdf8663f611f86cd902d",
+      "date": "2025-04-21T07:15:04Z",
+      "readable": true,
+      "header": "%I A382485 #57 Apr 17 2025 23:25:20",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n.",
+        "%C A382485 Conjecture: There exists some constant, k, approximately equal to 1.2, such that a(n) is of average order k*n/log(n). See Tooth Link for evidence.",
+        "%H A382485 Clive Tooth, <a href=\"/A382485/a382485_4.png\">[Sum_{i=2..n} a(i)]/[Sum_{i=2..n} i/log(i)] for n=10^7 to 10^9</a>"
+      ]
+    },
+    {
+      "sha": "2ae0ebed008bd93037572fe5b43c7d2841922509",
+      "date": "2025-04-18T07:13:53Z",
+      "readable": true,
+      "header": "%I A382485 #57 Apr 17 2025 23:25:20",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n.",
+        "%C A382485 Conjecture: There exists some constant, k, approximately equal to 1.2, such that a(n) is of average order k*n/log(n). See Tooth Link for evidence.",
+        "%H A382485 Clive Tooth, <a href=\"/A382485/a382485_4.png\">[Sum_{i=2..n} a(i)]/[Sum_{i=2..n} i/log(i)] for n=10^7 to 10^9</a>"
+      ]
+    },
+    {
+      "sha": "9b253612dd40acaf00350593af09f0fe13727a4f",
+      "date": "2025-04-08T07:13:22Z",
+      "readable": true,
+      "header": "%I A382485 #41 Apr 07 2025 09:53:42",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n."
+      ]
+    },
+    {
+      "sha": "3df60b7f6b92a4b1bae5906ef2ccc6f60afc3fb1",
+      "date": "2025-04-07T07:13:58Z",
+      "readable": true,
+      "header": "%I A382485 #35 Apr 06 2025 16:38:50",
+      "claims": [
+        "%N A382485 a(n) = ceiling(n/d^2) where d is the largest divisor of n which is not greater than the square root of n."
+      ]
+    },
+    {
+      "sha": "8dac34e8ad096e9b16d28f14ff794b8b0e5c9f31",
+      "date": "2025-03-31T07:13:29Z",
+      "readable": false,
+      "header": "",
+      "claims": []
+    },
+    {
+      "sha": "e37f4328d19a07aadc4efcb4f871b07499bbd2f2",
+      "date": "2025-03-30T07:13:08Z",
+      "readable": true,
+      "header": "%I A382485 #7 Mar 29 2025 19:12:55",
+      "claims": [
+        "%N A382485 Least composite squarefree numbers k > n such that p + n divides k - n, for each prime p dividing k."
+      ]
+    }
+  ],
+  "prior_pdf_sha256": "ac5c636d02090b03bae12028f47943281ec4a93507ac7958b5a1abaa4a56f4dd",
+  "prior_pdf_md5": "118ea1bb290d0615f97290d98dd4b911",
+  "no_lean": true,
+  "no_submission": true,
+  "no_acceptance_claim": true
+}
+
