@@ -1,0 +1,26 @@
+{
+  "current_source_exact_local": true,
+  "source_revision": 11,
+  "checked_at_utc": "2026-11-28T00:23:40.572Z",
+  "searches": [
+    {
+      "query": "repo:GuillaumeBAUD-coder/open-math-agents is:pull-request \"A380671\"",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A380671 repo:the-omega-institute/trureturing",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "\"oeis.org/A380671\" repo:the-omega-institute/trureturing",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    }
+  ],
+  "scope": "Bounded affirmative source-continuity and negative searches; no historical novelty guarantee"
+}
