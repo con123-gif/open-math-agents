@@ -1,0 +1,17 @@
+{
+  "problem": "oeis-a380671",
+  "verdict": "Complete informal mathematical PASS; bounded source/prior gate clean within inspected scope",
+  "reviewed_at_utc": "2026-11-28T00:24:39.063694+00:00",
+  "model": "Codex/GPT-6; exact serving variant not exposed",
+  "source_gate": "A380671_INDEPENDENT_SOURCE_PRIOR_GATE.json",
+  "full_note_sha256": "3aca8b42d1943a835787136a2ab4de5af0b95adc5849b7b37daa92f73c5a1811",
+  "full_note_bytes": 6662,
+  "reviewed_candidate_sha256": "b29358091dcb56105adf73686aa11cb8c4b4d0476ddac7e53ef5ca9c9685baf3",
+  "source_sha256": "2e15023f46033906e2b8435e108eaf5eded25f5216c6832a5479152f8223c332",
+  "full_Dekking_paper_read": true,
+  "no_historical_priority_guarantee": true,
+  "no_Lean_pass": true,
+  "no_lease": true,
+  "no_verifier_write": true,
+  "no_official_PR": true
+}
