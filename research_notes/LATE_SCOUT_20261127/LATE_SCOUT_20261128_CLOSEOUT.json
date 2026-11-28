@@ -1,0 +1,52 @@
+{
+  "recorded_utc": "2026-11-28T00:11:55.396165+00:00",
+  "claims": 0,
+  "lean_certificates": 0,
+  "official_submissions": 0,
+  "accepted_solutions": 0,
+  "records": [
+    {
+      "id": "mo-475684",
+      "status": "EXCLUDED_SOURCE_COMPLETE_COUNTEREXAMPLE",
+      "all_state_pr_hits": 0,
+      "source_answers": 0,
+      "source_comments": 7,
+      "source_history_items": 5,
+      "reason": "Source author explicitly acknowledges Ozawa counterexample in current source comment1236569. Our real5dim3x3 independent example is valid but does not make the question newly resolved.",
+      "linked_original": "https://mathoverflow.net/questions/474920",
+      "complex_case_prior": "https://arxiv.org/abs/0706.0705 Theorem11",
+      "source_files": [
+        "MO475684_question.json",
+        "MO475684_comments.json",
+        "MO475684_history.json"
+      ]
+    },
+    {
+      "id": "mo-491734",
+      "status": "EXCLUDED_ACCEPTED_SOURCE_PROOF",
+      "reason": "Direct source answers endpoint contains Fedor Petrov complete maximum-principle proof, accepted answer491738 on27April2025. Search/advanced answers=0 was only a minimum answer count and not a no-answers filter; corrected scouting to /questions/no-answers. No source freshness or open-status claim is retained.",
+      "source_answer": 491738,
+      "source_files": [
+        "MO491734_question.json",
+        "MO491734_answers.json"
+      ],
+      "live_status": 404,
+      "our_claim_attempts": 0
+    },
+    {
+      "id": "mo-486510",
+      "status": "BOUNDED_SEARCH_NO_SUBSTANTIVE_COUNTEREXAMPLE",
+      "all_state_pr_hits": 0,
+      "fresh_trure_exact_id_count": 0,
+      "screen": "N≤60,u≤15,nL≤50:471892 meaningful nonzero-capacity cases, no sign reversal and no active zero. Finite evidence only.",
+      "counterclaim_avoided": "Outside total partition capacity D=0 is a boundary degeneracy, not pursued as a genuine new resolution."
+    },
+    {
+      "id": "mo-476612",
+      "status": "CONCURRENT_INDEPENDENT_HAND_PROOF_ONLY_DUPLICATE_REGISTRATION_WITHHELD",
+      "chronology_file": "MO476612_CONCURRENT_PUBLICATION_GATE.json",
+      "hand_proof": "MO476612_COMPLETE_HAND_DISPROOF.md"
+    }
+  ],
+  "scouting_integrity": "No candidate was promoted to Lean verification, official claim, official solution submission or acceptance. Earlier source counts corrected where direct endpoints showed accepted prior answers."
+}
