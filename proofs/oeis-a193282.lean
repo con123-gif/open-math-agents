@@ -1,37 +1,54 @@
 import OMAStatements.S_oeis_a193282
 import Mathlib
 
+-- Cornelius Lytollis (@con123-gif), assisted by ChatGPT.
+-- Separate parity identities remove the factorials before algebraic cancellation.
+-- Independent archived proof; eliminate redundant full-goal restatement using exact Nat normalization.
+-- Source conjecture: R. J. Mathar; first merged proof by Raimo33 retains first-solve credit.
+
+namespace A193282Certificate
+open OMA.S_oeis_a193282
+
+lemma odd_step (k : ℕ) : a (2 * k + 1) = (2 * (k : ℚ) + 1) ^ 2 * a (2 * k) := by
+  simp only [a, show (2 * k + 1) / 2 = k by omega,
+    show 2 * k / 2 = k by omega, Nat.factorial_succ]
+  push_cast
+  field_simp <;> ring
+
+lemma even_step (k : ℕ) : a (2 * k + 2) = 4 * a (2 * k + 1) := by
+  simp only [a, show (2 * k + 2) / 2 = k + 1 by omega,
+    show (2 * k + 1) / 2 = k by omega, Nat.factorial_succ]
+  push_cast
+  field_simp <;> ring
+
+end A193282Certificate
+
+open A193282Certificate
+
 theorem OMA.solution : type_of% @OMA.S_oeis_a193282.main := by
   intro n hn
-  simp only [OMA.S_oeis_a193282.a]
-  obtain ⟨j, rfl | rfl⟩ := Nat.even_or_odd' n
-  · obtain ⟨i, rfl⟩ : ∃ i, j = i + 2 := ⟨j - 2, by omega⟩
-    rw [show 2 * (i + 2) - 1 = 2 * i + 2 + 1 by omega, show 2 * (i + 2) - 2 = 2 * i + 1 + 1 by omega,
-      show 2 * (i + 2) - 3 = 2 * i + 1 by omega, show 2 * (i + 2) - 4 = 2 * i by omega,
-      show 2 * (i + 2) = 2 * i + 3 + 1 by ring]
-    rw [show (2 * i + 3 + 1) / 2 = i + 1 + 1 by omega, show (2 * i + 2 + 1) / 2 = i + 1 by omega,
-      show (2 * i + 1 + 1) / 2 = i + 1 by omega, show (2 * i + 1) / 2 = i by omega,
-      show 2 * i / 2 = i by omega]
-    simp only [Nat.factorial_succ, show 2 * i + 3 = 2 * i + 2 + 1 by ring,
-      show 2 * i + 2 = 2 * i + 1 + 1 by ring, Nat.factorial_succ]
-    have : ((2 * i).factorial : ℚ) ≠ 0 := by positivity
-    have : (i.factorial : ℚ) ≠ 0 := by positivity
+  obtain ⟨k, rfl⟩ : ∃ k : ℕ, n = k + 4 := ⟨n - 4, by omega⟩
+  obtain ⟨m, rfl | rfl⟩ := Nat.even_or_odd' k
+  · have h0 := odd_step m
+    have h1 := even_step m
+    have h2 := odd_step (m + 1)
+    have h3 := even_step (m + 1)
+    norm_num only [Nat.mul_add, Nat.mul_one, Nat.add_assoc] at h2 h3
+    simp only [show 2 * m + 4 - 1 = 2 * m + 3 by omega,
+      show 2 * m + 4 - 2 = 2 * m + 2 by omega,
+      show 2 * m + 4 - 3 = 2 * m + 1 by omega,
+      Nat.add_sub_cancel, h3, h2, h1, h0]
     push_cast
-    field_simp
     ring
-  · obtain ⟨i, rfl⟩ : ∃ i, j = i + 2 := ⟨j - 2, by omega⟩
-    rw [show 2 * (i + 2) + 1 - 1 = 2 * i + 3 + 1 by omega,
-      show 2 * (i + 2) + 1 - 2 = 2 * i + 2 + 1 by omega,
-      show 2 * (i + 2) + 1 - 3 = 2 * i + 1 + 1 by omega, show 2 * (i + 2) + 1 - 4 = 2 * i + 1 by omega,
-      show 2 * (i + 2) + 1 = 2 * i + 4 + 1 by ring]
-    rw [show (2 * i + 4 + 1) / 2 = i + 1 + 1 by omega, show (2 * i + 3 + 1) / 2 = i + 1 + 1 by omega,
-      show (2 * i + 2 + 1) / 2 = i + 1 by omega, show (2 * i + 1 + 1) / 2 = i + 1 by omega,
-      show (2 * i + 1) / 2 = i by omega]
-    simp only [Nat.factorial_succ, show 2 * i + 4 = 2 * i + 3 + 1 by ring,
-      show 2 * i + 3 = 2 * i + 2 + 1 by ring,
-      show 2 * i + 2 = 2 * i + 1 + 1 by ring, Nat.factorial_succ]
-    have : ((2 * i + 1).factorial : ℚ) ≠ 0 := by positivity
-    have : (i.factorial : ℚ) ≠ 0 := by positivity
+  · have h0 := even_step m
+    have h1 := odd_step (m + 1)
+    have h2 := even_step (m + 1)
+    have h3 := odd_step (m + 2)
+    norm_num only [Nat.mul_add, Nat.mul_one, Nat.add_assoc] at h1 h2 h3
+    simp only [show 2 * m + 1 + 4 = 2 * m + 5 by omega,
+      show 2 * m + 5 - 1 = 2 * m + 4 by omega,
+      show 2 * m + 5 - 2 = 2 * m + 3 by omega,
+      show 2 * m + 5 - 3 = 2 * m + 2 by omega,
+      show 2 * m + 5 - 4 = 2 * m + 1 by omega, h3, h2, h1, h0]
     push_cast
-    field_simp
     ring
